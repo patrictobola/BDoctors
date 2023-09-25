@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('cv')->nullable();
             $table->string('phone_number')->nullable()->unique();
             $table->string('address')->nullable();
-            $table->string('perfomances')->nullable();
+            $table->string('performances')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });
