@@ -17,4 +17,10 @@ class Doctor extends Model
         'perfomances',
         'description',
     ];
+
+
+    public function specializations()
+    {
+        return $this->belongsToMany(Specialization::class);
+    }
 }
