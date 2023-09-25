@@ -9,8 +9,6 @@ class Doctor extends Model
 {
     use HasFactory;
 
-
-
     protected $fillable = [
         'profile_photo',
         'cv',
