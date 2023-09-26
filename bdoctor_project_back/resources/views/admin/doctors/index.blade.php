@@ -22,4 +22,12 @@
         </div>
         <a class="btn btn-success" href="{{ route('admin.doctor.edit', $doctor) }}">Modifica</a>
     </div>
+    <div class="div">
+        <form action="{{route('admin.doctor.destroy', $doctor)}}" method="POST">
+            @csrf
+            @method('DELETE')
+
+            <button class="btn btn-danger">Delete</button>
+        </form>
+    </div>
 @endsection

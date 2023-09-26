@@ -92,6 +92,12 @@ class DoctorController extends Controller
      */
     public function destroy(Doctor $doctor)
     {
-        //
+        $doctorName = $doctor->user->name;
+
+        $doctor->delete();
+
+        return to_route('admin.admin')
+            ->with('alert-type', 'success')
+            ->with('alert-message', "$doctorName successfully deleted");
     }
 }
