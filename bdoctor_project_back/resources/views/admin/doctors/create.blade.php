@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container mt-5">
-        <form method="POST" action="{{ route('admin.doctor.store') }}">
+        <form method="POST" action="{{ route('admin.doctor.store') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -20,11 +20,11 @@
             </div>
             <div class="mb-3">
                 <label for="profile_photo" class="form-label">Insert your profile photo</label>
-                <input type="text" class="form-control" name="profile_photo" id="profile_photo">
+                <input type="file" class="form-control" name="profile_photo" id="profile_photo">
             </div>
             <div class="mb-3">
                 <label for="cv" class="form-label">Insert your CV</label>
-                <input type="text" class="form-control" name="cv" id="cv">
+                <input type="file" class="form-control" name="cv" id="cv">
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>

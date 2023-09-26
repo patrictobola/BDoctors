@@ -14,9 +14,16 @@ return new class extends Migration
         Schema::create('doctor_specialization', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('doctor_id')->constrained();
-            $table->foreignId('specialization_id')->constrained();
+            $table->unsignedBigInteger('doctor_id')->constrained();
+            $table->unsignedBigInteger('specialization_id')->constrained();
 
+            $table->foreign('doctor_id')
+                ->references('id')->on('doctors')
+                ->onDelete('cascade');
+
+            $table->foreign('specialization_id')
+                ->references('id')->on('specializations')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });

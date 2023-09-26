@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
-                    <img src="{{ $doctor->profile_photo }}" class="card-img-top" alt="Doctor's Photo">
+                    <img src="{{ asset('storage/' . $doctor->profile_photo) }}" class="card-img-top w-25" alt="Doctor's Photo">
                 </div>
             </div>
             <div class="col-md-8">
@@ -45,4 +45,16 @@
                 </div>
             </div>
         </div>
+                    <div class="card-body">
+                <a href="{{ asset('storage/' . $doctor->cv) }}">Visualizza cv</a>
+            </div>
+        <a class="btn btn-success" href="{{ route('admin.doctor.edit', $doctor) }}">Modifica</a>
+            <div class="div">
+        <form action="{{route('admin.doctor.destroy', $doctor)}}" method="POST">
+            @csrf
+            @method('DELETE')
+
+            <button class="btn btn-danger">Delete</button>
+        </form>
+    </div>
     @endsection

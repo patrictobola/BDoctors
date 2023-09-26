@@ -6,6 +6,7 @@ use App\Models\Doctor;
 use App\Models\Specialization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DoctorController extends Controller
 {
@@ -41,6 +42,16 @@ class DoctorController extends Controller
 
         $doctor = new Doctor();
 
+        if (array_key_exists('profile_photo', $data)) {
+            $img_url = Storage::putFile('doctor_profile_photos', $data['profile_photo']);
+            $data['profile_photo'] = $img_url;
+        }
+
+        if (array_key_exists('cv', $data)) {
+            $file_url = Storage::putFile('doctor_cvs', $data['cv']);
+            $data['cv'] = $file_url;
+        }
+
         $doctor->fill($data);
 
         $doctor['user_id'] = Auth::id();
@@ -63,7 +74,7 @@ class DoctorController extends Controller
      */
     public function edit(Doctor $doctor)
     {
-        //
+        return view('admin.doctors.edit', compact('doctor'));
     }
 
     /**
@@ -71,7 +82,9 @@ class DoctorController extends Controller
      */
     public function update(Request $request, Doctor $doctor)
     {
-        //
+        $data = $request->all();
+        $doctor->update($data);
+        return to_route('admin.doctor.index', $doctor);
     }
 
     /**
@@ -79,6 +92,12 @@ class DoctorController extends Controller
      */
     public function destroy(Doctor $doctor)
     {
-        //
+        $doctorName = $doctor->user->name;
+
+        $doctor->delete();
+
+        return to_route('admin.admin')
+            ->with('alert-type', 'success')
+            ->with('alert-message', "$doctorName successfully deleted");
     }
 }
