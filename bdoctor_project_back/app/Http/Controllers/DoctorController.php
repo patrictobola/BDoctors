@@ -5,17 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use App\Models\Specialization;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DoctorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Doctor $doctor)
     {
-        //
+        $user_id = Auth::id();
+        $doctor = Doctor::findOrFail($user_id);
+        return view('admin.doctors.index', compact('doctor'));
     }
 
+    // if($user_id === $doctor_id){}
     /**
      * Show the form for creating a new resource.
      */
@@ -40,7 +44,7 @@ class DoctorController extends Controller
 
         $doctor->save();
 
-        return to_route('admin.doctor.show', $doctor);
+        return to_route('admin.doctor.index', $doctor);
     }
 
     /**
