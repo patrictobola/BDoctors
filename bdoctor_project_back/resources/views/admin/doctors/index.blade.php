@@ -20,5 +20,6 @@
                 <p class="card-text">{{ $doctor->cv }}</p>
             </div>
         </div>
+        <a class="btn btn-success" href="{{ route('admin.doctor.edit', $doctor) }}">Modifica</a>
     </div>
 @endsection
