@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\Specialization;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -20,15 +21,26 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        $specializations = Specialization::all();
+        return view('admin.doctors.create', compact('specializations'));
     }
+
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $doctor = new Doctor();
+
+        $doctor->fill($data);
+
+        $doctor->save();
+
+        return to_route('admin.doctor.show', $doctor);
     }
 
     /**
@@ -36,7 +48,7 @@ class DoctorController extends Controller
      */
     public function show(Doctor $doctor)
     {
-        //
+        return view('admin.doctors.show', compact('doctor'));
     }
 
     /**

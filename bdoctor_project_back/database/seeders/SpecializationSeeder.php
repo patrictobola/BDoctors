@@ -14,9 +14,12 @@ class SpecializationSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        $specialization = new Specialization();
-        $specialization->name = $faker->text(10);
-        $specialization->description = $faker->text();
-        $specialization->save();
+        for ($i = 0; $i < 15; $i++) {
+
+            $specialization = new Specialization();
+            $specialization->name = $faker->text(10);
+            $specialization->description = $faker->text();
+            $specialization->save();
+        }
     }
 }
