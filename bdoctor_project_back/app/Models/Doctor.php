@@ -10,6 +10,7 @@ class Doctor extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'profile_photo',
         'cv',
         'phone_number',
@@ -33,6 +34,6 @@ class Doctor extends Model
     }
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 }

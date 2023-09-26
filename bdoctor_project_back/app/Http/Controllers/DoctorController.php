@@ -16,6 +16,7 @@ class DoctorController extends Controller
     {
         $user_id = Auth::id();
         $doctor = Doctor::findOrFail($user_id);
+        // $user = Auth::user();
         return view('admin.doctors.index', compact('doctor'));
     }
 
@@ -41,6 +42,8 @@ class DoctorController extends Controller
         $doctor = new Doctor();
 
         $doctor->fill($data);
+
+        $doctor['user_id'] = Auth::id();
 
         $doctor->save();
 

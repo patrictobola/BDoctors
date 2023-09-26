@@ -14,10 +14,22 @@ class SpecializationSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for ($i = 0; $i < 15; $i++) {
+        $specializations = [
+            'ginecologo',
+            'ortopedico',
+            'dermatologo',
+            'nutrizionista',
+            'psicologo',
+            'oculista',
+            'urologo',
+            'otorino',
+            'cardiologo',
+            'dentista',
+        ];
 
+        foreach ($specializations as $name) {
             $specialization = new Specialization();
-            $specialization->name = $faker->text(10);
+            $specialization->name = $name;
             $specialization->description = $faker->text();
             $specialization->save();
         }
