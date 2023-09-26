@@ -6,6 +6,7 @@ use App\Models\Doctor;
 use App\Models\Specialization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DoctorController extends Controller
 {
@@ -40,6 +41,16 @@ class DoctorController extends Controller
         $data = $request->all();
 
         $doctor = new Doctor();
+
+        if (array_key_exists('profile_photo', $data)) {
+            $img_url = Storage::putFile('doctor_profile_photos', $data['profile_photo']);
+            $data['profile_photo'] = $img_url;
+        }
+
+        if (array_key_exists('cv', $data)) {
+            $file_url = Storage::putFile('doctor_cvs', $data['cv']);
+            $data['cv'] = $file_url;
+        }
 
         $doctor->fill($data);
 
