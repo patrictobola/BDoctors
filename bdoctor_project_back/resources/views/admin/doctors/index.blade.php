@@ -20,5 +20,6 @@
                 <a href="{{ asset('storage/' . $doctor->cv) }}">Visualizza cv</a>
             </div>
         </div>
+        <a class="btn btn-success" href="{{ route('admin.doctor.edit', $doctor) }}">Modifica</a>
     </div>
 @endsection

@@ -74,7 +74,7 @@ class DoctorController extends Controller
      */
     public function edit(Doctor $doctor)
     {
-        //
+        return view('admin.doctors.edit', compact('doctor'));
     }
 
     /**
@@ -82,7 +82,9 @@ class DoctorController extends Controller
      */
     public function update(Request $request, Doctor $doctor)
     {
-        //
+        $data = $request->all();
+        $doctor->update($data);
+        return to_route('admin.doctor.index', $doctor);
     }
 
     /**
