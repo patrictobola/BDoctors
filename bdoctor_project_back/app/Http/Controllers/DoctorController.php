@@ -56,9 +56,9 @@ class DoctorController extends Controller
 
         $doctor['user_id'] = Auth::id();
 
-        $doctor->specializations()->attach($data['specialization']);
-
         $doctor->save();
+
+        $doctor->specializations()->attach($data['specialization']);
 
         return to_route('admin.doctor.index', $doctor);
     }
