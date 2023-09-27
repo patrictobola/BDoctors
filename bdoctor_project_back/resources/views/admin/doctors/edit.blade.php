@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    {{--
     <div class="container mt-5">
         @if ($errors->any())
             <div class="container">
@@ -62,5 +63,9 @@
                 </div>
             </form>
         </div>
+    </div>
+    --}}
+    <div class="container mt-4">
+        @include('includes.form')
     </div>
 @endsection

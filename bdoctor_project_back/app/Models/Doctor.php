@@ -15,7 +15,7 @@ class Doctor extends Model
         'cv',
         'phone_number',
         'address',
-        'perfomances',
+        'performances',
         'description',
     ];
 

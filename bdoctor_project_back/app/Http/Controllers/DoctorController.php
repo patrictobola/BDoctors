@@ -29,7 +29,8 @@ class DoctorController extends Controller
     public function create()
     {
         $specializations = Specialization::all();
-        return view('admin.doctors.create', compact('specializations'));
+        $doctor = new Doctor;
+        return view('admin.doctors.create', compact('specializations', 'doctor'));
     }
 
 
@@ -80,7 +81,9 @@ class DoctorController extends Controller
 
         $doctor->save();
 
-        $doctor->specializations()->attach($data['specialization']);
+        foreach ($data['specialization'] as $specializations) {
+            $doctor->specializations()->attach($specializations);
+        }
 
         return to_route('admin.doctor.index', $doctor);
     }
@@ -98,7 +101,8 @@ class DoctorController extends Controller
      */
     public function edit(Doctor $doctor)
     {
-        return view('admin.doctors.edit', compact('doctor'));
+        $specializations = Specialization::all();
+        return view('admin.doctors.edit', compact('doctor', 'specializations'));
     }
 
     /**
@@ -126,7 +130,36 @@ class DoctorController extends Controller
             'specialization' => 'Seleziona una specializzazione tra quelle disponibili.'
         ]);
         $data = $request->all();
+
+        if (array_key_exists('profile_photo', $data)) {
+            $img_url = Storage::putFile('doctor_profile_photos', $data['profile_photo']);
+            $data['profile_photo'] = $img_url;
+        }
+
+        if (array_key_exists('cv', $data)) {
+            $file_url = Storage::putFile('doctor_cvs', $data['cv']);
+            $data['cv'] = $file_url;
+        }
+
         $doctor->update($data);
+
+        // Creo un array che contenga gli id delle specializzazioni del dottore
+        $doctor_specs_ids = [];
+
+        foreach ($doctor->specializations as $doc_spec) {
+            $doctor_specs_ids[] = $doc_spec->id;
+        }
+
+        // Se una specializzazione dei dati non è contenuta nelle specializzazioni del dottore, la inserisco
+        foreach ($data['specialization'] as $data_spec) {
+            if (!in_array($data_spec, $doctor_specs_ids)) $doctor->specializations()->attach($data_spec);
+        }
+
+        // Se una specializzazione del dottore non è contenuta nelle specializzazioni dei dati, la tolgo
+        foreach ($doctor_specs_ids as $doc_spec_id) {
+            if (!in_array($doc_spec_id, $data['specialization'])) $doctor->specializations()->detach($doc_spec_id);
+        }
+
         return to_route('admin.doctor.index', $doctor);
     }
 
