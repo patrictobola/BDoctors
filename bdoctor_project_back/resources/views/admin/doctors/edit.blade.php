@@ -20,7 +20,7 @@
                     <p class="card-text">
                         <label for="specializations" class="form-label">Specializzato in:</label>
                         <textarea class="form-control" id="specializations" name="specializations"
-                            value="{{ old('specializations', $doctor->specializations[1]->name) }}"></textarea>
+                            value="{{ old('specializations', $doctor->specializations[0]->name) }}"></textarea>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
@@ -43,7 +43,7 @@
                     <label for="cv" class="form-label card-text">Cv</label>
                     <textarea class="form-control" id="cv" name="cv" value="{{ old('cv', $doctor->cv) }}"></textarea>
                 </div>
-                <div class="d-flex justify-content-end mt-4">
+                <div class="d-flex justify-content-end m-4">
                     <button class="btn btn-success"><i class="fas fa-floppy-disk me-2"></i>Salva</button>
                 </div>
             </form>
