@@ -2,11 +2,25 @@
 
 @section('content')
     <div class="container mt-5">
+        @if ($errors->any())
+            <div class="container">
+                <div class="alert alert-danger position-relative">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        <button type="button" class="m-3 btn-close top-0 end-0 position-absolute" data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                    </ul>
+                </div>
+            </div>
+        @endif
         <div class="card">
             <form action="{{ route('admin.doctor.update', $doctor) }}" method="POST" novalidate>
                 @method('PUT')
                 @csrf
-                <img src="{{ old('profile_photo', $doctor->profile_photo) }}" class="card-img-top w-25" alt="Doctor's Photo">
+                <img src="{{ old('profile_photo', $doctor->profile_photo) }}" class="card-img-top w-25"
+                    alt="Doctor's Photo">
                 <input class="form-control" type="file" id="profile_photo" name="profile_photo"
                     placeholder="cambia il file dell'immagine">
                 <div class="card-body">
