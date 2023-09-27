@@ -26,7 +26,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Specializzazione</h5>
-                        <p class="card-text">{{ $doctor->specializations[1]->name }}</p>
+                        <p class="card-text">{{ $doctor->specializations[0]->name }}</p>
                     </div>
                 </div>
                 <div class="card mt-3">
