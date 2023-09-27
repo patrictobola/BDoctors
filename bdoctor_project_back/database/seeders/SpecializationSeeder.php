@@ -15,16 +15,16 @@ class SpecializationSeeder extends Seeder
     public function run(Faker $faker): void
     {
         $specializations = [
-            'ginecologo',
-            'ortopedico',
-            'dermatologo',
-            'nutrizionista',
-            'psicologo',
-            'oculista',
-            'urologo',
-            'otorino',
-            'cardiologo',
-            'dentista',
+            'Ginecologo',
+            'Ortopedico',
+            'Dermatologo',
+            'Nutrizionista',
+            'Psicologo',
+            'Oculista',
+            'Urologo',
+            'Otorino',
+            'Cardiologo',
+            'Dentista',
         ];
 
         foreach ($specializations as $name) {
