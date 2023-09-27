@@ -44,7 +44,8 @@ class DoctorController extends Controller
             'cv' => 'nullable|file:pdf',
             'address' => 'nullable|string',
             'performances' => 'nullable|string',
-            'description' => 'nullable|string'
+            'description' => 'nullable|string',
+            'specialization' => 'required'
         ], [
             'phone_number.numeric' => 'Il telefono può contenere solo numeri',
             'phone_number.digits' => 'Il telefono può avere solo 10 numeri',
@@ -53,7 +54,8 @@ class DoctorController extends Controller
             'cv.file' => 'Il CV deve essere un PDF',
             'address.string' => 'Inseriti caratteri non validi',
             'performances.string' => 'Inseriti caratteri non validi',
-            'description.string' => 'Inseriti caratteri non validi'
+            'description.string' => 'Inseriti caratteri non validi',
+            'specialization' => 'Seleziona una specializzazione tra quelle disponibili.'
         ]);
 
 
