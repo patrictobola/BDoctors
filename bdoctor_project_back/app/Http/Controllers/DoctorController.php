@@ -7,6 +7,7 @@ use App\Models\Specialization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class DoctorController extends Controller
 {
@@ -105,6 +106,25 @@ class DoctorController extends Controller
      */
     public function update(Request $request, Doctor $doctor)
     {
+        $request->validate([
+            'phone_number' => ['nullable', 'numeric', 'digits:10', Rule::unique('doctors')->ignore($doctor->id)],
+            'profile_photo' => 'nullable|image',
+            'cv' => 'nullable|file:pdf',
+            'address' => 'nullable|string',
+            'performances' => 'nullable|string',
+            'description' => 'nullable|string',
+            'specialization' => 'required'
+        ], [
+            'phone_number.numeric' => 'Il telefono può contenere solo numeri',
+            'phone_number.digits' => 'Il telefono può avere solo 10 numeri',
+            'phone_number.unique' => 'Il telefono risulta già assegnato ad un altro utente',
+            'profile_photo.image' => 'La foto profilo deve essere una foto',
+            'cv.file' => 'Il CV deve essere un PDF',
+            'address.string' => 'Inseriti caratteri non validi',
+            'performances.string' => 'Inseriti caratteri non validi',
+            'description.string' => 'Inseriti caratteri non validi',
+            'specialization' => 'Seleziona una specializzazione tra quelle disponibili.'
+        ]);
         $data = $request->all();
         $doctor->update($data);
         return to_route('admin.doctor.index', $doctor);
