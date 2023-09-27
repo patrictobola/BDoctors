@@ -26,7 +26,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Specializzazione</h5>
-                        <p class="card-text">{{ $doctor->specializations[1]->name }}</p>
+                        @foreach ($doctor->specializations as $specialization)
+                            <p>{{ $specialization->name }}</p>
+                        @endforeach
                     </div>
                 </div>
                 <div class="card mt-3">

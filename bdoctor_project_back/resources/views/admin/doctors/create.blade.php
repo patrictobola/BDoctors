@@ -2,6 +2,7 @@
 
 
 @section('content')
+    {{--
     <div class="container mt-5">
         <form method="POST" action="{{ route('admin.doctor.store') }}" enctype="multipart/form-data">
             @csrf
@@ -40,5 +41,9 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+    </div>
+    --}}
+    <div class="container mt-4">
+        @include('includes.form')
     </div>
 @endsection

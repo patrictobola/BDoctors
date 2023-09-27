@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    {{--
     <div class="container mt-5">
         <div class="card">
             <form action="{{ route('admin.doctor.update', $doctor) }}" method="POST" novalidate>
@@ -48,5 +49,9 @@
                 </div>
             </form>
         </div>
+    </div>
+    --}}
+    <div class="container mt-4">
+        @include('includes.form')
     </div>
 @endsection
