@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
     <div class="container mt-5">
         <div class="card">
@@ -44,6 +43,7 @@
                     <textarea class="form-control" id="cv" name="cv" value="{{ old('cv', $doctor->cv) }}"></textarea>
                 </div>
                 <div class="d-flex justify-content-end m-4">
+                    <a href="{{ route('admin.doctor.index') }}" class="btn btn-primary me-2">Torna alla lista</a>
                     <button class="btn btn-success"><i class="fas fa-floppy-disk me-2"></i>Salva</button>
                 </div>
             </form>
