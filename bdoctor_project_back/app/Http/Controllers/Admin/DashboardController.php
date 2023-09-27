@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -12,7 +14,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.admin');
+        $user_id = Auth::id();
+        $doctor = Doctor::findOrFail($user_id);
+        return view('admin.admin', compact('doctor'));
     }
 
     /**
