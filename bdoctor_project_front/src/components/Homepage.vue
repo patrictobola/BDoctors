@@ -1,11 +1,17 @@
 <script >
+import Header from './Header.vue';
+import Main from './Main.vue';
+import Footer from './Footer.vue';
 export default {
   name: 'Homepage',
+  components: { Header, Main, Footer },
 }
 </script>
 
 <template>
-  <h1>hello</h1>
+  <Header />
+  <Main />
+  <Footer />
 </template>
 
 <style scoped></style>
