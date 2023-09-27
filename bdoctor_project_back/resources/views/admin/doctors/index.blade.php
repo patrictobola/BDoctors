@@ -30,7 +30,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Specializzazione</h5>
-                        <p class="card-text">{{ $doctor->specializations[1]->name }}</p>
+                        <p class="card-text">{{ $doctor->specializations[0]->name }}</p>
                     </div>
                 </div>
             </div>
@@ -45,16 +45,16 @@
                 </div>
             </div>
         </div>
-                    <div class="card-body">
-                <a href="{{ asset('storage/' . $doctor->cv) }}">Visualizza cv</a>
-            </div>
+        <div class="card-body">
+            <a href="{{ asset('storage/' . $doctor->cv) }}">Visualizza cv</a>
+        </div>
         <a class="btn btn-success" href="{{ route('admin.doctor.edit', $doctor) }}">Modifica</a>
-            <div class="div">
-        <form action="{{route('admin.doctor.destroy', $doctor)}}" method="POST">
-            @csrf
-            @method('DELETE')
+        <div class="div">
+            <form action="{{ route('admin.doctor.destroy', $doctor) }}" method="POST">
+                @csrf
+                @method('DELETE')
 
-            <button class="btn btn-danger">Delete</button>
-        </form>
-    </div>
+                <button class="btn btn-danger">Delete</button>
+            </form>
+        </div>
     @endsection
