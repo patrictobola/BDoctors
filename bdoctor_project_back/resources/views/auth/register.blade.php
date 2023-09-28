@@ -44,6 +44,35 @@
                                 </div>
                             </div>
 
+                            {{-- Campo specializzazioni --}}
+                            {{-- <p class="mt-4">Specializzazioni</p>
+                            <fieldset>
+                                @foreach ($specializations as $specialization)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
+                                            id="{{ $specialization->name }}" name="specialization[]"
+                                            @foreach ($doctor->specializations as $doctor_spec) @if ($doctor_spec->id == $specialization->id) checked @endif @endforeach>
+                                        <label class="form-check-label" for="{{ $specialization->name }}">
+                                            {{ ucfirst($specialization->name) }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </fieldset> --}}
+
+                            {{-- Campo indirizzo --}}
+                            <div class="col-4 mt-5">
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Indirizzo</label>
+                                    <input type="text"
+                                        class="form-control @error('address') is-invalid @elseif(old('address')) is-valid @enderror"
+                                        id="address" name="address" value="{{ old('address', $doctor->address) }}">
+                                    @error('address')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="mb-4 row">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
