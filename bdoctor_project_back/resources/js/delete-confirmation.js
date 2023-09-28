@@ -1,4 +1,4 @@
-// varianile d'appoggio 
+// variabile d'appoggio 
 let activeForm = null;
 
 // raccolgo la modale
