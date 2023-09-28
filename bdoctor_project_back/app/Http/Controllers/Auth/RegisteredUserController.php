@@ -54,20 +54,20 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        $doctor = new Doctor();
+        $doctor->address = $request->address;
+        $doctor['user_id'] = $user->id;
+        $doctor->save();
+        foreach ($request['specialization'] as $specializations) {
+            $doctor->specializations()->attach($specializations);
+        }
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        $doctor = new Doctor();
-        $doctor->address = $request->address;
-        $doctor['user_id'] = Auth::id();
-        $doctor->save();
 
 
-        foreach ($request['specialization'] as $specializations) {
-            $doctor->specializations()->attach($specializations);
-        }
-        return to_route('admin.doctor.create');
+        return to_route('admin.doctor.edit', compact('doctor'));
     }
 }

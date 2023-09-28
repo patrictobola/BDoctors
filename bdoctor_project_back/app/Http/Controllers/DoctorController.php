@@ -73,8 +73,6 @@ class DoctorController extends Controller
 
         $doctor->fill($data);
 
-        $doctor['user_id'] = Auth::id();
-
         $doctor->save();
 
         return to_route('admin.doctor.index', $doctor);
