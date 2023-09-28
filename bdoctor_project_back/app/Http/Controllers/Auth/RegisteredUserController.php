@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DoctorController;
+use App\Models\Doctor;
+use App\Models\Specialization;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -21,7 +23,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $doctor = Doctor::all();
+        $specializations = Specialization::all();
+        return view('auth.register', compact('doctor', 'specializations'));
     }
 
     /**
@@ -31,9 +35,12 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // @dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'specialization' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -49,6 +56,15 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        $doctor = new Doctor();
+        $doctor->address = $request->address;
+        $doctor['user_id'] = Auth::id();
+        $doctor->save();
+
+
+        foreach ($request['specialization'] as $specializations) {
+            $doctor->specializations()->attach($specializations);
+        }
         return to_route('admin.doctor.create');
     }
 }
