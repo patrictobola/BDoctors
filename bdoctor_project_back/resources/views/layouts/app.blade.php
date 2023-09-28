@@ -89,6 +89,10 @@
             @yield('content')
         </main>
     </div>
+
+    @include('includes.layout.modal')
+
+    @yield('scripts')
 </body>
 
 </html>
