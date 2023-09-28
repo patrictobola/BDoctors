@@ -6,26 +6,14 @@
 @endif
 
 @csrf
-@if ($errors->any())
-    <div class="container">
-        <div class="alert alert-danger position-relative">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-                <button type="button" class="m-3 btn-close top-0 end-0 position-absolute" data-bs-dismiss="alert"
-                    aria-label="Close"></button>
-            </ul>
-        </div>
-    </div>
-@endif
+
 <div class="row">
 
     {{-- Campo foto profilo --}}
     <div class="col-6">
         <div class="mb-3">
             <label for="profile_photo" class="form-label">Foto profilo</label>
-            <input type="file"
+            <input type="file" accept=".jpeg,.jpg,.png"
                 class="form-control @error('profile_photo') is-invalid @elseif(old('profile_photo')) is-valid @enderror"
                 id="profile_photo" name="profile_photo" value="{{ old('profile_photo', $doctor->profile_photo) }}">
             @error('profile_photo')
@@ -40,7 +28,7 @@
     <div class="col-6">
         <div class="mb-3">
             <label for="cv" class="form-label">Curriculum Vitae</label>
-            <input type="file"
+            <input type="file" accept=".pdf"
                 class="form-control @error('cv') is-invalid @elseif(old('cv')) is-valid @enderror"
                 id="cv" name="cv" value="{{ old('cv', $doctor->cv) }}">
             @error('cv')
@@ -51,26 +39,51 @@
         </div>
     </div>
 
-    {{-- Campo specializzazioni --}}
-    <p class="mt-4">Specializzazioni</p>
-    <fieldset>
-        @foreach ($specializations as $specialization)
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
-                    id="{{ $specialization->name }}" name="specialization[]"
-                    @foreach ($doctor->specializations as $doctor_spec) @if ($doctor_spec->id == $specialization->id) checked @endif @endforeach>
-                <label class="form-check-label" for="{{ $specialization->name }}">
-                    {{ ucfirst($specialization->name) }}
-                </label>
+    {{-- Campi specifici dell'edit --}}
+    @if ($doctor->exists)
+
+        {{-- Campo specializzazioni --}}
+        <p class="mt-4">Specializzazioni <span class="text-danger">*</span></p>
+        <fieldset>
+            @foreach ($specializations as $specialization)
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
+                        id="{{ $specialization->name }}" name="specialization[]"
+                        @foreach ($doctor->specializations as $doctor_spec) @if ($doctor_spec->id == $specialization->id) checked @endif @endforeach>
+                    <label class="form-check-label" for="{{ $specialization->name }}">
+                        {{ ucfirst($specialization->name) }}
+                    </label>
+                </div>
+            @endforeach
+            @error('specialization')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </fieldset>
+
+        {{-- Campo indirizzo --}}
+        <div class="col-4 mt-5">
+            <div class="mb-3">
+                <label for="address" class="form-label">Indirizzo <span class="text-danger">*</span></label>
+                <input type="text"
+                    class="form-control @error('address') is-invalid @elseif(old('address')) is-valid @enderror"
+                    id="address" name="address" value="{{ old('address', $doctor->address) }}" required>
+                @error('address')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
-        @endforeach
-    </fieldset>
+        </div>
+
+    @endif
 
     {{-- Campo numero di telefono --}}
     <div class="col-2 mt-5">
         <div class="mb-3">
             <label for="phone_number" class="form-label">Numero di telefono</label>
-            <input type="tel"
+            <input type="text" minlength="10" maxlength="10"
                 class="form-control @error('phone_number') is-invalid @elseif(old('phone_number')) is-valid @enderror"
                 id="phone_number" name="phone_number" value="{{ old('phone_number', $doctor->phone_number) }}">
             @error('phone_number')
@@ -82,21 +95,6 @@
     </div>
 
     <div class="col-1"></div>
-
-    {{-- Campo indirizzo --}}
-    <div class="col-4 mt-5">
-        <div class="mb-3">
-            <label for="address" class="form-label">Indirizzo</label>
-            <input type="text"
-                class="form-control @error('address') is-invalid @elseif(old('address')) is-valid @enderror"
-                id="address" name="address" value="{{ old('address', $doctor->address) }}">
-            @error('address')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-    </div>
 
     {{-- Campo prestazioni --}}
     <div class="mt-4">
@@ -116,13 +114,9 @@
 
     {{-- Bottoni --}}
 
-    <div class="mt-3 mb-5 d-flex">
-        <div class="col-1">
-            <button type="submit" class="btn btn-success">Salva</button>
-        </div>
-        <div class="col-1">
-            <button type="reset" class="btn btn-danger">Svuota</button>
-        </div>
+    <div class="col-1">
+        <button type="submit" class="btn btn-success">Salva</button>
     </div>
+
 </div>
 </form>

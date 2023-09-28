@@ -10,7 +10,6 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
-
                             <div class="mb-4 row">
                                 <label for="name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -43,6 +42,53 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="mb-4 row">
+                                <label for="last_name"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="address" type="text"
+                                        class="form-control @error('address') is-invalid @enderror" name="address"
+                                        value="{{ old('address') }}" required autocomplete="address" autofocus>
+
+                                    @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <label for="last_name"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Specializations') }}</label>
+
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        @foreach ($specializations as $specialization)
+                                            <div class="col-6">
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input @error('specialization') is-invalid @enderror"
+                                                        type="checkbox"
+                                                        value="{{ old('specializations[]', $specialization->id) }}"
+                                                        id="{{ $specialization->name }}" name="specialization[]"
+                                                        {{ is_array(old('specialization')) && in_array($specialization->id, old('specialization')) ? ' checked' : '' }}>
+                                                    <label class="form-check-label" for="{{ $specialization->name }}">
+                                                        {{ ucfirst($specialization->name) }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        @if ($errors->has('specialization'))
+                                            <span class="text-danger fs-6">
+                                                <strong>{{ $errors->first('specialization') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="mb-4 row">
                                 <label for="email"

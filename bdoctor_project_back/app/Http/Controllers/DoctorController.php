@@ -44,20 +44,16 @@ class DoctorController extends Controller
             'phone_number' => 'nullable|numeric|digits:10|unique:doctors',
             'profile_photo' => 'nullable|image',
             'cv' => 'nullable|file:pdf',
-            'address' => 'nullable|string',
             'performances' => 'nullable|string',
             'description' => 'nullable|string',
-            'specialization' => 'required'
         ], [
             'phone_number.numeric' => 'Il telefono può contenere solo numeri',
             'phone_number.digits' => 'Il telefono può avere solo 10 numeri',
             'phone_number.unique' => 'Il telefono risulta già assegnato ad un altro utente',
             'profile_photo.image' => 'La foto profilo deve essere una foto',
             'cv.file' => 'Il CV deve essere un PDF',
-            'address.string' => 'Inseriti caratteri non validi',
             'performances.string' => 'Inseriti caratteri non validi',
             'description.string' => 'Inseriti caratteri non validi',
-            'specialization' => 'Seleziona una specializzazione tra quelle disponibili.'
         ]);
 
 
@@ -80,10 +76,6 @@ class DoctorController extends Controller
         $doctor['user_id'] = Auth::id();
 
         $doctor->save();
-
-        foreach ($data['specialization'] as $specializations) {
-            $doctor->specializations()->attach($specializations);
-        }
 
         return to_route('admin.doctor.index', $doctor);
     }
@@ -172,7 +164,7 @@ class DoctorController extends Controller
 
         $doctor->delete();
 
-        return to_route('admin.admin')
+        return to_route('admin.doctor.create')
             ->with('alert-type', 'success')
             ->with('alert-message', "$doctorName successfully deleted");
     }

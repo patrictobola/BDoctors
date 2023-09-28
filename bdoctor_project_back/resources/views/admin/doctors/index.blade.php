@@ -42,10 +42,11 @@
                 </div>
                 <div class="d-flex justify-content-end mt-3">
                     <a class="btn btn-success mx-2" href="{{ route('admin.doctor.edit', $doctor) }}">Modifica</a>
+                    <!-- FORM PER DELETE -->
                     <form action="{{ route('admin.doctor.destroy', $doctor) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </div>
             </div>
