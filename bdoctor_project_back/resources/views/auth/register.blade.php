@@ -10,7 +10,6 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
-
                             <div class="mb-4 row">
                                 <label for="name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -70,7 +69,7 @@
                                             <div class="col-6">
                                                 <div class="form-check">
                                                     <input
-                                                        class="form-check-input @error('specializations') is-invalid @enderror"
+                                                        class="form-check-input @error('specialization') is-invalid @enderror"
                                                         type="checkbox"
                                                         value="{{ old('specializations[]', $specialization->id) }}"
                                                         id="{{ $specialization->name }}" name="specialization[]"
@@ -81,11 +80,11 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        @error('specializations')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
+                                        @if ($errors->has('specialization'))
+                                            <span class="text-danger fs-6">
+                                                <strong>{{ $errors->first('specialization') }}</strong>
                                             </span>
-                                        @enderror
+                                        @endif
                                     </div>
                                 </div>
                             </div>

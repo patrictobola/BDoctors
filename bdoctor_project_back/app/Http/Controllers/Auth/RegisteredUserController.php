@@ -35,14 +35,17 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // @dd($request);
+        // @dd($request->specialization);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'specialization' => ['required'],
+            'specialization' => ['required', 'array', 'min:1'],
+            'specialization.*' => ['required', 'numeric', 'distinct', 'min:1'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'specialization.required' => 'Atleast one specialization must be cheked',
         ]);
 
         $user = User::create([
