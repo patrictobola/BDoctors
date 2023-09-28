@@ -59,7 +59,7 @@ export default {
 .review {
   height: 150px;
   border: 1px dashed black;
-  border: 3px solid rgb(63, 223, 92);
+  border: 3px solid rgba(63, 223, 92, 0.349);
   border-radius: 25px;
 }
 
@@ -71,5 +71,19 @@ li {
 ul {
   width: 100%;
   padding-left: 0;
+}
+
+@media screen and (min-width: 780px) {
+  ul {
+    display: flex;
+  }
+
+  li {
+    width: 250px;
+  }
+
+  .review {
+    height: 250px;
+  }
 }
 </style>

@@ -13,9 +13,10 @@ export default {
       <button type="button" class="btn btn-outline-light">options</button>
     </div>
 
-    <div class="d-flex px-2 justify-content-between nav flex-shirnk">
+    <div class="d-flex px-2 nav flex-shirnk">
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
           Specializzazzione
         </button>
         <ul class="dropdown-menu">
@@ -23,7 +24,8 @@ export default {
         </ul>
       </div>
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
           Ratings
         </button>
         <ul class="dropdown-menu">
@@ -31,7 +33,8 @@ export default {
         </ul>
       </div>
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
           Messaggi
         </button>
         <ul class="dropdown-menu">
@@ -46,11 +49,24 @@ export default {
 <style scoped>
 header {
   height: 300px;
-  width: 480px;
+  width: 100%;
   background-image: linear-gradient(rgb(22, 178, 50), transparent);
 }
 
 .nav {
   padding-top: 40px;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 580px) {
+  .nav {
+    justify-content: space-around;
+  }
+}
+
+@media screen and (min-width: 780px) {
+  li {
+    padding-right: 20px;
+  }
 }
 </style>

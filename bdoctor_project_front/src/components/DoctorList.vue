@@ -15,68 +15,64 @@ export default {
     <!-- DOCTOR LIST -->
     <ul class="doctor-list">
       <!-- DOCTOR CARD -->
-      <li>
-        <div class="doctor lines">
-          <div class="d-flex h-100">
-            <!-- DOCTOR-IMG -->
-            <div class="doc-image"></div>
-            <!-- DOCTOR INFO -->
+      <li class="lines">
+        <div class="doctor">
+          <!-- DOCTOR-IMG -->
+          <div class="doc-image"></div>
+          <!-- DOCTOR INFO -->
+          <div>
             <div>
-              <div>
-                <h5 class="ms-2 m-0">name</h5>
-                <p class="ms-2 m-0">specialization</p>
-                <p class="ms-2 m-0">prestazioni:(come non hai mai provato)</p>
-              </div>
+              <h5 class="ms-2 ">name</h5>
+              <p class="ms-2 m-0">specialization</p>
+              <p class="ms-2 m-0">prestazioni:(come non hai mai provato)</p>
+              <p class="des ms-2">description</p>
             </div>
           </div>
         </div>
       </li>
       <!-- DOCTOR CARD -->
-      <li>
-        <div class="doctor lines">
-          <div class="d-flex h-100">
-            <!-- DOCTOR-IMG -->
-            <div class="doc-image"></div>
-            <!-- DOCTOR INFO -->
+      <li class="lines">
+        <div class="doctor">
+          <!-- DOCTOR-IMG -->
+          <div class="doc-image"></div>
+          <!-- DOCTOR INFO -->
+          <div>
             <div>
-              <div>
-                <h5 class="ms-2 m-0">name</h5>
-                <p class="ms-2 m-0">specialization</p>
-                <p class="ms-2 m-0">prestazioni:(come non hai mai provato)</p>
-              </div>
+              <h5 class="ms-2 m-0">name</h5>
+              <p class="ms-2 m-0">specialization</p>
+              <p class="ms-2 m-0">prestazioni:(come non hai mai provato)</p>
+              <p class="des ms-2">description</p>
             </div>
           </div>
         </div>
       </li>
       <!-- DOCTOR CARD -->
-      <li>
-        <div class="doctor lines">
-          <div class="d-flex h-100">
-            <!-- DOCTOR-IMG -->
-            <div class="doc-image"></div>
-            <!-- DOCTOR INFO -->
+      <li class="lines">
+        <div class="doctor">
+          <!-- DOCTOR-IMG -->
+          <div class="doc-image"></div>
+          <!-- DOCTOR INFO -->
+          <div>
             <div>
-              <div>
-                <h5 class="ms-2 m-0">name</h5>
-                <p class="ms-2 m-0">specialization</p>
-                <p class="ms-2 m-0">prestazioni:(come non hai mai provato)</p>
-              </div>
+              <h5 class="ms-2 m-0">name</h5>
+              <p class="ms-2 m-0">specialization</p>
+              <p class="ms-2 m-0">prestazioni:(come non hai mai provato)</p>
+              <p class="des ms-2">description</p>
             </div>
           </div>
         </div>
       </li>
-      <li>
-        <div class="doctor lines">
-          <div class="d-flex h-100">
-            <!-- DOCTOR-IMG -->
-            <div class="doc-image"></div>
-            <!-- DOCTOR INFO -->
+      <li class="lines">
+        <div class="doctor">
+          <!-- DOCTOR-IMG -->
+          <div class="doc-image"></div>
+          <!-- DOCTOR INFO -->
+          <div>
             <div>
-              <div>
-                <h5 class="ms-2 m-0">name</h5>
-                <p class="ms-2 m-0">specialization</p>
-                <p class="ms-2 m-0">prestazioni:(come non hai mai provato)</p>
-              </div>
+              <h5 class="ms-2 m-0">name</h5>
+              <p class="ms-2 m-0">specialization</p>
+              <p class="ms-2 m-0">prestazioni:(come non hai mai provato)</p>
+              <p class="des ms-2">description</p>
             </div>
           </div>
         </div>
@@ -113,11 +109,43 @@ button {
 }
 
 .doctor {
-  height: 100px;
+  height: 100%;
+  display: flex;
+}
+
+.des {
+  display: none;
 }
 
 li {
   list-style: none;
   margin-top: 15px;
+}
+
+@media screen and (min-width: 580px) {
+  li {
+    padding-right: 20px;
+
+  }
+}
+
+@media screen and (min-width: 990px) {
+  ul {
+    display: flex;
+  }
+
+  li {
+    height: 300px;
+    margin-right: 10px;
+  }
+
+  .doctor {
+    height: 100%;
+    display: block;
+  }
+
+  .des {
+    display: block;
+  }
 }
 </style>
