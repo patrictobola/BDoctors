@@ -167,6 +167,11 @@ class DoctorController extends Controller
             Storage::delete($doctor->profile_photo);
         }
 
+        //delete the cvs if present
+        if ($doctor->cv) {
+            Storage::delete($doctor->cv);
+        }
+
         $doctor->delete();
 
         return to_route('admin.doctor.create')
