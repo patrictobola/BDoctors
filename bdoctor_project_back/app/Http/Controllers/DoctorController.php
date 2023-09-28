@@ -19,7 +19,7 @@ class DoctorController extends Controller
         $user_id = Auth::id();
         $doctor = Doctor::findOrFail($user_id);
         // $user = Auth::user();
-        return view('admin.doctors.index', compact('doctor'));
+        return view('admin.doctors.index', compact('doctor', 'user_id'));
     }
 
     // if($user_id === $doctor_id){}
@@ -73,8 +73,6 @@ class DoctorController extends Controller
 
         $doctor->fill($data);
 
-        $doctor['user_id'] = Auth::id();
-
         $doctor->save();
 
         return to_route('admin.doctor.index', $doctor);
@@ -93,8 +91,9 @@ class DoctorController extends Controller
      */
     public function edit(Doctor $doctor)
     {
+        $user_id = Auth::id();
         $specializations = Specialization::all();
-        return view('admin.doctors.edit', compact('doctor', 'specializations'));
+        return view('admin.doctors.edit', compact('doctor', 'specializations', 'user_id'));
     }
 
     /**
@@ -161,6 +160,17 @@ class DoctorController extends Controller
     public function destroy(Doctor $doctor)
     {
         $doctorName = $doctor->user->name;
+
+        $doctorName = $doctor->user->name;
+        // delete the thumbnail if present
+        if ($doctor->profile_photo) {
+            Storage::delete($doctor->profile_photo);
+        }
+
+        //delete the cvs if present
+        if ($doctor->cv) {
+            Storage::delete($doctor->cv);
+        }
 
         $doctor->delete();
 
