@@ -40,14 +40,12 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'specializations' => ['required', 'array', 'min:2'],
-            'specializations.*' => ['required', 'numeric', 'distinct', 'min:1'],
+            'specialization' => ['required', 'array', 'min:1'],
+            'specialization.*' => ['required', 'numeric', 'distinct', 'min:1'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ], [
-            'specializations.required' => 'required',
-            'specializations.array' => 'array',
-            'specializations.min' => 'min',
+            'specialization.required' => 'Atleast one specialization must be cheked',
         ]);
 
         $user = User::create([

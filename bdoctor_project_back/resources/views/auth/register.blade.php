@@ -10,7 +10,6 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
-
                             <div class="mb-4 row">
                                 <label for="name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -66,15 +65,11 @@
 
                                 <div class="col-md-6">
                                     <div class="row">
-                                        {{-- @dd($specializations) --}}
                                         @foreach ($specializations as $specialization)
                                             <div class="col-6">
-                                                {{-- @if (old('specialization'))
-                                                    @dd(old('specialization'))
-                                                @endif --}}
                                                 <div class="form-check">
                                                     <input
-                                                        class="form-check-input @error('specializations') is-invalid @enderror"
+                                                        class="form-check-input @error('specialization') is-invalid @enderror"
                                                         type="checkbox"
                                                         value="{{ old('specializations[]', $specialization->id) }}"
                                                         id="{{ $specialization->name }}" name="specialization[]"
@@ -84,12 +79,12 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            @error('specializations')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
                                         @endforeach
+                                        @if ($errors->has('specialization'))
+                                            <span class="text-danger fs-6">
+                                                <strong>{{ $errors->first('specialization') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
