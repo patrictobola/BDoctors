@@ -172,7 +172,7 @@ class DoctorController extends Controller
 
         $doctor->delete();
 
-        return to_route('admin.admin')
+        return to_route('admin.doctor.create')
             ->with('alert-type', 'success')
             ->with('alert-message', "$doctorName successfully deleted");
     }
