@@ -19,7 +19,7 @@ class DoctorController extends Controller
         $user_id = Auth::id();
         $doctor = Doctor::findOrFail($user_id);
         // $user = Auth::user();
-        return view('admin.doctors.index', compact('doctor'));
+        return view('admin.doctors.index', compact('doctor', 'user_id'));
     }
 
     // if($user_id === $doctor_id){}
@@ -91,8 +91,9 @@ class DoctorController extends Controller
      */
     public function edit(Doctor $doctor)
     {
+        $user_id = Auth::id();
         $specializations = Specialization::all();
-        return view('admin.doctors.edit', compact('doctor', 'specializations'));
+        return view('admin.doctors.edit', compact('doctor', 'specializations', 'user_id'));
     }
 
     /**
