@@ -44,13 +44,6 @@
                     </div>
                     <div class="d-flex justify-content-end mt-3">
                         <a class="btn btn-success mx-2" href="{{ route('admin.doctor.edit', $doctor) }}">Modifica</a>
-                        <!-- FORM PER DELETE -->
-                        <form action="{{ route('admin.doctor.destroy', $doctor) }}" method="POST" class="delete-form"
-                            data-bs-toggle="modal" data-bs-target="#modal">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -58,8 +51,4 @@
             <h1>Not found</h1>
         @endif
     </div>
-@endsection
-
-@section('scripts')
-    @vite('resources/js/delete-confirmation.js')
 @endsection

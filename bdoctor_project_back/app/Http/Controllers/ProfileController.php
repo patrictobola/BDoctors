@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -50,6 +51,14 @@ class ProfileController extends Controller
         $user = $request->user();
         $doctor = Doctor::findOrFail(Auth::id());
         Auth::logout();
+        //delete the cvs if present
+        if ($doctor->cv) {
+            Storage::delete($doctor->cv);
+        }
+        // delete the thumbnail if present
+        if ($doctor->profile_photo) {
+            Storage::delete($doctor->profile_photo);
+        }
         $doctor->delete();
         $user->delete();
 
