@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Doctor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,9 +48,9 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
-
+        $doctor = Doctor::findOrFail(Auth::id());
         Auth::logout();
-
+        $doctor->delete();
         $user->delete();
 
         $request->session()->invalidate();
