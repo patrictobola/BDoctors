@@ -66,8 +66,12 @@
 
                                 <div class="col-md-6">
                                     <div class="row">
+                                        {{-- @dd($specializations) --}}
                                         @foreach ($specializations as $specialization)
                                             <div class="col-6">
+                                                {{-- @if (old('specialization'))
+                                                    @dd(old('specialization'))
+                                                @endif --}}
                                                 <div class="form-check">
                                                     <input
                                                         class="form-check-input @error('specializations') is-invalid @enderror"
@@ -80,12 +84,12 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                            @error('specializations')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         @endforeach
-                                        @error('specializations')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </div>
                                 </div>
                             </div>
