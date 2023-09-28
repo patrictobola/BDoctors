@@ -1,6 +1,7 @@
-import { createApp } from 'vue'
-import chart from './js/chart'
-import './style/style.css'
-import App from './App.vue'
+import { createApp } from "vue";
+import chart from "./js/chart";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-createApp(App).mount('#app')
+import App from "./App.vue";
+
+createApp(App).mount("#app");
