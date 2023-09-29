@@ -1,5 +1,6 @@
 @if ($doctor->exists)
-    <form method="POST" action="{{ route('admin.doctor.update', $doctor) }}" enctype="multipart/form-data">
+    <form id="doc-edit-form" method="POST" action="{{ route('admin.doctor.update', $doctor) }}"
+        enctype="multipart/form-data">
         @method('PUT')
     @else
         <form method="POST" action="{{ route('admin.doctor.store') }}" enctype="multipart/form-data">
@@ -43,14 +44,16 @@
     @if ($doctor->exists)
 
         {{-- Campo specializzazioni --}}
-        <p class="mt-4">Specializzazioni <span class="text-danger">*</span></p>
+        <p class="mt-4">Specializzazioni <span class="text-danger">*</span><span
+                class="text-danger error-alert-specialization"></span></p>
         <fieldset>
             @foreach ($specializations as $specialization)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ $specialization->id }}"
+                <div class="form-check check-specializations">
+                    <input class="form-check-input specialization" type="checkbox" value="{{ $specialization->id }}"
                         id="{{ $specialization->name }}" name="specialization[]"
                         @foreach ($doctor->specializations as $doctor_spec) @if ($doctor_spec->id == $specialization->id) checked @endif @endforeach>
-                    <label class="form-check-label" for="{{ $specialization->name }}">
+                    <label class="form-check-label label-specialization" id="{{ $specialization->id }}"
+                        for="{{ $specialization->name }}">
                         {{ ucfirst($specialization->name) }}
                     </label>
                 </div>
@@ -84,8 +87,9 @@
         <div class="mb-3">
             <label for="phone_number" class="form-label">Numero di telefono</label>
             <input type="text" minlength="10" maxlength="10"
-                class="form-control @error('phone_number') is-invalid @elseif(old('phone_number')) is-valid @enderror"
-                id="phone_number" name="phone_number" value="{{ old('phone_number', $doctor->phone_number) }}">
+                class="form-control  phone-number @error('phone_number') is-invalid @elseif(old('phone_number')) is-valid @enderror"
+                id="phone_number" name="phone_number" value="{{ old('phone_number', $doctor->phone_number) }}"> <span
+                class="text-danger number-error-field"></span>
             @error('phone_number')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -115,8 +119,11 @@
     {{-- Bottoni --}}
 
     <div class="col-1">
-        <button type="submit" class="btn btn-success">Salva</button>
+        <button type="submit" class="btn btn-success submit">Salva</button>
     </div>
 
 </div>
 </form>
+@section('scripts')
+    @vite(['resources/js/edit-validation.js'])
+@endsection
