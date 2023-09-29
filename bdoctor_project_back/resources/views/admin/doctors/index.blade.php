@@ -56,14 +56,6 @@
 
                         {{-- Pulsante di modifica --}}
                         <a class="btn btn-success mx-2" href="{{ route('admin.doctor.edit', $doctor) }}">Modifica</a>
-
-                        {{-- Form di delete --}}
-                        <form action="{{ route('admin.doctor.destroy', $doctor) }}" method="POST" class="delete-form"
-                            data-bs-toggle="modal" data-bs-target="#modal">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
                     </div>
                 </div>
             </div>
