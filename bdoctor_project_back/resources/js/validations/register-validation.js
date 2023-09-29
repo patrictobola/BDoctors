@@ -19,39 +19,48 @@ let errors = {};
 let selected_specializations = []
 
 
+
 // specializationsField.addEventListener('click', e => {
 //         console.log("yo")
 // })
+selected_specializations =
+    Array.from(specializationsField) // Converto i checkbox in un array per usare filter.
+    .filter(i => i.checked) // Uso il filter per rimuovere tutti i checkbox non selezionati.
+    .map(i => i.value);
 
 // Validation specializations 
+if (selected_specializations.length === 0){
+    Object.assign(errors, {specializations:"Devi aver selezionato almeno una specializzazione"})
+}
+
+
+
 specializationsField.forEach(spec => {
     spec.addEventListener('change', e => {
         selected_specializations = 
-        Array.from(specializationsField) // Converto i checkbox in un array per usare filter.
-        .filter(i => i.checked) // Uso il filter per rimuovere tutti i checkbox non selezionati.
-        .map(i => i.value)
-
-
+            Array.from(specializationsField) // Converto i checkbox in un array per usare filter.
+            .filter(i => i.checked) // Uso il filter per rimuovere tutti i checkbox non selezionati.
+            .map(i => i.value)
+            
+            
+        
         if (selected_specializations.length === 0){
-            Object.assign(errors, {specializations:"Devi aver selezionato almeno una specializzazione"})
+            for (const spec of specializationsField) {
+                spec.classList.add('is-invalid');
             }
-
-    if (selected_specializations.length === 0){
-        for (const spec of specializationsField) {
-            spec.classList.add('is-invalid');
+            Object.assign(errors, {specializations:"Devi aver selezionato almeno una specializzazione"})
+            specErrorField.classList.remove('d-none')
+            specErrorField.classList.add('d-block')
+            specErrorField.innerHTML = `<span class="text-danger">${errors.specializations}</span>`
         }
-        specErrorField.classList.remove('d-none')
-        specErrorField.classList.add('d-block')
-        specErrorField.innerHTML = `<span class="text-danger">${errors.specializations}</span>`
-    }
-    if (selected_specializations.length) {
-        for (const spec of specializationsField) {
-            spec.classList.remove('is-invalid');
+        if (selected_specializations.length) {
+            for (const spec of specializationsField) {
+                spec.classList.remove('is-invalid');
+            }
+            specErrorField.classList.add('d-none')
+            specErrorField.classList.remove('d-block')
+            delete errors.specializations;
         }
-        specErrorField.classList.add('d-none')
-        specErrorField.classList.remove('d-block')
-        delete errors.specializations;
-    }
     })
 })
 
@@ -62,10 +71,11 @@ specializationsField.forEach(spec => {
 
 // Password validation
 passwordField.addEventListener('keyup', e => {
-    
+    if(passwordField.value.length < 8){
+        Object.assign(errors, {psw_characters:"La password deve contenere almeno 8 caratteri"});
+    }
     const errorTimeout = setTimeout(() => {
         if(passwordField.value.length < 8) {
-            Object.assign(errors, {psw_characters:"La password deve contenere almeno 8 caratteri"});
             passwordField.classList.add('is-invalid')
             pswErrorField.classList.remove('d-none')
             pswErrorField.classList.add('d-block')
@@ -105,7 +115,11 @@ formField.addEventListener('submit', e => {
     if (selected_specializations.length === 0){
         for (const spec of specializationsField) {
             spec.classList.add('is-invalid');
-        }}
+        }
+        specErrorField.classList.remove('d-none')
+        specErrorField.classList.add('d-block')
+        specErrorField.innerHTML = `<span class="text-danger">${errors.specializations}</span>`
+    }
 
     // Se è tutto ok mando il form 
     if (Object.keys(errors).length === 0) formField.submit();
