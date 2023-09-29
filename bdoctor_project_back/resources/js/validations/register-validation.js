@@ -8,17 +8,45 @@ const passwordField = document.getElementById('password');
 const confirmPasswordField = document.getElementById('password-confirm');
 
 // ErrorField 
+const nameErrorField = document.getElementById('name-errorField')
+const lastNameErrorField = document.getElementById('last-name-errorField')
 const specErrorField = document.getElementById('spec-errorField')
 const pswErrorField = document.getElementById('psw-errorField')
 const confirmPswErrorField = document.getElementById('confirmPsw-errorField')
 
-
+const avaibleLetters = /^[A-Za-z\s]*$/;
 
 const clearErrors = {};
 let errors = {};
 let selected_specializations = []
 
+// Controllo se il nome è valido
+nameField.addEventListener('keyup', e =>{
+    if(!nameField.value.match(avaibleLetters)) {
+        Object.assign(errors, {name:"Puoi inserire solo lettere"})
+        nameErrorField.classList.remove('d-none')
+        nameErrorField.classList.add('d-block')
+        nameErrorField.innerHTML = `<span class="text-danger">${errors.name}</span>`
+    }
+    else {
+        delete errors.name
+        nameErrorField.classList.add('d-none')
+    }
+})
+// Controllo se il cognome è valido
+lastnameField.addEventListener('keyup', e =>{
+    if(!lastnameField.value.match(avaibleLetters)) {
+        Object.assign(errors, {last_name:"Puoi inserire solo lettere"})
+        lastNameErrorField.classList.remove('d-none')
+        lastNameErrorField.classList.add('d-block')
+        lastNameErrorField.innerHTML = `<span class="text-danger">${errors.last_name}</span>`
+    }
+    else {
+        delete errors.name
+        lastNameErrorField.classList.add('d-none')
 
+    }
+})
 
 // specializationsField.addEventListener('click', e => {
 //         console.log("yo")
