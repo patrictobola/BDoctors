@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form id="registration-form" method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="mb-4 row">
                                 <label for="name"
@@ -155,3 +155,6 @@
         </div>
     </div>
 @endsection
+<script>
+    @vite('resources/js/validations/register-validation.js')
+</script>
