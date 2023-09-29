@@ -69,7 +69,7 @@
                                             <div class="col-6">
                                                 <div class="form-check">
                                                     <input
-                                                        class="form-check-input @error('specialization') is-invalid @enderror"
+                                                        class="form-check-input specializations @error('specialization') is-invalid @enderror"
                                                         type="checkbox"
                                                         value="{{ old('specializations[]', $specialization->id) }}"
                                                         id="{{ $specialization->name }}" name="specialization[]"
@@ -80,6 +80,8 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                        {{-- Error field  --}}
+                                        <div id="spec-errorField" class="d-none"></div>
                                         @if ($errors->has('specialization'))
                                             <span class="text-danger fs-6">
                                                 <strong>{{ $errors->first('specialization') }}</strong>
@@ -116,6 +118,8 @@
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="new-password">
 
+                                    {{-- Error field  --}}
+                                    <div id="psw-errorField" class="d-none"></div>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -131,7 +135,10 @@
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
+                                    {{-- Error field  --}}
+                                    <div id="confirmPsw-errorField" class="d-none"></div>
                                 </div>
+
                             </div>
                             <div class="mb-4 row">
                                 <label for="mandatory" class="col-md-4 col-form-label text-md-right"></label>
@@ -140,7 +147,6 @@
                                     <span>I campi marcati con asterisco (*) sono obbligatori</span>
                                 </div>
                             </div>
-
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

@@ -2,41 +2,111 @@ const formField = document.getElementById('registration-form');
 const nameField = document.getElementById('name');
 const lastnameField = document.getElementById('last_name');
 const addressField = document.getElementById('address');
-// TODO verify
-const specializationsField = document.getElementById('TODO');
-
+const specializationsField = document.querySelectorAll('.specializations');
 const emailField = document.getElementById('email');
 const passwordField = document.getElementById('password');
 const confirmPasswordField = document.getElementById('password-confirm');
+
+// ErrorField 
+const specErrorField = document.getElementById('spec-errorField')
+const pswErrorField = document.getElementById('psw-errorField')
+const confirmPswErrorField = document.getElementById('confirmPsw-errorField')
+
+
+
 const clearErrors = {};
 let errors = {};
+let selected_specializations = []
 
+
+// specializationsField.addEventListener('click', e => {
+//         console.log("yo")
+// })
+
+// Validation specializations 
+specializationsField.forEach(spec => {
+    spec.addEventListener('change', e => {
+        selected_specializations = 
+        Array.from(specializationsField) // Converto i checkbox in un array per usare filter.
+        .filter(i => i.checked) // Uso il filter per rimuovere tutti i checkbox non selezionati.
+        .map(i => i.value)
+
+
+        if (selected_specializations.length === 0){
+            Object.assign(errors, {specializations:"Devi aver selezionato almeno una specializzazione"})
+            }
+
+    if (selected_specializations.length === 0){
+        for (const spec of specializationsField) {
+            spec.classList.add('is-invalid');
+        }
+        specErrorField.classList.remove('d-none')
+        specErrorField.classList.add('d-block')
+        specErrorField.innerHTML = `<span class="text-danger">${errors.specializations}</span>`
+    }
+    if (selected_specializations.length) {
+        for (const spec of specializationsField) {
+            spec.classList.remove('is-invalid');
+        }
+        specErrorField.classList.add('d-none')
+        specErrorField.classList.remove('d-block')
+        delete errors.specializations;
+    }
+    })
+})
+
+
+// Timeout function for error in psw 
+
+
+
+// Password validation
 passwordField.addEventListener('keyup', e => {
     
-    if(passwordField.value.length < 8) {
-        Object.assign(errors, {psw_characters:"La password deve contenere almeno 8 caratteri"});
-        setTimeout(() => {
+    const errorTimeout = setTimeout(() => {
+        if(passwordField.value.length < 8) {
+            Object.assign(errors, {psw_characters:"La password deve contenere almeno 8 caratteri"});
             passwordField.classList.add('is-invalid')
-        }, "1500");       
-    } else if(passwordField.value.length >= 8) {
-        delete errors.psw_characters;
-        passwordField.classList.remove('is-invalid')
-    }  
-    })
+            pswErrorField.classList.remove('d-none')
+            pswErrorField.classList.add('d-block')
+            pswErrorField.innerHTML = `<span class="text-danger">${errors.psw_characters}</span>`      
+        }}, "1500");
+    
+        if(passwordField.value.length >= 8) {
+            clearTimeout(errorTimeout);
+            delete errors.psw_characters;
+            passwordField.classList.remove('is-invalid')
+            pswErrorField.classList.add('d-none')
+            pswErrorField.classList.remove('d-block')
+        }  
+})
 confirmPasswordField.addEventListener('keyup', e => {
     
     if(!(passwordField.value === confirmPasswordField.value)) {
         Object.assign(errors, {psw_typo:"Le due password devono essere uguali"});
         confirmPasswordField.classList.add('is-invalid');
+        confirmPswErrorField.classList.remove('d-none')
+        confirmPswErrorField.classList.add('d-block')
+        confirmPswErrorField.innerHTML = `<span class="text-danger">${errors.psw_typo}</span>`
     }
-     else if (passwordField.value === confirmPasswordField.value)
-     confirmPasswordField.classList.remove('is-invalid');
+     else if (passwordField.value == confirmPasswordField.value){
+        confirmPasswordField.classList.remove('is-invalid');
         delete errors.psw_typo;
+        confirmPswErrorField.classList.add('d-none')
+        confirmPswErrorField.classList.remove('d-block')
+    }
     })
 
+
+// Button prevent to submit if he founds errors 
 formField.addEventListener('submit', e => {
     e.preventDefault();
-    console.log(Object.keys(errors).length)
-    console.log(errors)
+    // Aggiungo la classe is invalid se non viene compilato nessun campo 
+    if (selected_specializations.length === 0){
+        for (const spec of specializationsField) {
+            spec.classList.add('is-invalid');
+        }}
+
+    // Se è tutto ok mando il form 
     if (Object.keys(errors).length === 0) formField.submit();
 })
