@@ -11,10 +11,12 @@ const confirmPasswordField = document.getElementById('password-confirm');
 const nameErrorField = document.getElementById('name-errorField')
 const lastNameErrorField = document.getElementById('last-name-errorField')
 const specErrorField = document.getElementById('spec-errorField')
+const emailErrorField = document.getElementById('email-errorField')
 const pswErrorField = document.getElementById('psw-errorField')
 const confirmPswErrorField = document.getElementById('confirmPsw-errorField')
 
 const avaibleLetters = /^[A-Za-z\s]*$/;
+const availableEmails = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 const clearErrors = {};
 let errors = {};
@@ -22,35 +24,39 @@ let selected_specializations = []
 
 // Controllo se il nome è valido
 nameField.addEventListener('keyup', e =>{
-    if(!nameField.value.match(avaibleLetters)) {
+    if(!nameField.value.match(avaibleLetters) || !nameField.value.length) {
         Object.assign(errors, {name:"Puoi inserire solo lettere"})
         nameErrorField.classList.remove('d-none')
         nameErrorField.classList.add('d-block')
+        nameField.classList.add('is-invalid');
         nameErrorField.innerHTML = `<span class="text-danger">${errors.name}</span>`
     }
     else {
         delete errors.name
+        nameField.classList.remove('is-invalid');
+        nameField.classList.add('is-valid');
         nameErrorField.classList.add('d-none')
     }
 })
 // Controllo se il cognome è valido
 lastnameField.addEventListener('keyup', e =>{
-    if(!lastnameField.value.match(avaibleLetters)) {
+    if(!lastnameField.value.match(avaibleLetters) || !lastnameField.value.length) {
         Object.assign(errors, {last_name:"Puoi inserire solo lettere"})
         lastNameErrorField.classList.remove('d-none')
         lastNameErrorField.classList.add('d-block')
+        lastnameField.classList.add('is-invalid');
         lastNameErrorField.innerHTML = `<span class="text-danger">${errors.last_name}</span>`
     }
     else {
         delete errors.name
+        lastnameField.classList.remove('is-invalid');
+        lastnameField.classList.add('is-valid');
         lastNameErrorField.classList.add('d-none')
 
     }
 })
 
-// specializationsField.addEventListener('click', e => {
-//         console.log("yo")
-// })
+
 selected_specializations =
     Array.from(specializationsField) // Converto i checkbox in un array per usare filter.
     .filter(i => i.checked) // Uso il filter per rimuovere tutti i checkbox non selezionati.
@@ -93,7 +99,23 @@ specializationsField.forEach(spec => {
 })
 
 
-// Timeout function for error in psw 
+// Email validation 
+
+emailField.addEventListener('keyup', e =>{
+    if(!emailField.value.match(availableEmails) || !emailField.value.length){
+        Object.assign(errors, {email:"Inserisci una mail valida"})
+        emailErrorField.classList.remove('d-none')
+        emailErrorField.classList.add('d-block')
+        emailErrorField.innerHTML = `<span class="text-danger">${errors.email}</span>`
+        emailField.classList.add('is-invalid');
+    }
+    else {
+        delete errors.name
+        emailField.classList.remove('is-invalid');
+        emailField.classList.add('is-valid');
+        emailErrorField.classList.add('d-none')
+    }
+})
 
 
 

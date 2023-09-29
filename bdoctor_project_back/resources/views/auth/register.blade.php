@@ -103,7 +103,8 @@
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email">
-
+                                    {{-- Error field  --}}
+                                    <div id="email-errorField" class="d-none"></div>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
