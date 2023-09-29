@@ -12,7 +12,7 @@
                             @csrf
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -28,7 +28,7 @@
                             </div>
                             <div class="mb-4 row">
                                 <label for="last_name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Cognome') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="last_name" type="text"
@@ -44,7 +44,7 @@
                             </div>
                             <div class="mb-4 row">
                                 <label for="last_name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="address" type="text"
@@ -61,7 +61,7 @@
 
                             <div class="mb-4 row">
                                 <label for="last_name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Specializations') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Specializzazioni') }}*</label>
 
                                 <div class="col-md-6">
                                     <div class="row">
@@ -92,7 +92,7 @@
 
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -109,7 +109,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -126,11 +126,18 @@
 
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
+                                </div>
+                            </div>
+                            <div class="mb-4 row">
+                                <label for="mandatory" class="col-md-4 col-form-label text-md-right"></label>
+
+                                <div class="col-md-6">
+                                    <span>I campi marcati con asterisco (*) sono obbligatori</span>
                                 </div>
                             </div>
 

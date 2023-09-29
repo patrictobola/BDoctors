@@ -72,7 +72,3 @@
         @endif
     </div>
 @endsection
-
-@section('scripts')
-    @vite('resources/js/delete-confirmation.js')
-@endsection

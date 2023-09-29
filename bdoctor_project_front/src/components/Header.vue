@@ -1,8 +1,20 @@
 <script>
+// import axios from 'axios';
+// const endpoint = '';
 export default {
   name: 'Header',
-  data: () => ({}),
-
+  data: () => ({ doctors: [] }),
+  // methods: {
+  //   fetchDocors() {
+  //     axios.get(endpoint).then((res) => {
+  //       this.doctors = res.data
+  //       console.log('DOCTORS AXIOS', res.data)
+  //     })
+  //   }
+  // },
+  // created() {
+  //   this.fetchdoctors()
+  // }
 }
 </script>
 
@@ -56,6 +68,11 @@ header {
 .nav {
   padding-top: 40px;
   justify-content: space-between;
+}
+
+.btn {
+  border: 3px solid white;
+  font-size: 20px;
 }
 
 @media screen and (min-width: 580px) {

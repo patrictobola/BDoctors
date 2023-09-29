@@ -1,7 +1,20 @@
 <script >
+// import axios from 'axios';
+// const endpoint = '';
 export default {
   name: 'NewsList',
-  data: () => ({}),
+  data: () => ({ reviews: [] }),
+  // methods: {
+  //   fetchReviews() {
+  //     axios.get(endpoint).then((res) => {
+  //       this.reviews = res.data
+  //       console.log('REVIEWS AXIOS', res.data)
+  //     })
+  //   }
+  // },
+  // created() {
+  //   this.fetchdoctors()
+  // }
 }
 </script>
 
@@ -13,39 +26,48 @@ export default {
     <ul>
       <!-- REVIEWS CARD -->
       <li>
-        <div class="review mx-3">
-          <!-- REVIEWS INFO -->
-          <div class="mt-3">
-            <h5 class="ms-3 m-0">title</h5>
-            <div class="ms-3 m-0">rating</div>
-            <p class="ms-3 m-0">chi?</p>
-            <p class="ms-3 m-0">contnet</p>
+        <a href="#" alt="review">
+          <div class="review mx-3">
+            <!-- REVIEWS INFO -->
+            <div class="mt-3">
+              <h5 class="ms-3 m-0">title</h5>
+              <div class="ms-3 m-0">rating</div>
+              <p class="ms-3 m-0">chi?</p>
+              <p class="ms-3 m-0">contnet</p>
+            </div>
           </div>
-        </div>
+        </a>
+
       </li>
       <!-- REVIEWS CARD -->
       <li>
-        <div class="review mx-3">
-          <!-- REVIEWS INFO -->
-          <div class="mt-3">
-            <h5 class="ms-3 m-0">title</h5>
-            <div class="ms-3 m-0">rating</div>
-            <p class="ms-3 m-0">chi?</p>
-            <p class="ms-3 m-0">contnet</p>
+        <a href="#" alt="review">
+          <div class="review mx-3">
+            <!-- REVIEWS INFO -->
+            <div class="mt-3">
+              <h5 class="ms-3 m-0">title</h5>
+              <div class="ms-3 m-0">rating</div>
+              <p class="ms-3 m-0">chi?</p>
+              <p class="ms-3 m-0">contnet</p>
+            </div>
           </div>
-        </div>
+        </a>
+
       </li>
       <!-- REVIEWS CARD -->
       <li>
-        <div class="review mx-3">
-          <!-- REVIEWS INFO -->
-          <div class="mt-3">
-            <h5 class="ms-3 m-0">title</h5>
-            <div class="ms-3 m-0">rating</div>
-            <p class="ms-3 m-0">chi?</p>
-            <p class="ms-3 m-0">contnet</p>
+        <a href="#" alt="review">
+          <div class="review mx-3">
+            <!-- REVIEWS INFO -->
+            <div class="mt-3">
+              <h5 class="ms-3 m-0">title</h5>
+              <div class="ms-3 m-0">rating</div>
+              <p class="ms-3 m-0">chi?</p>
+              <p class="ms-3 m-0">contnet</p>
+            </div>
           </div>
-        </div>
+        </a>
+
       </li>
     </ul>
   </div>
@@ -58,9 +80,13 @@ export default {
 
 .review {
   height: 150px;
-  border: 1px dashed black;
   border: 3px solid rgba(63, 223, 92, 0.349);
-  border-radius: 25px;
+  border-radius: 0px 25px 25px 25px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 li {

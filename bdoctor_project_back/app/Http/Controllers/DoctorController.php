@@ -161,6 +161,17 @@ class DoctorController extends Controller
     {
         $doctorName = $doctor->user->name;
 
+        $doctorName = $doctor->user->name;
+        // delete the thumbnail if present
+        if ($doctor->profile_photo) {
+            Storage::delete($doctor->profile_photo);
+        }
+
+        //delete the cvs if present
+        if ($doctor->cv) {
+            Storage::delete($doctor->cv);
+        }
+
         $doctor->delete();
 
         return to_route('admin.doctor.create')
