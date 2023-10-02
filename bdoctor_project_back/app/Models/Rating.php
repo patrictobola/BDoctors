@@ -13,4 +13,9 @@ class Rating extends Model
     protected $fillable = [
         'vote',
     ];
+
+    public function doctors()
+    {
+        return $this->belongsToMany(Doctor::class);
+    }
 }

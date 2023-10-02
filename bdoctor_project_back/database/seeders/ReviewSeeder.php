@@ -15,10 +15,14 @@ class ReviewSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        $doctor = new Review();
-        $doctor->name = $faker->name();
-        $doctor->text = $faker->text(50);
-        $doctor->email = $faker->email();
-        $doctor->save();
+        for ($i = 0; $i < 30; $i++) {
+
+            $doctor = new Review();
+            $doctor->doctor_id = $faker->numberBetween(1, 2);
+            $doctor->name = $faker->name();
+            $doctor->text = $faker->text(50);
+            $doctor->email = $faker->email();
+            $doctor->save();
+        }
     }
 }
