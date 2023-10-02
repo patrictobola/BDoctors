@@ -32,6 +32,10 @@ class Doctor extends Model
     {
         return $this->hasMany(Review::class);
     }
+    public function ratings()
+    {
+        return $this->belongsToMany(Rating::class);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
