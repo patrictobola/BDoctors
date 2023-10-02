@@ -4,29 +4,48 @@ const endpoint = 'http://127.0.0.1:8000/api/';
 
 export default {
   name: 'DoctorList',
+
   data: () => ({
     specializations: [],
-    doctors: []
+    doctors: [],
+    specializationFilter: ''
   }),
-  // methods: {
-  //   fetchDocors() {
-  //     axios.get(endpoint).then((res) => {
-  //       this.doctors = res.data
-  //       console.log('DOCTORS AXIOS', res.data)
-  //     })
-  //   }
-  // },
-  // created() {
-  //   this.fetchdoctors()
-  // }
+
+  computed: {
+    slicedDoctors() {
+      return this.doctors.slice(0, 5);
+    }
+  },
+
   methods: {
     fetchSpecializations() {
       axios.get(endpoint + 'specializations').then(res => { this.specializations = res.data })
     },
+
     fetchDoctors() {
       axios.get(endpoint + 'doctors').then(res => { this.doctors = res.data })
+    },
+
+    fetchFilteredDoctors() {
+      this.doctors = [];
+
+      if (this.specializationFilter == '0') this.fetchDoctors();
+
+      else {
+        axios.get(endpoint + 'doctors').then(res => {
+          let flag = 0;
+          res.data.forEach((doctor) => {
+            doctor.specializations.forEach((specialization) => {
+              if (specialization.id == this.specializationFilter) flag = 1;
+            })
+            if (flag) this.doctors.push(doctor);
+            flag = 0;
+          })
+        })
+      }
     }
   },
+
   mounted() {
     this.fetchSpecializations();
     this.fetchDoctors();
@@ -42,30 +61,30 @@ export default {
       <button type="button" class="btn d-flex align-items-center">Di più</button>
     </div>
     <form>
-      <select>
+      <select v-model="specializationFilter" @change="fetchFilteredDoctors()">
         <option value="0">Seleziona...</option>
         <option v-for="specialization in specializations" :key="specialization.id" :value="specialization.id">{{
           specialization.name }}</option>
       </select>
     </form>
     <!-- DOCTOR LIST -->
-    <ul class="doctor-list" v-for="doctor in     doctors.slice(0, 5)    ">
+    <ul class="doctor-list">
       <!-- DOCTOR CARD -->
-      <li>
+      <li v-for="doctor in slicedDoctors">
         <a href="#" alt="doctor name">
           <div class="doctor">
             <!-- DOCTOR-IMG -->
-            <div class="doc-image">
-              <img v-if="profile_photo" :src="doctor.profile_photo" :alt="user.name user.last_name">
-              <img v-else src="placeholder" :alt=" user.name user.last_name ">
+            <div class="doc-image mb-3">
+              <img v-if="doctor.profile_photo" :src="'http://127.0.0.1:8000/storage/' + doctor.profile_photo">
+              <img v-else src="placeholder">
             </div>
             <!-- DOCTOR INFO -->
             <div>
               <div>
-                <h5 class="ms-2 ">{{ user.name }}{{ user.last_name }}</h5>
-                <p class="ms-2 m-0">specialization</p>
-                <p class="ms-2 m-0">prestazioni:{{ doctor.performances }}</p>
-                <p class="des ms-2">{{ doctor.specialization }}</p>
+                <h5 class="ms-2 ">{{ doctor.user.name }} {{ doctor.user.last_name }}</h5>
+                <p class="ms-2 m-0">Specializzazioni: </p>
+                <p v-for="specialization in doctor.specializations" :key="specialization.id">{{ specialization.name }}</p>
+                <p class="ms-2 m-0">Prestazioni: {{ doctor.performances }}</p>
               </div>
             </div>
           </div>
@@ -75,7 +94,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 a {
   text-decoration: none;
   color: black;
@@ -101,10 +120,14 @@ a {
   height: 80px;
   width: 80px;
   border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    width: 100px;
+  }
 }
 
 .doctor {
-  height: 100%;
   display: flex;
 }
 
@@ -133,7 +156,6 @@ li {
   }
 
   li {
-    height: 300px;
     margin-right: 10px;
     border: 4px solid rgba(22, 178, 51, 0.274);
     border-radius: 42px 10px 10px 10px;

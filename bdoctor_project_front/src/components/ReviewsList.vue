@@ -26,7 +26,7 @@ export default {
   <div class="reviews-box">
     <h1 class="ms-3">Reviews</h1>
     <!-- REVIEWS LIST -->
-    <ul v-for="review in  reviewss.slice(0, 5) ">
+    <ul v-for="review in  reviews ">
       <!-- REVIEWS CARD -->
       <li>
         <a href="#" alt="review">

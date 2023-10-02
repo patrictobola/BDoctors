@@ -13,7 +13,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::all();
+        $doctors = Doctor::with('user', 'ratings', 'specializations', 'reviews')->get();
         return response()->json($doctors);
     }
 
@@ -30,7 +30,7 @@ class DoctorController extends Controller
      */
     public function show(string $id)
     {
-        $doctor = Doctor::with('ratings', 'specializations', 'reviews')->find($id);
+        $doctor = Doctor::with('ratings', 'specializations', 'reviews', 'user')->find($id);
         if (!$doctor) return response(null, 404);
         return response()->json($doctor);
     }
