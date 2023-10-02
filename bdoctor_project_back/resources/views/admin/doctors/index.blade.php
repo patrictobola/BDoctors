@@ -7,7 +7,7 @@
                 {{-- Foto profilo --}}
                 <div class="col-md-5">
                     <div class="card">
-                        <img src="{{ $doctor->profile_photo ? asset('storage/' . $doctor->profile_photo) : url('/user_placeholder.jpg') }}"class="card-img-top w-25"
+                        <img src="{{ $doctor->profile_photo ?? url('/user_placeholder.jpg') }}"class="card-img-top w-25"
                             alt="Doctor's Photo">
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                         <div class="card mt-3">
                             <div class="card-body">
                                 <h5 class="card-title">Curriculum Vitae</h5>
-                                <a href="{{ asset('storage/' . $doctor->cv) }}" target="_blank">Visualizza cv</a>
+                                <a href="{{ $doctor->cv }}" target="_blank">Visualizza cv</a>
                             </div>
                         </div>
                     @endif
