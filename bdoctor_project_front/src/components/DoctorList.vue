@@ -49,80 +49,27 @@ export default {
       </select>
     </form>
     <!-- DOCTOR LIST -->
-    <ul class="doctor-list">
+    <ul class="doctor-list" v-for="doctor in     doctors.slice(0, 5)    ">
       <!-- DOCTOR CARD -->
       <li>
         <a href="#" alt="doctor name">
           <div class="doctor">
             <!-- DOCTOR-IMG -->
-            <div class="doc-image"></div>
+            <div class="doc-image">
+              <img v-if="profile_photo" :src="doctor.profile_photo" :alt="user.name user.last_name">
+              <img v-else src="placeholder" :alt=" user.name user.last_name ">
+            </div>
             <!-- DOCTOR INFO -->
             <div>
               <div>
-                <h5 class="ms-2 ">name</h5>
+                <h5 class="ms-2 ">{{ user.name }}{{ user.last_name }}</h5>
                 <p class="ms-2 m-0">specialization</p>
-                <p class="ms-2 m-0">prestazioni:(come non hai mai provato)</p>
-                <p class="des ms-2">description</p>
+                <p class="ms-2 m-0">prestazioni:{{ doctor.performances }}</p>
+                <p class="des ms-2">{{ doctor.specialization }}</p>
               </div>
             </div>
           </div>
         </a>
-      </li>
-      <!-- DOCTOR CARD -->
-      <li>
-        <a href="#" alt="doctor name">
-          <div class="doctor">
-            <!-- DOCTOR-IMG -->
-            <div class="doc-image"></div>
-            <!-- DOCTOR INFO -->
-            <div>
-              <div>
-                <h5 class="ms-2 m-0">name</h5>
-                <p class="ms-2 m-0">specialization</p>
-                <p class="ms-2 m-0">prestazioni:(come non hai mai provato)</p>
-                <p class="des ms-2">description</p>
-              </div>
-            </div>
-          </div>
-        </a>
-
-      </li>
-      <!-- DOCTOR CARD -->
-      <li>
-        <a href="#" alt="doctor name">
-          <div class="doctor">
-            <!-- DOCTOR-IMG -->
-            <div class="doc-image"></div>
-            <!-- DOCTOR INFO -->
-            <div>
-              <div>
-                <h5 class="ms-2 m-0">name</h5>
-                <p class="ms-2 m-0">specialization</p>
-                <p class="ms-2 m-0">prestazioni:(come non hai mai provato)</p>
-                <p class="des ms-2">description</p>
-              </div>
-            </div>
-          </div>
-        </a>
-
-      </li>
-      <li>
-        <a href="#" alt="doctor name">
-          <div class="doctor">
-            <!-- DOCTOR-IMG -->
-            <div class="doc-image"></div>
-            <!-- DOCTOR INFO -->
-            <div>
-              <div>
-                <h5 class="ms-2 m-0">name</h5>
-                <p class="ms-2 m-0">specialization</p>
-                <p class="ms-2 m-0">prestazioni:(come non hai mai provato)</p>
-                <p class="des ms-2">description</p>
-              </div>
-            </div>
-          </div>
-        </a>
-
       </li>
     </ul>
   </div>

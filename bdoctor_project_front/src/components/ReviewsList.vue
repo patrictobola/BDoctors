@@ -3,7 +3,10 @@
 // const endpoint = '';
 export default {
   name: 'NewsList',
-  data: () => ({ reviews: [] }),
+  data: () => ({
+    reviews: [],
+    ratings: [],
+  }),
   // methods: {
   //   fetchReviews() {
   //     axios.get(endpoint).then((res) => {
@@ -23,7 +26,7 @@ export default {
   <div class="reviews-box">
     <h1 class="ms-3">Reviews</h1>
     <!-- REVIEWS LIST -->
-    <ul>
+    <ul v-for="review in  reviewss.slice(0, 5) ">
       <!-- REVIEWS CARD -->
       <li>
         <a href="#" alt="review">
@@ -31,39 +34,9 @@ export default {
             <!-- REVIEWS INFO -->
             <div class="mt-3">
               <h5 class="ms-3 m-0">title</h5>
-              <div class="ms-3 m-0">rating</div>
-              <p class="ms-3 m-0">chi?</p>
-              <p class="ms-3 m-0">contnet</p>
-            </div>
-          </div>
-        </a>
-
-      </li>
-      <!-- REVIEWS CARD -->
-      <li>
-        <a href="#" alt="review">
-          <div class="review mx-3">
-            <!-- REVIEWS INFO -->
-            <div class="mt-3">
-              <h5 class="ms-3 m-0">title</h5>
-              <div class="ms-3 m-0">rating</div>
-              <p class="ms-3 m-0">chi?</p>
-              <p class="ms-3 m-0">contnet</p>
-            </div>
-          </div>
-        </a>
-
-      </li>
-      <!-- REVIEWS CARD -->
-      <li>
-        <a href="#" alt="review">
-          <div class="review mx-3">
-            <!-- REVIEWS INFO -->
-            <div class="mt-3">
-              <h5 class="ms-3 m-0">title</h5>
-              <div class="ms-3 m-0">rating</div>
-              <p class="ms-3 m-0">chi?</p>
-              <p class="ms-3 m-0">contnet</p>
+              <div class="ms-3 m-0">{{ rating.vote }}</div>
+              <p class="ms-3 m-0">{{ review.name }}</p>
+              <p class="ms-3 m-0">{{ review.text }}</p>
             </div>
           </div>
         </a>
