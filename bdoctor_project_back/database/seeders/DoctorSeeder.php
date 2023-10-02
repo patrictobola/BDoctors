@@ -19,12 +19,13 @@ class DoctorSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
+
         for ($i = 0; $i < 10; $i++) {
 
             $specializations_ids = Specialization::pluck('id')->toArray();
 
             $doctor = new Doctor();
-            $doctor->user_id = 1;
+            $doctor->user_id = $i + 1;
             $doctor->profile_photo = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
             $doctor->cv = false;
             $doctor->phone_number = $faker->numberBetween(1000000000, 9999999999);
