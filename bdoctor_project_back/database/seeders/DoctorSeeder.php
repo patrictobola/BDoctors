@@ -19,12 +19,9 @@ class DoctorSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 0; $i < 10; $i++) {
 
             $specializations_ids = Specialization::pluck('id')->toArray();
-            $rating_ids = Rating::pluck('id')->toArray();
-            $review_ids = Review::pluck('id')->toArray();
-
 
             $doctor = new Doctor();
             $doctor->user_id = 1;
@@ -45,25 +42,33 @@ class DoctorSeeder extends Seeder
                 if (rand(0, 1)) $doctor_specializations[] = $specialization;
             }
             $doctor->specializations()->attach($doctor_specializations);
-
-            // $doctor_ratings = [];
-            // foreach ($rating_ids as $vote) {
-            //     if (rand(0, 1)) $doctor_ratings[] = $vote;
-            // }
-            // $doctor->ratings()->attach($doctor_ratings);
         }
         $doctors = Doctor::all();
         $ratings = Rating::all();
 
-        $shuffledDoctors = $doctors->shuffle();
-        $shuffledRatings = $ratings->shuffle();
-        foreach ($shuffledDoctors as $doctor) {
-            // Randomly select a rating from the shuffled ratings collection.
-            for ($i = 0; $i < 10; $i++) {
-                $randomRating = $shuffledRatings->pop(); // Remove the rating from the shuffled collection.
+        // Create an array to keep track of attached ratings for this doctor.
+        $attachedRatings = [];
+
+        foreach ($doctors as $doctor) {
+            // Randomly determine the number of ratings to attach to this doctor.
+            $numberOfRatings = rand(1, 10); // You can adjust the range as needed.
+
+            // Shuffle the ratings collection for this doctor.
+            $shuffledRatings = $ratings->shuffle();
+
+            // Attach the specified number of ratings to the doctor.
+            for ($i = 0; $i < $numberOfRatings; $i++) {
+                $randomRating = $shuffledRatings->pop();
+
+                // Check if the rating has already been attached to another doctor.
+                while (in_array($randomRating->id, $attachedRatings)) {
+                    $randomRating = $shuffledRatings->pop();
+                }
+
+                // Attach the rating to the doctor and add it to the list of attached ratings.
+                $doctor->ratings()->attach($randomRating->id);
+                $attachedRatings[] = $randomRating->id;
             }
-            // Attach the rating to the doctor.
-            $doctor->ratings()->attach($randomRating->id);
         }
     }
 }

@@ -15,7 +15,7 @@ class RatingSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $vote = new Rating();
             $vote->vote = $faker->numberBetween(1, 5);
             $vote->save();
