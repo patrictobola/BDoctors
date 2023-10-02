@@ -44,11 +44,24 @@ class DoctorSeeder extends Seeder
             }
             $doctor->specializations()->attach($doctor_specializations);
 
-            $doctor_ratings = [];
-            foreach ($rating_ids as $vote) {
-                if (rand(0, 1)) $doctor_ratings[] = $vote;
+            // $doctor_ratings = [];
+            // foreach ($rating_ids as $vote) {
+            //     if (rand(0, 1)) $doctor_ratings[] = $vote;
+            // }
+            // $doctor->ratings()->attach($doctor_ratings);
+        }
+        $doctors = Doctor::all();
+        $ratings = Rating::all();
+
+        $shuffledDoctors = $doctors->shuffle();
+        $shuffledRatings = $ratings->shuffle();
+        foreach ($shuffledDoctors as $doctor) {
+            // Randomly select a rating from the shuffled ratings collection.
+            for ($i = 0; $i < 10; $i++) {
+                $randomRating = $shuffledRatings->pop(); // Remove the rating from the shuffled collection.
             }
-            $doctor->ratings()->attach($doctor_ratings);
+            // Attach the rating to the doctor.
+            $doctor->ratings()->attach($randomRating->id);
         }
     }
 }
