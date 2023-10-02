@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Doctor;
 use App\Models\Rating;
+use App\Models\Review;
 use App\Models\Specialization;
 use Faker\Generator as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -22,6 +23,7 @@ class DoctorSeeder extends Seeder
 
             $specializations_ids = Specialization::pluck('id')->toArray();
             $rating_ids = Rating::pluck('id')->toArray();
+            $review_ids = Review::pluck('id')->toArray();
 
 
             $doctor = new Doctor();
