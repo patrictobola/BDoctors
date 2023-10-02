@@ -30,14 +30,13 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     specializations.forEach((specialization) => {
         if (
-            specialization.checked ||
+            specialization.checked &&
             phoneNumber.value.match(avaiblebNumbers)
         ) {
             form.submit();
             endForeach();
         }
     });
-    alert("Dei campi non sono stati compilati correttamente");
     labSpecializations.forEach((labSpecialization) => {
         labSpecialization.classList.add("text-danger");
     });
