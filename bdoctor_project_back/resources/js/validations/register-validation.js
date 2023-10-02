@@ -110,7 +110,7 @@ emailField.addEventListener('keyup', e =>{
         emailField.classList.add('is-invalid');
     }
     else {
-        delete errors.name
+        delete errors.email
         emailField.classList.remove('is-invalid');
         emailField.classList.add('is-valid');
         emailErrorField.classList.add('d-none')
@@ -170,7 +170,7 @@ formField.addEventListener('submit', e => {
         specErrorField.classList.add('d-block')
         specErrorField.innerHTML = `<span class="text-danger">${errors.specializations}</span>`
     }
-
+    console.log(errors)
     // Se è tutto ok mando il form 
     if (Object.keys(errors).length === 0) formField.submit();
 })
