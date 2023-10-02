@@ -47,7 +47,7 @@
                         <div class="card mt-3">
                             <div class="card-body">
                                 <h5 class="card-title">Curriculum Vitae</h5>
-                                <a href="{{ asset('storage/' . $doctor->cv) }}">Visualizza cv</a>
+                                <a href="{{ asset('storage/' . $doctor->cv) }}" target="_blank">Visualizza cv</a>
                             </div>
                         </div>
                     @endif
