@@ -1,9 +1,13 @@
 <script >
-// import axios from 'axios';
-// const endpoint = '';
+import axios from 'axios';
+const endpoint = 'http://127.0.0.1:8000/api/';
+
 export default {
   name: 'DoctorList',
-  data: () => ({ doctors: [] }),
+  data: () => ({
+    specializations: [],
+    doctors: []
+  }),
   // methods: {
   //   fetchDocors() {
   //     axios.get(endpoint).then((res) => {
@@ -15,6 +19,18 @@ export default {
   // created() {
   //   this.fetchdoctors()
   // }
+  methods: {
+    fetchSpecializations() {
+      axios.get(endpoint + 'specializations').then(res => { this.specializations = res.data })
+    },
+    fetchDoctors() {
+      axios.get(endpoint + 'doctors').then(res => { this.doctors = res.data })
+    }
+  },
+  mounted() {
+    this.fetchSpecializations();
+    this.fetchDoctors();
+  }
 }
 </script>
 
@@ -25,6 +41,13 @@ export default {
       <h1>doctors</h1>
       <button type="button" class="btn d-flex align-items-center">Di più</button>
     </div>
+    <form>
+      <select>
+        <option value="0">Seleziona...</option>
+        <option v-for="specialization in specializations" :key="specialization.id" :value="specialization.id">{{
+          specialization.name }}</option>
+      </select>
+    </form>
     <!-- DOCTOR LIST -->
     <ul class="doctor-list">
       <!-- DOCTOR CARD -->
