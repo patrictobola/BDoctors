@@ -20,59 +20,56 @@ export default {
 
 <template>
   <header>
-    <div class="d-flex p-2 justify-content-between">
-      <button type="button" class="btn btn-outline-light">profile</button>
-      <button type="button" class="btn btn-outline-light">options</button>
-    </div>
-
-    <div class="d-flex px-2 nav flex-shirnk">
-      <div class="dropdown">
-        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          Specializzazzione
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="d-flex justify-content-between  w-100">
+        <!-- Logo Img -->
+        <figure class="px-4 d-flex justify-content-center">
+          <img src="../assets/img/logo_Bdoctor (1).png" alt="Logo Bdoctor">
+        </figure>
+        <!-- Links Navbar -->
+        <div class="d-flex px-4">
+          <div class="collapse navbar-collapse navbar-links" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="#">Dottori</a>
+              <a class="nav-link active" aria-current="page" href="#">Recensioni</a>
+              <a class="nav-link active" aria-current="page" href="#">Contatti</a>
+              <a class="nav-link active text-white btn-nav" href="#">Login</a>
+              <a class="nav-link active text-white btn-nav" href="#">Sei un Professionista sanitario?</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="dropdown">
-        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          Ratings
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-        </ul>
-      </div>
-      <div class="dropdown">
-        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          Messaggi
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-        </ul>
-      </div>
-    </div>
-
+    </nav>
   </header>
 </template>
 
 <style scoped>
 header {
-  height: 300px;
+  height: 200px;
   width: 100%;
   background-image: linear-gradient(rgb(22, 178, 50), transparent);
 }
 
-.nav {
-  padding-top: 40px;
-  justify-content: space-between;
+.navbar {
+  height: 100px;
 }
 
-.btn {
-  border: 3px solid white;
-  font-size: 20px;
+/* Logo Navbar */
+img {
+  max-width: 100px;
+}
+
+/* Buttons Navbar */
+.btn-nav {
+  border-radius: 10px;
+  margin-left: 20px;
+  background-color: #20c997;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
 @media screen and (min-width: 580px) {
