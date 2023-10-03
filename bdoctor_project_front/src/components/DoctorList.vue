@@ -8,7 +8,8 @@ export default {
   data: () => ({
     specializations: [],
     doctors: [],
-    specializationFilter: ''
+    specializationFilter: 0,
+    averageFilter: 0
   }),
 
   computed: {
@@ -29,9 +30,10 @@ export default {
     fetchFilteredDoctors() {
       this.doctors = [];
 
-      if (this.specializationFilter == '0') this.fetchDoctors();
+      if (!this.specializationFilter) this.fetchDoctors();
 
-      else {
+      // Se il filtro delle specializzazioni è attivo
+      else if (this.specializationFilter) {
         axios.get(endpoint + 'doctors').then(res => {
           let flag = 0;
           res.data.forEach((doctor) => {
@@ -42,6 +44,27 @@ export default {
             flag = 0;
           })
         })
+      }
+
+      if (this.averageFilter) {
+        console.log(this.doctors);
+        let newDoctors = [];
+        let averages = [];
+        this.doctors.forEach((doctor) => {
+          let sum = 0;
+
+          console.log(doctor.ratings);
+          doctor.ratings.forEach((rating) => {
+            sum += rating.vote;
+          })
+          averages.push(sum / doctor.ratings.length);
+        })
+
+        this.doctors.forEach((doctor, index) => {
+          if (averages[index] >= this.averageFilter) newDoctors.push(doctor);
+        })
+
+        this.doctors = newDoctors;
       }
     }
   },
@@ -61,11 +84,23 @@ export default {
       <button type="button" class="btn d-flex align-items-center">Di più</button>
     </div>
     <form>
+      <!-- Filtro specializzazione -->
       <select v-model="specializationFilter" @change="fetchFilteredDoctors()">
         <option value="0">Seleziona...</option>
         <option v-for="specialization in specializations" :key="specialization.id" :value="specialization.id">{{
           specialization.name }}</option>
       </select>
+
+      <!-- Filtro media voti -->
+      <select v-model="averageFilter" @change="fetchFilteredDoctors()">
+        <option value="0">Seleziona...</option>
+        <option value="1"> 1 stella </option>
+        <option value="2"> 2 stelle </option>
+        <option value="3"> 3 stelle </option>
+        <option value="4"> 4 stelle </option>
+        <option value="5"> 5 stelle </option>
+      </select>
+
     </form>
     <!-- DOCTOR LIST -->
     <ul class="doctor-list">
