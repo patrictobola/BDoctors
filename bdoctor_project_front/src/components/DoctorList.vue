@@ -154,7 +154,11 @@ export default {
               <div>
                 <h5 class="ms-2 ">{{ doctor.user.name }} {{ doctor.user.last_name }}</h5>
                 <p class="ms-2 m-0">Specializzazioni: </p>
-                <p v-for="specialization in doctor.specializations" :key="specialization.id">{{ specialization.name }}</p>
+                <div class="spec-list d-flex">
+                  <p class="ms-2 m-0" v-for="specialization in doctor.specializations" :key="specialization.id">{{
+                    specialization.name }},</p>
+                </div>
+
                 <p class="ms-2 m-0">Prestazioni: {{ doctor.performances }}</p>
               </div>
             </div>
@@ -192,14 +196,20 @@ a {
   width: 80px;
   border-radius: 50%;
   overflow: hidden;
+  flex-shrink: 0;
 
   img {
     width: 100px;
   }
 }
 
+.spec-list {
+  flex-wrap: wrap;
+}
+
 .doctor {
   display: flex;
+  width: 100%;
 }
 
 .des {
