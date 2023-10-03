@@ -1,5 +1,6 @@
 <script >
 import axios from 'axios';
+import { adjust } from 'fontawesome';
 const endpoint = 'http://127.0.0.1:8000/api/';
 
 export default {
@@ -18,8 +19,79 @@ export default {
       return this.doctors.slice(0, 5);
     }
   },
+  watch: {
+    specializationFilter(newVal) {
+      switch (newVal) {
+        case '1':
+          this.$router.push('/ginecologo');
+          break;
+        case '2':
+          this.$router.push('/ortopedico');
+          break;
+        case '3':
+          this.$router.push('/dermatologo');
+          break;
+        case '4':
+          this.$router.push('/nutrizionista');
+          break;
+        case '5':
+          this.$router.push('/psicologo');
+          break;
+        case '6':
+          this.$router.push('/oculista');
+          break;
+        case '7':
+          this.$router.push('/urologo');
+          break;
+        case '8':
+          this.$router.push('/otorino');
+          break;
+        case '9':
+          this.$router.push('/cardiologo');
+          break;
+        case '10':
+          this.$router.push('/dentista');
+          break;
+        default:
+          this.$router.push('/');
+          break;
+      }
+    },
+    // Watch for changes in the route and update the select value
+    $route(to, from) {
+      const selectedOption = this.getOptionFromRoute(to.path);
+      if (selectedOption !== null) {
+        this.specializationFilter = selectedOption;
+      }
+    },
+  },
 
   methods: {
+    getOptionFromRoute(route) {
+      if (route === '/ginecologo') {
+        return '1';
+      } else if (route === '/ortopedico') {
+        return '2';
+      } else if (route === '/dermatologo') {
+        return '3';
+      } else if (route === '/nutrizionista') {
+        return '4';
+      } else if (route === '/psicologo') {
+        return '5';
+      } else if (route === '/oculista') {
+        return '6';
+      } else if (route === '/urologo') {
+        return '7';
+      } else if (route === '/otorino') {
+        return '8';
+      } else if (route === '/cardiologo') {
+        return '9';
+      } else if (route === '/dentista') {
+        return '10';
+      } else {
+        return null;
+      }
+    },
     fetchSpecializations() {
       axios.get(endpoint + 'specializations').then(res => { this.specializations = res.data })
     },
@@ -110,8 +182,10 @@ export default {
             doctor.ratings.forEach((rating) => {
               sum += parseInt(rating.vote);
             })
-            console.log(sum);
-            averages.push(sum / doctor.ratings.length);
+            // console.log(sum);
+            const roundedRating = Math.round(sum / doctor.ratings.length);
+            console.log(roundedRating);
+            averages.push(roundedRating);
           })
 
           res.data.forEach((doctor, index) => {
@@ -145,8 +219,9 @@ export default {
             doctor.ratings.forEach((rating) => {
               sum += parseInt(rating.vote);
             })
-            console.log(sum);
-            averages.push(sum / doctor.ratings.length);
+            const roundedRating = Math.round(sum / doctor.ratings.length);
+            console.log(roundedRating);
+            averages.push(roundedRating);
           })
 
           filteredDoctors.forEach((doctor, index) => {
@@ -162,8 +237,11 @@ export default {
 
   mounted() {
     this.fetchSpecializations();
-    this.fetchDoctors();
+    if (this.specializationFilter !== 0) {
+      this.fetchFilteredDoctors()
+    } else this.fetchDoctors();
   }
+
 }
 </script>
 
@@ -174,13 +252,14 @@ export default {
       <h1>doctors</h1>
       <button type="button" class="btn d-flex align-items-center">Di più</button>
     </div>
+
     <form>
       <!-- Filtro specializzazione -->
       <label for="specialization">Specializzazione: </label>
       <select id="specialization" v-model="specializationFilter" @change="fetchFilteredDoctors()">
         <option value="0">Seleziona...</option>
-        <option v-for="specialization in specializations" :key="specialization.id" :value="specialization.id">{{
-          specialization.name }}</option>
+        <option v-for="specialization in specializations" :key="specialization.id" :value="specialization.id.toString()">
+          {{ specialization.name }}</option>
       </select>
 
       <!-- Filtro media voti -->
@@ -203,6 +282,7 @@ export default {
       </select>
 
     </form>
+
     <!-- DOCTOR LIST -->
     <ul class="doctor-list">
       <!-- DOCTOR CARD -->
@@ -211,7 +291,7 @@ export default {
           <div class="doctor">
             <!-- DOCTOR-IMG -->
             <div class="doc-image mb-3">
-              <img v-if="doctor.profile_photo" :src="'http://127.0.0.1:8000/storage/' + doctor.profile_photo">
+              <img v-if="doctor.profile_photo" :src="doctor.profile_photo">
               <img v-else src="placeholder">
             </div>
             <!-- DOCTOR INFO -->
@@ -262,6 +342,9 @@ ul {
   width: 80px;
   border-radius: 50%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   img {
     width: 100px;
