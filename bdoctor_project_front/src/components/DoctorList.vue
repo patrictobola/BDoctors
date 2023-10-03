@@ -58,8 +58,10 @@ export default {
             doctor.ratings.forEach((rating) => {
               sum += parseInt(rating.vote);
             })
-            console.log(sum);
-            averages.push(sum / doctor.ratings.length);
+            // console.log(sum);
+            const roundedRating = Math.round(sum / doctor.ratings.length);
+            console.log(roundedRating);
+            averages.push(roundedRating);
           })
 
           res.data.forEach((doctor, index) => {
@@ -90,8 +92,9 @@ export default {
             doctor.ratings.forEach((rating) => {
               sum += parseInt(rating.vote);
             })
-            console.log(sum);
-            averages.push(sum / doctor.ratings.length);
+            const roundedRating = Math.round(sum / doctor.ratings.length);
+            console.log(roundedRating);
+            averages.push(roundedRating);
           })
 
           newDoctors.forEach((doctor, index) => {
