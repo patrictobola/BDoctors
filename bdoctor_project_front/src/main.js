@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import chart from "./js/chart";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router';
 import App from "./App.vue";
 
 import Homepage from './components/Homepage.vue';
