@@ -23,7 +23,7 @@ export default {
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="d-flex justify-content-between  w-100">
         <!-- Logo Img -->
-        <figure class="px-4 d-flex justify-content-center">
+        <figure class="px-4 d-flex justify-content-center image-container">
           <img src="../assets/img/logo_Bdoctor (1).png" alt="Logo Bdoctor">
         </figure>
         <!-- Links Navbar -->
@@ -49,6 +49,11 @@ header {
   height: 200px;
   width: 100%;
   background-image: linear-gradient(rgb(22, 178, 50), transparent);
+}
+
+.image-container {
+  padding: 0px;
+  margin: 0px;
 }
 
 .navbar {
