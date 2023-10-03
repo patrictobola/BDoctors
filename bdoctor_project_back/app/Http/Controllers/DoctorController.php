@@ -123,13 +123,39 @@ class DoctorController extends Controller
         $data = $request->all();
 
         if (array_key_exists('profile_photo', $data)) {
-            $img_url = Storage::putFile('doctor_profile_photos', $data['profile_photo']);
+            // Check if we already have a profile photo 
+            if ($doctor->profile_photo) {
+                // Extract the relative path from the absolute URL
+                $old_profile_photo_path = str_replace(asset('storage/'), '', $doctor->profile_photo);
+                // Delete the old profile photo using the relative path
+                Storage::delete($old_profile_photo_path);
+            }
+            // Store the uploaded image in doctor_profile_photos directory
+            $img_path = $data['profile_photo']->store('doctor_profile_photos', 'public');
+
+            // Generate the absolute URL for the stored image
+            $img_url = asset('storage/' . $img_path);
+
+            // Update the 'profile_photo' field with the absolute URL
             $data['profile_photo'] = $img_url;
         }
 
         if (array_key_exists('cv', $data)) {
-            $file_url = Storage::putFile('doctor_cvs', $data['cv']);
-            $data['cv'] = $file_url;
+            // Check if we already have a cv 
+            if ($doctor->cv) {
+                // Extract the relative path from the absolute URL
+                $old_cv_path = str_replace(asset('storage/'), '', $doctor->cv);
+                // Delete the old profile photo using the relative path
+                Storage::delete($old_cv_path);
+            }
+            // Store the uploaded cv in doctor_cvs directory
+            $cv_path = $data['cv']->store('doctor_cvs', 'public');
+
+            // Generate the absolute URL for the stored cv
+            $cv_url = asset('storage/' . $cv_path);
+
+            // Update the 'cv' field with the absolute URL
+            $data['cv'] = $cv_url;
         }
 
         $doctor->update($data);
