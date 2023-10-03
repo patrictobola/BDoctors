@@ -146,7 +146,7 @@ export default {
           <div class="doctor">
             <!-- DOCTOR-IMG -->
             <div class="doc-image mb-3">
-              <img v-if="doctor.profile_photo" :src="'http://127.0.0.1:8000/storage/' + doctor.profile_photo">
+              <img v-if="doctor.profile_photo" :src="doctor.profile_photo">
               <img v-else src="placeholder">
             </div>
             <!-- DOCTOR INFO -->
@@ -192,6 +192,9 @@ a {
   width: 80px;
   border-radius: 50%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   img {
     width: 100px;
