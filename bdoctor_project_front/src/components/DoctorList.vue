@@ -341,7 +341,6 @@ ul {
 }
 
 .doc-image {
-  background-color: red;
   height: 80px;
   width: 80px;
   border-radius: 50%;
@@ -363,6 +362,7 @@ ul {
 .doctor {
   display: flex;
   width: 100%;
+  flex-shrink: 0;
 }
 
 .des {
