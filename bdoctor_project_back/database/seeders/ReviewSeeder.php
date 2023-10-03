@@ -18,7 +18,7 @@ class ReviewSeeder extends Seeder
         for ($i = 0; $i < 30; $i++) {
 
             $doctor = new Review();
-            $doctor->doctor_id = $faker->numberBetween(1, 2);
+            $doctor->doctor_id = $faker->numberBetween(1, 10);
             $doctor->name = $faker->name();
             $doctor->text = $faker->text(50);
             $doctor->email = $faker->email();
