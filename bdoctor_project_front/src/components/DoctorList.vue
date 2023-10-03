@@ -9,7 +9,8 @@ export default {
     specializations: [],
     doctors: [],
     specializationFilter: 0,
-    averageFilter: 0
+    averageFilter: 0,
+    reviewsFilter: 0
   }),
 
   computed: {
@@ -27,11 +28,60 @@ export default {
       axios.get(endpoint + 'doctors').then(res => { this.doctors = res.data })
     },
 
+    orderDoctorsByReviews(doctors) {
+      let reviews = [];
+      let index;
+      let newDoctors = [];
+      let blacklist = [];
+
+      doctors.forEach((doctor) => {
+        reviews.push(doctor.reviews.length)
+      })
+
+      if (this.reviewsFilter == 1) {
+
+        for (let j = 0; j < doctors.length; j++) {
+          let min = 999999;
+          for (let i = 0; i < reviews.length; i++) {
+            if (reviews[i] <= min && !blacklist.includes(i)) {
+              min = reviews[i];
+              index = i;
+            }
+          }
+          blacklist.push(index);
+          newDoctors.push(doctors[index]);
+        }
+
+      }
+      else {
+
+        for (let j = 0; j < doctors.length; j++) {
+          let max = -1;
+          for (let i = 0; i < reviews.length; i++) {
+            if (reviews[i] >= max && !blacklist.includes(i)) {
+              max = reviews[i];
+              index = i;
+            }
+          }
+          blacklist.push(index);
+          newDoctors.push(doctors[index]);
+        }
+      }
+      return newDoctors;
+    },
+
     fetchFilteredDoctors() {
       this.doctors = [];
+      let newDoctors = [];
 
       // Se nessun filtro è attivo
-      if (!this.specializationFilter && !this.averageFilter) this.fetchDoctors();
+      if (!this.specializationFilter && !this.averageFilter) {
+        axios.get(endpoint + 'doctors').then(res => {
+          newDoctors = res.data;
+          if (this.reviewsFilter) this.doctors = this.orderDoctorsByReviews(newDoctors);
+          else this.doctors = newDoctors;
+        })
+      }
 
       // Se è attivo solo il filtro delle specializzazioni
       else if (this.specializationFilter && !this.averageFilter) {
@@ -41,9 +91,11 @@ export default {
             doctor.specializations.forEach((specialization) => {
               if (specialization.id == this.specializationFilter) flag = 1;
             })
-            if (flag) this.doctors.push(doctor);
+            if (flag) newDoctors.push(doctor);
             flag = 0;
           })
+          if (this.reviewsFilter) this.doctors = this.orderDoctorsByReviews(newDoctors);
+          else this.doctors = newDoctors;
         })
       }
 
@@ -63,8 +115,11 @@ export default {
           })
 
           res.data.forEach((doctor, index) => {
-            if (averages[index] >= this.averageFilter) this.doctors.push(doctor);
+            if (averages[index] >= this.averageFilter) newDoctors.push(doctor);
           })
+
+          if (this.reviewsFilter) this.doctors = this.orderDoctorsByReviews(newDoctors);
+          else this.doctors = newDoctors;
         })
       }
 
@@ -72,19 +127,19 @@ export default {
       else {
         axios.get(endpoint + 'doctors').then(res => {
           let flag = 0;
-          let newDoctors = [];
+          let filteredDoctors = [];
 
           res.data.forEach((doctor) => {
             doctor.specializations.forEach((specialization) => {
               if (specialization.id == this.specializationFilter) flag = 1;
             })
-            if (flag) newDoctors.push(doctor);
+            if (flag) filteredDoctors.push(doctor);
             flag = 0;
           })
 
           let averages = [];
 
-          newDoctors.forEach((doctor) => {
+          filteredDoctors.forEach((doctor) => {
             let sum = 0;
 
             doctor.ratings.forEach((rating) => {
@@ -94,9 +149,12 @@ export default {
             averages.push(sum / doctor.ratings.length);
           })
 
-          newDoctors.forEach((doctor, index) => {
-            if (averages[index] >= this.averageFilter) this.doctors.push(doctor);
+          filteredDoctors.forEach((doctor, index) => {
+            if (averages[index] >= this.averageFilter) newDoctors.push(doctor);
           })
+
+          if (this.reviewsFilter) this.doctors = this.orderDoctorsByReviews(newDoctors);
+          else this.doctors = newDoctors;
         })
       }
     }
@@ -112,26 +170,36 @@ export default {
 <template>
   <!-- DOCTORS -->
   <div class="doctors-box">
-    <div class="mx-3 d-flex justify-content-between">
+    <div class="d-flex justify-content-between">
       <h1>doctors</h1>
       <button type="button" class="btn d-flex align-items-center">Di più</button>
     </div>
     <form>
       <!-- Filtro specializzazione -->
-      <select v-model="specializationFilter" @change="fetchFilteredDoctors()">
+      <label for="specialization">Specializzazione: </label>
+      <select id="specialization" v-model="specializationFilter" @change="fetchFilteredDoctors()">
         <option value="0">Seleziona...</option>
         <option v-for="specialization in specializations" :key="specialization.id" :value="specialization.id">{{
           specialization.name }}</option>
       </select>
 
       <!-- Filtro media voti -->
-      <select v-model="averageFilter" @change="fetchFilteredDoctors()">
+      <label for="average" class="ms-2">Media voti minima: </label>
+      <select id="average" v-model="averageFilter" @change="fetchFilteredDoctors()">
         <option value="0">Seleziona...</option>
         <option value="1"> 1 stella </option>
         <option value="2"> 2 stelle </option>
         <option value="3"> 3 stelle </option>
         <option value="4"> 4 stelle </option>
         <option value="5"> 5 stelle </option>
+      </select>
+
+      <!-- Filtro numero di recensioni -->
+      <label for="reviews" class="ms-2">Ordina per numero di recensioni: </label>
+      <select id="reviews" v-model="reviewsFilter" @change="fetchFilteredDoctors()">
+        <option value="0">Seleziona...</option>
+        <option value="1"> Crescente </option>
+        <option value="2"> Decrescente </option>
       </select>
 
     </form>
@@ -168,8 +236,13 @@ a {
   color: black;
 }
 
+ul {
+  padding: 0;
+}
+
 .doctors-box {
   margin-top: 40px;
+  padding: 0 100px;
 }
 
 .btn {
