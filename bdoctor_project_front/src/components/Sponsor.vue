@@ -1,16 +1,24 @@
 <script >
 // import axios from 'axios';
-// const endpoint = '';
+// const endpoint = 'http://127.0.0.1:8000/api/';
 export default {
   name: 'Sponsor',
-  data: () => ({ doctors: [] }),
+  // data: () => ({
+  //   doctors: [],
+  //   sponsored: [],
+  //   totSponsored:0,
+
+  // }),
   // methods: {
-  //   fetchDocors() {
-  //     axios.get(endpoint).then((res) => {
-  //       this.doctors = res.data
-  //       console.log('DOCTORS AXIOS', res.data)
+  //   fetchDoctors() {
+  //     axios.get(endpoint + 'doctors').then(res => { this.doctors = res.data })
+  //     this.doctors.forEach((doctor) => {
+  //       if (doctor.sponsor) {
+  //         this.sponsored.push(doctor)
+  //       }
   //     })
-  //   }
+  //     this.totSponsored=this.sponsored.length;
+  //   },
   // },
   // created() {
   //   this.fetchdoctors()
