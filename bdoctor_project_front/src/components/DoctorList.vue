@@ -30,10 +30,11 @@ export default {
     fetchFilteredDoctors() {
       this.doctors = [];
 
-      if (!this.specializationFilter) this.fetchDoctors();
+      // Se nessun filtro è attivo
+      if (!this.specializationFilter && !this.averageFilter) this.fetchDoctors();
 
-      // Se il filtro delle specializzazioni è attivo
-      else if (this.specializationFilter) {
+      // Se è attivo solo il filtro delle specializzazioni
+      else if (this.specializationFilter && !this.averageFilter) {
         axios.get(endpoint + 'doctors').then(res => {
           let flag = 0;
           res.data.forEach((doctor) => {
@@ -46,25 +47,57 @@ export default {
         })
       }
 
-      if (this.averageFilter) {
-        console.log(this.doctors);
-        let newDoctors = [];
-        let averages = [];
-        this.doctors.forEach((doctor) => {
-          let sum = 0;
+      // Se è attivo solo il filtro della media dei voti
+      else if (!this.specializationFilter && this.averageFilter) {
+        axios.get(endpoint + 'doctors').then(res => {
+          let averages = [];
 
-          console.log(doctor.ratings);
-          doctor.ratings.forEach((rating) => {
-            sum += rating.vote;
+          res.data.forEach((doctor) => {
+            let sum = 0;
+
+            doctor.ratings.forEach((rating) => {
+              sum += parseInt(rating.vote);
+            })
+            console.log(sum);
+            averages.push(sum / doctor.ratings.length);
           })
-          averages.push(sum / doctor.ratings.length);
-        })
 
-        this.doctors.forEach((doctor, index) => {
-          if (averages[index] >= this.averageFilter) newDoctors.push(doctor);
+          res.data.forEach((doctor, index) => {
+            if (averages[index] >= this.averageFilter) this.doctors.push(doctor);
+          })
         })
+      }
 
-        this.doctors = newDoctors;
+      // Se sono attivi entrambi i filtri
+      else {
+        axios.get(endpoint + 'doctors').then(res => {
+          let flag = 0;
+          let newDoctors = [];
+
+          res.data.forEach((doctor) => {
+            doctor.specializations.forEach((specialization) => {
+              if (specialization.id == this.specializationFilter) flag = 1;
+            })
+            if (flag) newDoctors.push(doctor);
+            flag = 0;
+          })
+
+          let averages = [];
+
+          newDoctors.forEach((doctor) => {
+            let sum = 0;
+
+            doctor.ratings.forEach((rating) => {
+              sum += parseInt(rating.vote);
+            })
+            console.log(sum);
+            averages.push(sum / doctor.ratings.length);
+          })
+
+          newDoctors.forEach((doctor, index) => {
+            if (averages[index] >= this.averageFilter) this.doctors.push(doctor);
+          })
+        })
       }
     }
   },
