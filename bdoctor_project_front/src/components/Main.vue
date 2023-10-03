@@ -17,7 +17,7 @@ export default {
     <Sponsor />
     <!-- NEWS LIST -->
     <ReviewsList />
-
+    <RouterView />
   </main>
 </template>
 
