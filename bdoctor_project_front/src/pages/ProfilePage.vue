@@ -118,8 +118,13 @@ export default {
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Messaggi Futuri</h5>
-                            <!-- Contenuto dei futuri messaggi qui -->
+                            <form action="#" method="POST">
+                                <h5 class="card-title">Invia un messaggio</h5>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <div class="d-flex justify-content-end mt-3">
+                                    <button class="btn btn-success">inviamessaggio</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -127,8 +132,43 @@ export default {
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Recensioni Future</h5>
-                            <!-- Contenuto delle future recensioni qui -->
+                            <form action="#" method="POST">
+                                <h5 class="card-title">Invia una Recensione</h5>
+                                <label for="exampleFormControlTextarea1" class="form-label">Recensione scritta</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label for="exampleFormControlTextarea1" class="form-label my-3">Valuta da 1 a 5</label>
+                                <div class="d-flex">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio1" value="option1">
+                                        <label class="form-check-label" for="inlineRadio1">1</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio1" value="option2">
+                                        <label class="ms-2 form-check-label" for="inlineRadio1">2</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio1" value="option3">
+                                        <label class="ms-2 form-check-label" for="inlineRadio1">3</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio1" value="option4">
+                                        <label class="ms-2 form-check-label" for="inlineRadio1">4</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio1" value="option5">
+                                        <label class="ms-2 form-check-label" for="inlineRadio1">5</label>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex justify-content-end mt-3">
+                                    <button class="btn btn-success">invia Recensione</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -138,4 +178,9 @@ export default {
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.form-check-input:checked {
+    background-color: rgb(22, 178, 50);
+    border-color: rgb(22, 178, 50);
+}
+</style>
