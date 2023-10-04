@@ -10,6 +10,16 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: '/', name: 'main', component: Main },
+        { path: '/ginecologo', name: 'ginecologo', component: Main },
+        { path: '/ortopedico', name: 'ortopedico', component: Main },
+        { path: '/dermatologo', name: 'dermatologo', component: Main },
+        { path: '/nutrizionista', name: 'nutrizionista', component: Main },
+        { path: '/psicologo', name: 'psicologo', component: Main },
+        { path: '/oculista', name: 'oculista', component: Main },
+        { path: '/urologo', name: 'urologo', component: Main },
+        { path: '/otorino', name: 'otorino', component: Main },
+        { path: '/cardiologo', name: 'cardiologo', component: Main },
+        { path: '/dentista', name: 'dentista', component: Main },
         { path: '/profiles/:id', name: 'profile', component: ProfilePage },
 
         // { path: '/about', component: About },
