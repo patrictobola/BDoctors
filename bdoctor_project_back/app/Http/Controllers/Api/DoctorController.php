@@ -43,12 +43,12 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      */
-    // public function show(string $id)
-    // {
-    //     $doctor = Doctor::with('ratings', 'specializations', 'reviews', 'user')->find($id);
-    //     if (!$doctor) return response(null, 404);
-    //     return response()->json($doctor);
-    // }
+    public function show(string $id)
+    {
+        $doctor = Doctor::with('ratings', 'specializations', 'reviews', 'user')->find($id);
+        if (!$doctor) return response(null, 404);
+        return response()->json($doctor);
+    }
 
     /**
      * Update the specified resource in storage.

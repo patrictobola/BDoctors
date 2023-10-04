@@ -47,7 +47,11 @@ export default {
                         <div class="col-md-4">
                             <div class="card-body">
                                 <h5 class="card-title">Dr. {{ doctor.user.name }} {{ doctor.user.last_name }}</h5>
-                                <p class="card-text">Specializzazione: {{ doctor.specializations[0].name }}</p>
+                                <p class="card-text">Specializzazioni: <small class="d-block"
+                                        v-for="specialization, index in doctor.specializations" :key="specialization.id">
+                                        {{ specialization.name }}
+                                    </small>
+                                </p>
                                 <div class="mt-3">
                                     <h5>Recensioni</h5>
                                     <!-- Inseriamo il codice per visualizzare le recensioni qui -->
