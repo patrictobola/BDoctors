@@ -93,8 +93,11 @@ export default {
       axios.get(endpoint + 'specializations').then(res => { this.specializations = res.data })
     },
 
-    fetchDoctors() {
-      axios.get(endpoint + 'doctors').then(res => { this.doctors = res.data.data })
+    fetchDoctors(uri = endpoint + 'doctors') {
+      axios.get(uri).then(res => {
+        this.doctors = res.data.data
+        this.links = res.data.links
+      })
     },
 
     orderDoctorsByReviews(doctors) {
@@ -147,6 +150,7 @@ export default {
       if (!this.specializationFilter && !this.averageFilter) {
         axios.get(endpoint + 'doctors').then(res => {
           newDoctors = res.data.data;
+          this.links = res.data.links
           if (this.reviewsFilter) this.doctors = this.orderDoctorsByReviews(newDoctors);
           else this.doctors = newDoctors;
         })
@@ -158,19 +162,23 @@ export default {
         if (this.specializationFilter == '0') {
           axios.get(endpoint + 'doctors').then(res => {
             newDoctors = res.data.data;
+            this.links = res.data.links
             if (this.reviewsFilter != '0') this.doctors = this.orderDoctorsByReviews(newDoctors);
             else this.doctors = newDoctors;
           })
         }
         else {
-          axios.get(endpoint + 'doctors').then(res => {
+          axios.get(endpoint + 'doctors/specialization/' + this.specializationFilter).then(res => {
             let flag = 0;
             res.data.data.forEach((doctor) => {
               doctor.specializations.forEach((specialization) => {
                 if (specialization.id == this.specializationFilter) flag = 1;
               })
-              if (flag) newDoctors.push(doctor);
-              flag = 0;
+              if (flag) {
+                newDoctors.push(doctor);
+                this.links = res.data.links
+                flag = 0;
+              }
             })
             if (this.reviewsFilter != '0') this.doctors = this.orderDoctorsByReviews(newDoctors);
             else this.doctors = newDoctors;
@@ -206,12 +214,13 @@ export default {
 
       // Se sono attivi entrambi i filtri
       else {
-        axios.get(endpoint + 'doctors').then(res => {
+        axios.get(endpoint + 'doctors/specialization/' + this.specializationFilter).then(res => {
           let flag = 0;
           let filteredDoctors = [];
 
           if (this.specializationFilter == '0') {
             filteredDoctors = res.data.data;
+            this.links = res.data.links
           }
           else {
 
@@ -249,13 +258,6 @@ export default {
       }
     },
 
-    fetchReviews(uri = endpoint + 'doctors') {
-      axios.get(uri).then(res => {
-
-        this.doctors = res.data.data
-        this.links = res.data.links
-      })
-    }
   },
 
   mounted() {
@@ -265,7 +267,6 @@ export default {
     if (this.specializationFilter !== 0) {
       this.fetchFilteredDoctors()
     } else this.fetchDoctors();
-    this.fetchReviews()
   }
 
 }
@@ -343,7 +344,7 @@ export default {
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           <li v-for="link in links" class="page-item" :class="link.active ? 'active' : ''"><a class="page-link"
-              :class="link.url ? '' : 'disabled'" href="#" @click="fetchReviews(link.url)" v-html="link.label"></a></li>
+              :class="link.url ? '' : 'disabled'" href="#" @click="fetchDoctors(link.url)" v-html="link.label"></a></li>
         </ul>
       </nav>
     </div>

@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Rotte api dottori
 Route::apiResource('doctors', DoctorController::class);
+Route::get('/doctors/specialization/{id}', [DoctorController::class, 'indexBySpecializations']);
 
 // Rotte api specializzazioni
 Route::apiResource('specializations', SpecializationController::class);
