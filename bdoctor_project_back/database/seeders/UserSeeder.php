@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 15; $i++) {
 
             $user = new User();
             $user->email = $faker->email();

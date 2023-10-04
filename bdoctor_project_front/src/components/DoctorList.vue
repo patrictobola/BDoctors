@@ -14,11 +14,6 @@ export default {
     reviewsFilter: 0
   }),
 
-  computed: {
-    slicedDoctors() {
-      return this.doctors.slice(0, 5);
-    }
-  },
   watch: {
     specializationFilter(newVal) {
       switch (newVal) {
@@ -97,7 +92,7 @@ export default {
     },
 
     fetchDoctors() {
-      axios.get(endpoint + 'doctors').then(res => { this.doctors = res.data })
+      axios.get(endpoint + 'doctors').then(res => { this.doctors = res.data.data })
     },
 
     orderDoctorsByReviews(doctors) {
@@ -149,7 +144,7 @@ export default {
       // Se nessun filtro è attivo
       if (!this.specializationFilter && !this.averageFilter) {
         axios.get(endpoint + 'doctors').then(res => {
-          newDoctors = res.data;
+          newDoctors = res.data.data;
           if (this.reviewsFilter) this.doctors = this.orderDoctorsByReviews(newDoctors);
           else this.doctors = newDoctors;
         })
@@ -159,7 +154,7 @@ export default {
       else if (this.specializationFilter && !this.averageFilter) {
         axios.get(endpoint + 'doctors').then(res => {
           let flag = 0;
-          res.data.forEach((doctor) => {
+          res.data.data.forEach((doctor) => {
             doctor.specializations.forEach((specialization) => {
               if (specialization.id == this.specializationFilter) flag = 1;
             })
@@ -176,7 +171,7 @@ export default {
         axios.get(endpoint + 'doctors').then(res => {
           let averages = [];
 
-          res.data.forEach((doctor) => {
+          res.data.data.forEach((doctor) => {
             let sum = 0;
 
             doctor.ratings.forEach((rating) => {
@@ -188,7 +183,7 @@ export default {
             averages.push(roundedRating);
           })
 
-          res.data.forEach((doctor, index) => {
+          res.data.data.forEach((doctor, index) => {
             if (averages[index] >= this.averageFilter) newDoctors.push(doctor);
           })
 
@@ -203,7 +198,7 @@ export default {
           let flag = 0;
           let filteredDoctors = [];
 
-          res.data.forEach((doctor) => {
+          res.data.data.forEach((doctor) => {
             doctor.specializations.forEach((specialization) => {
               if (specialization.id == this.specializationFilter) flag = 1;
             })
@@ -286,7 +281,7 @@ export default {
     <!-- DOCTOR LIST -->
     <ul class="doctor-list">
       <!-- DOCTOR CARD -->
-      <li v-for="doctor in slicedDoctors">
+      <li v-for="doctor in doctors">
         <RouterLink :to="{ name: 'profile', params: { id: doctor.id } }">
           <div class="doctor">
             <!-- DOCTOR-IMG -->

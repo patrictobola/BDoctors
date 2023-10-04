@@ -13,7 +13,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::with('user', 'ratings', 'specializations', 'reviews')->get();
+        $doctors = Doctor::with('user', 'ratings', 'specializations', 'reviews')->paginate(5);
         return response()->json($doctors);
     }
 
