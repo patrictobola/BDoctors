@@ -12,7 +12,7 @@ export default {
     specializationFilter: 0,
     averageFilter: 0,
     reviewsFilter: 0,
-    urlRoute: '',
+    links: null,
   }),
 
   watch: {
@@ -229,6 +229,14 @@ export default {
           else this.doctors = newDoctors;
         })
       }
+    },
+
+    fetchReviews(uri = endpoint + 'doctors') {
+      axios.get(uri).then(res => {
+
+        this.doctors = res.data.data
+        this.links = res.data.links
+      })
     }
   },
 
@@ -239,6 +247,7 @@ export default {
     if (this.specializationFilter !== 0) {
       this.fetchFilteredDoctors()
     } else this.fetchDoctors();
+    this.fetchReviews()
   }
 
 }
@@ -283,7 +292,7 @@ export default {
     </form>
 
     <!-- DOCTOR LIST -->
-    <ul class="doctor-list">
+    <ul class="doctor-list" id="doctor-list">
       <!-- DOCTOR CARD -->
       <li v-for="doctor in doctors">
         <RouterLink :to="{ name: 'profile', params: { id: doctor.id } }">
@@ -310,6 +319,15 @@ export default {
         </RouterLink>
       </li>
     </ul>
+    <div class="d-flex">
+
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li v-for="link in links" class="page-item" :class="link.active ? 'active' : ''"><a class="page-link"
+              :class="link.url ? '' : 'disabled'" href="#" @click="fetchReviews(link.url)" v-html="link.label"></a></li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </template>
 
