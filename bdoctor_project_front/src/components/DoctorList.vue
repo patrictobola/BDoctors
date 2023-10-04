@@ -154,18 +154,28 @@ export default {
 
       // Se è attivo solo il filtro delle specializzazioni
       else if (this.specializationFilter && !this.averageFilter) {
-        axios.get(endpoint + 'doctors').then(res => {
-          let flag = 0;
-          res.data.data.forEach((doctor) => {
-            doctor.specializations.forEach((specialization) => {
-              if (specialization.id == this.specializationFilter) flag = 1;
-            })
-            if (flag) newDoctors.push(doctor);
-            flag = 0;
+
+        if (this.specializationFilter == '0') {
+          axios.get(endpoint + 'doctors').then(res => {
+            newDoctors = res.data.data;
+            if (this.reviewsFilter != '0') this.doctors = this.orderDoctorsByReviews(newDoctors);
+            else this.doctors = newDoctors;
           })
-          if (this.reviewsFilter) this.doctors = this.orderDoctorsByReviews(newDoctors);
-          else this.doctors = newDoctors;
-        })
+        }
+        else {
+          axios.get(endpoint + 'doctors').then(res => {
+            let flag = 0;
+            res.data.data.forEach((doctor) => {
+              doctor.specializations.forEach((specialization) => {
+                if (specialization.id == this.specializationFilter) flag = 1;
+              })
+              if (flag) newDoctors.push(doctor);
+              flag = 0;
+            })
+            if (this.reviewsFilter != '0') this.doctors = this.orderDoctorsByReviews(newDoctors);
+            else this.doctors = newDoctors;
+          })
+        }
       }
 
       // Se è attivo solo il filtro della media dei voti
@@ -200,13 +210,21 @@ export default {
           let flag = 0;
           let filteredDoctors = [];
 
-          res.data.data.forEach((doctor) => {
-            doctor.specializations.forEach((specialization) => {
-              if (specialization.id == this.specializationFilter) flag = 1;
+          if (this.specializationFilter == '0') {
+            filteredDoctors = res.data.data;
+          }
+          else {
+
+            let flag = 0;
+            res.data.data.forEach((doctor) => {
+              doctor.specializations.forEach((specialization) => {
+                if (specialization.id == this.specializationFilter) flag = 1;
+              })
+              if (flag) filteredDoctors.push(doctor);
+              flag = 0;
             })
-            if (flag) filteredDoctors.push(doctor);
-            flag = 0;
-          })
+
+          }
 
           let averages = [];
 
@@ -225,7 +243,7 @@ export default {
             if (averages[index] >= this.averageFilter) newDoctors.push(doctor);
           })
 
-          if (this.reviewsFilter) this.doctors = this.orderDoctorsByReviews(newDoctors);
+          if (this.reviewsFilter != '0') this.doctors = this.orderDoctorsByReviews(newDoctors);
           else this.doctors = newDoctors;
         })
       }
