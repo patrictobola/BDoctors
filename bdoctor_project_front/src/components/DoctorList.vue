@@ -1,6 +1,6 @@
 <script >
 import axios from 'axios';
-import { adjust } from 'fontawesome';
+import { adjust, fill } from 'fontawesome';
 const endpoint = 'http://127.0.0.1:8000/api/';
 
 export default {
@@ -11,7 +11,8 @@ export default {
     doctors: [],
     specializationFilter: 0,
     averageFilter: 0,
-    reviewsFilter: 0
+    reviewsFilter: 0,
+    urlRoute: '',
   }),
 
   watch: {
@@ -53,12 +54,6 @@ export default {
       }
     },
     // Watch for changes in the route and update the select value
-    $route(to, from) {
-      const selectedOption = this.getOptionFromRoute(to.path);
-      if (selectedOption !== null) {
-        this.specializationFilter = selectedOption;
-      }
-    },
   },
 
   methods: {
@@ -87,6 +82,13 @@ export default {
         return null;
       }
     },
+    fillSpecialization() {
+      const selectedOption = this.getOptionFromRoute(this.$route.path);
+      if (selectedOption !== null) {
+        this.specializationFilter = selectedOption;
+      }
+    },
+
     fetchSpecializations() {
       axios.get(endpoint + 'specializations').then(res => { this.specializations = res.data })
     },
@@ -231,6 +233,8 @@ export default {
   },
 
   mounted() {
+    this.urlRoute = this.$route.path;
+    this.fillSpecialization();
     this.fetchSpecializations();
     if (this.specializationFilter !== 0) {
       this.fetchFilteredDoctors()
