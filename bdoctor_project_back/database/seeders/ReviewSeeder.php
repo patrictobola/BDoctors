@@ -15,7 +15,7 @@ class ReviewSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 100; $i++) {
 
             $doctor = new Review();
             $doctor->doctor_id = $faker->numberBetween(1, 10);
