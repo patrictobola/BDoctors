@@ -34,8 +34,9 @@ export default {
               <a class="nav-link active" aria-current="page" href="#">Dottori</a>
               <a class="nav-link active" aria-current="page" href="#">Recensioni</a>
               <a class="nav-link active" aria-current="page" href="#">Contatti</a>
-              <a class="nav-link active text-white btn-nav" href="#">Login</a>
-              <a class="nav-link active text-white btn-nav" href="#">Sei un Professionista sanitario?</a>
+              <a class="nav-link active text-white btn-nav" href="http://127.0.0.1:8000/login">Login</a>
+              <a class="nav-link active text-white btn-nav" href="http://127.0.0.1:8000/register">Sei un Professionista
+                sanitario?</a>
             </div>
           </div>
         </div>
