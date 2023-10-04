@@ -4,17 +4,30 @@ import axios from 'axios';
 
 export default {
     name: 'ProfilePage',
+
     data: () => ({
         doctor: null,
     }),
+
     methods: {
         getDoctor() {
             const endpoint = apiBaseUri + this.$route.params.id;
             axios.get(endpoint)
                 .then(res => { this.doctor = res.data; })
                 .catch(err => { console.error(err) })
+        },
+    },
+
+    computed: {
+        voteAverage() {
+            let sum = 0;
+            this.doctor.ratings.forEach((rating) => {
+                sum += parseFloat(rating.vote);
+            })
+            return Math.ceil(sum / this.doctor.ratings.length);
         }
     },
+
     created() {
         this.getDoctor();
     }
@@ -38,7 +51,10 @@ export default {
                                 <div class="mt-3">
                                     <h5>Recensioni</h5>
                                     <!-- Inseriamo il codice per visualizzare le recensioni qui -->
-                                    <p>stelle stelle stelle stelle stelle</p>
+                                    <p>
+                                        <font-awesome-icon v-for="i in 5" :key="i"
+                                            :icon="i <= voteAverage ? ['fas', 'star'] : ['far', 'star']" />
+                                    </p>
                                 </div>
                             </div>
                         </div>

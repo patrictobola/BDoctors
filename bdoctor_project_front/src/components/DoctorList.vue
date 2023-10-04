@@ -280,34 +280,35 @@ export default {
       <button type="button" class="btn d-flex align-items-center">Di più</button>
     </div>
 
-    <form>
+    <form class="filetform">
       <!-- Filtro specializzazione -->
-      <label for="specialization">Specializzazione: </label>
-      <select id="specialization" v-model="specializationFilter" @change="fetchFilteredDoctors()">
-        <option value="0">Seleziona...</option>
-        <option v-for="specialization in specializations" :key="specialization.id" :value="specialization.id.toString()">
-          {{ specialization.name }}</option>
-      </select>
-
-      <!-- Filtro media voti -->
-      <label for="average" class="ms-2">Media voti minima: </label>
-      <select id="average" v-model="averageFilter" @change="fetchFilteredDoctors()">
-        <option value="0">Seleziona...</option>
-        <option value="1"> 1 stella </option>
-        <option value="2"> 2 stelle </option>
-        <option value="3"> 3 stelle </option>
-        <option value="4"> 4 stelle </option>
-        <option value="5"> 5 stelle </option>
-      </select>
-
-      <!-- Filtro numero di recensioni -->
-      <label for="reviews" class="ms-2">Ordina per numero di recensioni: </label>
-      <select id="reviews" v-model="reviewsFilter" @change="fetchFilteredDoctors()">
-        <option value="0">Seleziona...</option>
-        <option value="1"> Crescente </option>
-        <option value="2"> Decrescente </option>
-      </select>
-
+      <div class="my-2"><label for="specialization">Specializzazione: </label>
+        <select class="ms-2" id="specialization" v-model="specializationFilter" @change="fetchFilteredDoctors()">
+          <option value="0">Seleziona...</option>
+          <option v-for="specialization in specializations" :key="specialization.id"
+            :value="specialization.id.toString()">
+            {{ specialization.name }}</option>
+        </select>
+      </div>
+      <div class="my-2"><!-- Filtro media voti -->
+        <label for="average" class="ms-md-2">Media voti minima: </label>
+        <select class="ms-2" id="average" v-model="averageFilter" @change="fetchFilteredDoctors()">
+          <option value="0">Seleziona...</option>
+          <option value="1"> 1 stella </option>
+          <option value="2"> 2 stelle </option>
+          <option value="3"> 3 stelle </option>
+          <option value="4"> 4 stelle </option>
+          <option value="5"> 5 stelle </option>
+        </select>
+      </div>
+      <div class="my-2"><!-- Filtro numero di recensioni -->
+        <label for="reviews" class="ms-md-2">Ordina per numero di recensioni: </label>
+        <select class="ms-2" id="reviews" v-model="reviewsFilter" @change="fetchFilteredDoctors()">
+          <option value="0">Seleziona...</option>
+          <option value="1"> Crescente </option>
+          <option value="2"> Decrescente </option>
+        </select>
+      </div>
     </form>
 
     <!-- DOCTOR LIST -->
@@ -362,7 +363,7 @@ ul {
 
 .doctors-box {
   margin-top: 40px;
-  padding: 0 100px;
+  padding: 0 25px;
 }
 
 .btn {
@@ -411,6 +412,39 @@ li {
   margin-right: 15px;
   border: 4px solid rgba(22, 178, 51, 0.274);
   border-radius: 42px 10px 10px 42px;
+
+}
+
+.pagination>.active>a {
+  background-color: rgb(22, 178, 50);
+}
+
+.pagination {
+  flex-wrap: wrap;
+}
+
+.page-item {
+
+  border: none;
+
+  a {
+    border: 1px solid rgb(22, 178, 50);
+    border-radius: 10px;
+  }
+}
+
+.disabled {
+  background-color: rgba(1, 80, 14, 0.274);
+}
+
+select {
+  border: none;
+  background-color: rgba(22, 178, 51, 0.397);
+  border-radius: 10px;
+}
+
+option {
+  background-color: white;
 }
 
 @media screen and (min-width: 580px) {
@@ -431,6 +465,11 @@ li {
     border-radius: 42px 10px 10px 10px;
   }
 
+  .doctors-box {
+
+    padding: 0 100px;
+  }
+
   .doctor {
     height: 100%;
     display: block;
@@ -438,6 +477,11 @@ li {
 
   .des {
     display: block;
+  }
+
+  .filetform {
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>
