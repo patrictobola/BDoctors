@@ -23,6 +23,7 @@ export default {
 
 <template>
     <div class="container">
+        <h1 class="text-center my-3">Profilo Personale</h1>
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -127,16 +128,14 @@ export default {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Recensioni Future</h5>
-                            <!-- Contenuto delle future re qui -->
+                            <!-- Contenuto delle future recensioni qui -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <RouterLink class="btn btn-primary" :to="{ name: 'main' }">Torna Indietro</RouterLink>
     </div>
 </template>
 
-<style scoped>
-/*<RouterLink class="btn btn-primary" :to="{ name: 'profile', params: { id: doctor.id } }">Vedi Profilo
-              </RouterLink>*/
-</style>
+<style scoped></style>

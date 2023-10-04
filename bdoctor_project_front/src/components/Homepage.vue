@@ -1,16 +1,15 @@
 <script >
 import Header from './Header.vue';
-import Main from './Main.vue';
 import Footer from './Footer.vue';
 export default {
   name: 'Homepage',
-  components: { Header, Main, Footer },
+  components: { Header, Footer },
 }
 </script>
 
 <template>
   <Header />
-  <Main />
+  <RouterView />
   <Footer />
 </template>
 

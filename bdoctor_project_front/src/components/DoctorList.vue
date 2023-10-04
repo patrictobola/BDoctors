@@ -287,7 +287,7 @@ export default {
     <ul class="doctor-list">
       <!-- DOCTOR CARD -->
       <li v-for="doctor in slicedDoctors">
-        <a href="#" alt="doctor name">
+        <RouterLink :to="{ name: 'profile', params: { id: doctor.id } }">
           <div class="doctor">
             <!-- DOCTOR-IMG -->
             <div class="doc-image mb-3">
@@ -308,7 +308,7 @@ export default {
               </div>
             </div>
           </div>
-        </a>
+        </RouterLink>
       </li>
     </ul>
   </div>
