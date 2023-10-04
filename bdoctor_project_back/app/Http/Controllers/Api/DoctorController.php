@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -14,6 +15,20 @@ class DoctorController extends Controller
     public function index()
     {
         $doctors = Doctor::with('user', 'ratings', 'specializations', 'reviews')->paginate(5);
+        return response()->json($doctors);
+    }
+
+
+    public function indexBySpecializations(string $id)
+    {
+        $specializationId = $id; // Replace with the desired specialization ID
+
+        $doctors = Doctor::with('user', 'ratings', 'specializations', 'reviews')
+            ->whereHas('specializations', function ($query) use ($specializationId) {
+                $query->where('specializations.id', $specializationId);
+            })
+            ->paginate(5);
+
         return response()->json($doctors);
     }
 
@@ -28,12 +43,12 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $doctor = Doctor::with('ratings', 'specializations', 'reviews', 'user')->find($id);
-        if (!$doctor) return response(null, 404);
-        return response()->json($doctor);
-    }
+    // public function show(string $id)
+    // {
+    //     $doctor = Doctor::with('ratings', 'specializations', 'reviews', 'user')->find($id);
+    //     if (!$doctor) return response(null, 404);
+    //     return response()->json($doctor);
+    // }
 
     /**
      * Update the specified resource in storage.
