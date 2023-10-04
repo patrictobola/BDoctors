@@ -33,14 +33,11 @@ export default {
 <template>
   <!-- REVIEWS -->
   <div class="reviews-box" id="reviews-box">
-    <h1 class="ms-3">Reviews</h1>
-    <!-- REVIEWS LIST -->
-
-
+    <h1 class="ms-3 mb-4">Reviews</h1>
     <!-- REVIEWS CARD -->
     <ul>
       <div class="row">
-        <li v-for="review in reviews " class="reviews">
+        <li v-for="review in reviews " class="reviews pe-3">
           <a href="#" alt="review">
             <div class="review mx-3">
               <div class="mt-3">
@@ -52,22 +49,20 @@ export default {
         </li>
       </div>
     </ul>
-    <div class="d-flex">
-
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li v-for="link in links" class="page-item" :class="link.active ? 'active' : ''"><a class="page-link"
-              :class="link.url ? '' : 'disabled'" href="#reviews-box" @click="fetchReviews(link.url)"
-              v-html="link.label"></a></li>
-        </ul>
-      </nav>
-    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination my-5">
+        <li v-for="link in links" class="page-item" :class="link.active ? 'active' : ''"><a class="page-link"
+            :class="link.url ? '' : 'disabled'" href="#reviews-box" @click="fetchReviews(link.url)"
+            v-html="link.label"></a></li>
+      </ul>
+    </nav>
   </div>
 </template>
 
 <style scoped>
 .reviews-box {
   margin-top: 70px;
+  padding: 0 25px;
 }
 
 .review {
@@ -92,6 +87,30 @@ ul {
   padding-left: 0;
 }
 
+.pagination>.active>a {
+  background-color: rgb(22, 178, 50);
+  border: none;
+}
+
+.page-item {
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.page-link {
+  border: 1px solid rgb(22, 178, 50);
+  border-radius: 10px;
+}
+
+.disabled {
+  background-color: rgba(1, 80, 14, 0.274);
+}
+
 @media screen and (min-width: 780px) {
   ul {
     display: flex;
@@ -107,6 +126,12 @@ ul {
 
   .review {
     height: 250px;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .reviews-box {
+    padding: 0 80px;
   }
 }
 </style>
