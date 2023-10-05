@@ -214,13 +214,12 @@ export default {
 
       // Se sono attivi entrambi i filtri
       else {
-        axios.get(endpoint + 'doctors/specialization/' + this.specializationFilter).then(res => {
-          let flag = 0;
+        axios.get(endpoint + 'doctors').then(res => {
           let filteredDoctors = [];
 
           if (this.specializationFilter == '0') {
             filteredDoctors = res.data.data;
-            this.links = res.data.links
+            this.links = res.data.links;
           }
           else {
 
