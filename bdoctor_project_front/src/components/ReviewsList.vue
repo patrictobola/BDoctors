@@ -13,13 +13,9 @@ export default {
   methods: {
     fetchReviews(uri = endpoint) {
       axios.get(uri).then(res => {
-        this.prevPageURI = res.data.prev_page_url
-        this.nextPageURI = res.data.next_page_url
 
         this.reviews = res.data.data
         this.links = res.data.links
-        console.log(res)
-        console.log(this.links)
 
       })
     }
@@ -33,7 +29,7 @@ export default {
 <template>
   <!-- REVIEWS -->
   <div class="reviews-box" id="reviews-box">
-    <h1 class="ms-3 mb-4">Reviews</h1>
+    <h1 class="ms-3 mb-4">Ultime recensioni</h1>
     <!-- REVIEWS CARD -->
     <ul>
       <div class="row">
@@ -41,8 +37,20 @@ export default {
           <a href="#" alt="review">
             <div class="review mx-3">
               <div class="mt-3">
-                <h5 class="ms-3 m-0">{{ review.name }}</h5>
-                <p class="ms-3 m-0">{{ review.text }}</p>
+                <div class="d-flex">
+
+                  <div class="doc-image mb-3">
+                    <img v-if="review.doctor.profile_photo" :src="review.doctor.profile_photo">
+                    <img v-else src="placeholder">
+                  </div>
+                  <div>
+
+                    <h3 class="ms-3 m-0">Dr. {{ review.doctor.user.name }} {{
+                      review.doctor.user.last_name }}</h3>
+                    <h6 class="ms-3 mt-3">{{ review.name }}</h6>
+                    <p class="ms-3 m-0">{{ review.text }}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </a>
@@ -63,6 +71,22 @@ export default {
 .reviews-box {
   margin-top: 70px;
   padding: 0 25px;
+}
+
+.doc-image {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 16px;
+
+  img {
+    width: 100px;
+  }
 }
 
 .review {
@@ -117,7 +141,7 @@ ul {
   }
 
   li.reviews {
-    width: calc(100% / 5)
+    width: calc(100% / 2)
   }
 
   .row {
@@ -132,6 +156,12 @@ ul {
 @media screen and (min-width: 990px) {
   .reviews-box {
     padding: 0 80px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  li.reviews {
+    width: calc(100% / 3)
   }
 }
 </style>

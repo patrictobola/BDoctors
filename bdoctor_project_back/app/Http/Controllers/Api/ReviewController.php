@@ -13,7 +13,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::paginate(15);
+        $reviews = Review::with('doctor.user',)->paginate(15);
         return response()->json($reviews);
     }
 

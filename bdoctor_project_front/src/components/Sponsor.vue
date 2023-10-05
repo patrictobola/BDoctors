@@ -28,7 +28,7 @@ export default {
 
 <template>
   <div class="sponsor-box text-center">
-    <h1 class="pt-5">Sei un professionista?, fatti conoscere!</h1>
+    <h1 class="pt-5">Sei un professionista? Fatti conoscere!</h1>
     <div class="pt-5"><button>Sign up</button>
       <button> Sponsor</button>
     </div>
