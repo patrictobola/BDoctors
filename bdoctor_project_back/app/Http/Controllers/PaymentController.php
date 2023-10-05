@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
+use App\Models\Sponsor;
 use App\Models\Payment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -10,9 +13,13 @@ class PaymentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Doctor $doctor)
     {
-        return view('payments.index');
+        $user_id = Auth::id();
+        $doctor = Doctor::findOrFail($user_id);
+
+        $sponsors = Sponsor::all();
+        return view('payments.index', compact('doctor', 'sponsors'));
     }
 
     /**

@@ -14,4 +14,8 @@ class Sponsor extends Model
         'cost',
         'name',
     ];
+    public function doctors()
+    {
+        return $this->belongsToMany(Doctor::class);
+    }
 }
