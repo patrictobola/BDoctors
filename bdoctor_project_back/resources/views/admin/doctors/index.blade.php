@@ -24,7 +24,7 @@
                 </div>
 
 
-                <div class="col-md-8">
+                <div class="col-md-8 doc-info">
 
                     {{-- Nome, cognome e descrizione --}}
                     <div class="card my-3">
@@ -38,8 +38,8 @@
                     <div class="card my-3">
                         <h5 class="card-title m-2">Informazioni Personali</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Phone: {{ $doctor->phone_number }}</li>
-                            <li class="list-group-item">Address: {{ $doctor->address }}</li>
+                            <li class="list-group-item half">Phone: {{ $doctor->phone_number }}</li>
+                            <li class="list-group-item half">Address: {{ $doctor->address }}</li>
                             <li class="list-group-item">Performances: {{ $doctor->performances }}</li>
                         </ul>
                     </div>
@@ -67,7 +67,7 @@
                     <div class="d-flex justify-content-end mt-3">
 
                         {{-- Pulsante di modifica --}}
-                        <a class="btn btn-success mx-2" href="{{ route('admin.doctor.edit', $doctor) }}">Modifica</a>
+                        <a class="btn mx-2" href="{{ route('admin.doctor.edit', $doctor) }}">Modifica</a>
                     </div>
                 </div>
             </div>
