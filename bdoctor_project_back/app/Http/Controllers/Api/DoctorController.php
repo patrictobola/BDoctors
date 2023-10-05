@@ -27,7 +27,7 @@ class DoctorController extends Controller
             ->whereHas('specializations', function ($query) use ($specializationId) {
                 $query->where('specializations.id', $specializationId);
             })
-            ->paginate(5);
+            ->paginate(20);
 
         return response()->json($doctors);
     }
@@ -41,7 +41,7 @@ class DoctorController extends Controller
             })
             ->withAvg('ratings', 'vote')
             ->having('ratings_avg_vote', '>=', $minVote)
-            ->paginate(5);
+            ->paginate(20);
 
         return response()->json($doctors);
     }
@@ -56,12 +56,12 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      */
-    // public function show(string $id)
-    // {
-    //     $doctor = Doctor::with('ratings', 'specializations', 'reviews', 'user')->find($id);
-    //     if (!$doctor) return response(null, 404);
-    //     return response()->json($doctor);
-    // }
+    public function show(string $id)
+    {
+        $doctor = Doctor::with('ratings', 'specializations', 'reviews', 'user')->find($id);
+        if (!$doctor) return response(null, 404);
+        return response()->json($doctor);
+    }
 
     /**
      * Update the specified resource in storage.
