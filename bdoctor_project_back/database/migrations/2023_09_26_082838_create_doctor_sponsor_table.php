@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->foreignId('doctor_id')->constrained();
             $table->foreignId('sponsor_id')->constrained();
-
+            $table->date('expiration');
             $table->timestamps();
         });
     }
