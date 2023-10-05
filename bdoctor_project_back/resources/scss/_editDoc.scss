@@ -1,0 +1,21 @@
+.edit-style {
+    .form-check-input:checked {
+        background-color: green;
+        border-color: green;
+    }
+    .form-control:focus,
+    .form-check-input:focus {
+        border-color: green;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(7, 126, 27, 0.25);
+    }
+    .boxing {
+        border: none;
+        border-bottom: 2px solid green;
+        border-radius: 0px;
+    }
+    .boxing-full {
+        border: 1px solid rgba(0, 128, 0, 0.275);
+        border-bottom: 1px solid green;
+    }
+}
