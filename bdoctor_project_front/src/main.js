@@ -6,6 +6,8 @@ import App from "./App.vue";
 
 import Main from "./components/Main.vue";
 import ProfilePage from "./pages/ProfilePage.vue";
+import FilterPage from "./pages/FilterPage.vue";
+
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -18,17 +20,19 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: "/", name: "main", component: Main },
-    { path: "/ginecologo", name: "ginecologo", component: Main },
-    { path: "/ortopedico", name: "ortopedico", component: Main },
-    { path: "/dermatologo", name: "dermatologo", component: Main },
-    { path: "/nutrizionista", name: "nutrizionista", component: Main },
-    { path: "/psicologo", name: "psicologo", component: Main },
-    { path: "/oculista", name: "oculista", component: Main },
-    { path: "/urologo", name: "urologo", component: Main },
-    { path: "/otorino", name: "otorino", component: Main },
-    { path: "/cardiologo", name: "cardiologo", component: Main },
-    { path: "/dentista", name: "dentista", component: Main },
+    { path: "/ginecologo", name: "ginecologo", component: FilterPage },
+    { path: "/ortopedico", name: "ortopedico", component: FilterPage },
+    { path: "/dermatologo", name: "dermatologo", component: FilterPage },
+    { path: "/nutrizionista", name: "nutrizionista", component: FilterPage },
+    { path: "/psicologo", name: "psicologo", component: FilterPage },
+    { path: "/oculista", name: "oculista", component: FilterPage },
+    { path: "/urologo", name: "urologo", component: FilterPage },
+    { path: "/otorino", name: "otorino", component: FilterPage },
+    { path: "/cardiologo", name: "cardiologo", component: FilterPage },
+    { path: "/dentista", name: "dentista", component: FilterPage },
     { path: "/profiles/:id", name: "profile", component: ProfilePage },
+    { path: "/filters", name: "filter", component: FilterPage },
+
 
     // { path: '/about', component: About },
   ], //provides routes options in an array
