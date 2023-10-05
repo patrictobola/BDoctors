@@ -316,31 +316,34 @@ export default {
         <!-- DOCTOR LIST -->
         <ul class="doctor-list" id="doctor-list">
             <!-- DOCTOR CARD -->
-            <li v-for="doctor in doctors">
-                <RouterLink :to="{ name: 'profile', params: { id: doctor.id } }">
-                    <div class="doctor">
-                        <!-- DOCTOR-IMG -->
-                        <div class="doc-image mb-3">
-                            <img v-if="doctor.profile_photo" :src="doctor.profile_photo">
-                            <img v-else src="placeholder">
-                        </div>
-                        <!-- DOCTOR INFO -->
-                        <div>
-                            <div>
-                                <h5 class="ms-2 ">{{ doctor.user.name }} {{ doctor.user.last_name }}</h5>
-                                <p class="ms-2 m-0">Specializzazioni: </p>
-                                <div class="spec-list d-flex">
-                                    <p class="ms-2 m-0" v-for="specialization in doctor.specializations"
-                                        :key="specialization.id">{{
-                                            specialization.name }},</p>
-                                </div>
+            <div class="row">
 
-                                <p class="ms-2 m-0">Prestazioni: {{ doctor.performances }}</p>
+                <li v-for="doctor in doctors" class="">
+                    <RouterLink :to="{ name: 'profile', params: { id: doctor.id } }">
+                        <div class="doctor">
+                            <!-- DOCTOR-IMG -->
+                            <div class="doc-image mb-3">
+                                <img v-if="doctor.profile_photo" :src="doctor.profile_photo">
+                                <img v-else src="placeholder">
+                            </div>
+                            <!-- DOCTOR INFO -->
+                            <div>
+                                <div>
+                                    <h5 class="ms-2 ">{{ doctor.user.name }} {{ doctor.user.last_name }}</h5>
+                                    <p class="ms-2 m-0">Specializzazioni: </p>
+                                    <div class="spec-list d-flex">
+                                        <p class="ms-2 m-0" v-for="specialization in doctor.specializations"
+                                            :key="specialization.id">{{
+                                                specialization.name }},</p>
+                                    </div>
+
+                                    <p class="ms-2 m-0">Prestazioni: {{ doctor.performances }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </RouterLink>
-            </li>
+                    </RouterLink>
+                </li>
+            </div>
         </ul>
         <div class="d-flex">
 
@@ -410,10 +413,11 @@ ul {
     display: none;
 }
 
-li {
+.doctor-list li {
     list-style: none;
-    margin-top: 15px;
-    margin-right: 15px;
+    flex: 0 0 auto;
+    width: calc(50% - 20px);
+    margin: 15px 10px 0px 10px;
     border: 4px solid rgba(22, 178, 51, 0.274);
     border-radius: 42px 10px 10px 42px;
 
@@ -452,7 +456,7 @@ option {
 }
 
 @media screen and (min-width: 580px) {
-    li {
+    .doctor-list li {
         padding-right: 20px;
 
     }
@@ -463,8 +467,7 @@ option {
         display: flex;
     }
 
-    li {
-        margin-right: 10px;
+    .doctor-list li {
         border: 4px solid rgba(22, 178, 51, 0.274);
         border-radius: 42px 10px 10px 10px;
     }

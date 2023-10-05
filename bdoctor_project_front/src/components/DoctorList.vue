@@ -100,48 +100,6 @@ export default {
       })
     },
 
-    orderDoctorsByReviews(doctors) {
-      let reviews = [];
-      let index;
-      let newDoctors = [];
-      let blacklist = [];
-
-      doctors.forEach((doctor) => {
-        reviews.push(doctor.reviews.length)
-      })
-
-      if (this.reviewsFilter == 1) {
-
-        for (let j = 0; j < doctors.length; j++) {
-          let min = 999999;
-          for (let i = 0; i < reviews.length; i++) {
-            if (reviews[i] <= min && !blacklist.includes(i)) {
-              min = reviews[i];
-              index = i;
-            }
-          }
-          blacklist.push(index);
-          newDoctors.push(doctors[index]);
-        }
-
-      }
-      else {
-
-        for (let j = 0; j < doctors.length; j++) {
-          let max = -1;
-          for (let i = 0; i < reviews.length; i++) {
-            if (reviews[i] >= max && !blacklist.includes(i)) {
-              max = reviews[i];
-              index = i;
-            }
-          }
-          blacklist.push(index);
-          newDoctors.push(doctors[index]);
-        }
-      }
-      return newDoctors;
-    },
-
     fetchFilteredDoctors() {
       this.doctors = [];
       let newDoctors = [];
@@ -205,7 +163,7 @@ export default {
   <!-- DOCTORS -->
   <div class="doctors-box">
     <div class="d-flex justify-content-between">
-      <h1>doctors</h1>
+      <h1>Ultimi professionisti registrati:</h1>
       <button type="button" class="btn d-flex align-items-center">Di più</button>
     </div>
 
