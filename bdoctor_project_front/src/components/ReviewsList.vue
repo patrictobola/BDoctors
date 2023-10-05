@@ -34,7 +34,7 @@ export default {
     <ul>
       <div class="row">
         <li v-for="review in reviews " class="reviews pe-3">
-          <a href="#" alt="review">
+          <a href="#reviews-box" alt="review">
             <div class="review mx-3">
               <div class="mt-3">
                 <div class="d-flex">
