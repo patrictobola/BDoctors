@@ -3,14 +3,26 @@
 @section('content')
     <div class="container mt-5">
         @if ($doctor->id == $user_id)
-            <div class="row">
+            <div class="row align-items-center d-flex">
                 {{-- Foto profilo --}}
-                <div class="col-md-5">
-                    <div class="card">
-                        <img src="{{ $doctor->profile_photo ?? url('/user_placeholder.jpg') }}"class="card-img-top w-25"
-                            alt="Doctor's Photo">
+                <div class="col-md-3">
+                    <div class="card border-0">
+                        <div class="card-body d-flex align-items-center"> {{-- Utilizza queste classi per allineare il contenuto verticalmente --}}
+                            <img src="{{ $doctor->profile_photo ?? url('/user_placeholder.jpg') }}" class="card-img-top"
+                                alt="Doctor's Photo">
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-5">
+                    <div class="card border-0">
+                        <a href="{{ route('payments.index') }}">
+                            {{-- Sponsor image --}}
+                            <img src="{{ asset('sponsor.png') }}" alt="sponsor image"
+                                class="card-img-top w-100 rounded mb-3">
+                        </a>
+                    </div>
+                </div>
+
 
                 <div class="col-md-8">
 
