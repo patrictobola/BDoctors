@@ -18,12 +18,6 @@
                             <div class="card-body">
                                 <h5 class="card-title">Dr. {{ $doctor->user->name }} {{ $doctor->user->last_name }}</h5>
                                 <p class="card-text">Specializzazione: {{ $doctor->specializations[0]->name }}</p>
-                                <!-- Spazio per le recensioni -->
-                                <div class="mt-3">
-                                    <h5>Recensioni</h5>
-                                    <!-- Inseriamo poi qui il codice per visualizzare le recensioni -->
-                                    <p>stelle stelle stelle stelle stelle</p>
-                                </div>
                             </div>
                         </div>
 
@@ -179,15 +173,6 @@
                     {{-- Sponsor image --}}
                     <img src="{{ asset('sponsor.png') }}" alt="sponsor image" class="card-img-top w-100 rounded mb-3">
                 </a>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Grafici Futuri</h5>
-                        <!-- Contenuto dei futuri grafici qui -->
-                    </div>
-                </div>
-            </div>
-            <!-- Col per la card per i futuri grafici -->
-            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Grafici Futuri</h5>
