@@ -214,23 +214,27 @@ export default {
 
       // Se sono attivi entrambi i filtri
       else {
-        axios.get(endpoint + 'doctors/specialization/' + this.specializationFilter).then(res => {
+        axios.get(endpoint + 'doctors/specialization/' + this.specializationFilter + '/' + this.averageFilter).then(res => {
           let flag = 0;
           let filteredDoctors = [];
 
-          if (this.specializationFilter == '0') {
-            filteredDoctors = res.data.data;
-            this.links = res.data.links
+          if (this.specializationFilter == '0' && this.averageFilter == '0') {
+            this.fetchDoctors();
+            // filteredDoctors = res.data.data;
+            // this.links = res.data.links
           }
           else {
 
             let flag = 0;
+            this.links = res.data.links
             res.data.data.forEach((doctor) => {
               doctor.specializations.forEach((specialization) => {
                 if (specialization.id == this.specializationFilter) flag = 1;
               })
-              if (flag) filteredDoctors.push(doctor);
-              flag = 0;
+              if (flag) {
+                filteredDoctors.push(doctor);
+                flag = 0;
+              }
             })
 
           }

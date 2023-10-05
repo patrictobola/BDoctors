@@ -31,7 +31,20 @@ class DoctorController extends Controller
 
         return response()->json($doctors);
     }
+    public function indexBySpecializationsAndRating(string $id, string $rating)
+    {
+        $specializationId = $id; // Replace with the desired specialization ID
+        $minVote = $rating;
+        $doctors = Doctor::with('user', 'ratings', 'specializations', 'reviews')
+            ->whereHas('specializations', function ($query) use ($specializationId) {
+                $query->where('specializations.id', $specializationId);
+            })
+            ->withAvg('ratings', 'vote')
+            ->having('ratings_avg_vote', '>=', $minVote)
+            ->paginate(5);
 
+        return response()->json($doctors);
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -43,12 +56,12 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $doctor = Doctor::with('ratings', 'specializations', 'reviews', 'user')->find($id);
-        if (!$doctor) return response(null, 404);
-        return response()->json($doctor);
-    }
+    // public function show(string $id)
+    // {
+    //     $doctor = Doctor::with('ratings', 'specializations', 'reviews', 'user')->find($id);
+    //     if (!$doctor) return response(null, 404);
+    //     return response()->json($doctor);
+    // }
 
     /**
      * Update the specified resource in storage.
