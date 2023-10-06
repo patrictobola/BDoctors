@@ -57,7 +57,8 @@ export default {
                                     <h5>Recensioni</h5>
                                     <!-- Inseriamo il codice per visualizzare le recensioni qui -->
                                     <p>
-                                        <font-awesome-icon v-for="i in 5" :key="i" v-if="doctor && doctor.rating"
+                                        <!-- v-if="doctor && doctor.rating" -->
+                                        <font-awesome-icon  v-for="i in 5" :key="i"
                                             :icon="i <= voteAverage ? ['fas', 'star'] : ['far', 'star']" />
                                     </p>
                                 </div>
