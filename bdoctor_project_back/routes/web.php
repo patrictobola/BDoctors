@@ -4,6 +4,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\ProfileController;
+
 use App\Models\Doctor;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->name('admin.')->group(
 });
 
 Route::get('/payments/index', [PaymentController::class, 'index'])->name('payments.index');
+
 
 
 Route::middleware('auth')->group(function () {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\SpecializationController;
@@ -25,6 +26,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('doctors', DoctorController::class);
 Route::get('/doctors/specialization/{id}', [DoctorController::class, 'indexBySpecializations']);
 Route::get('/doctors/specialization/{id}/{rating}/{orderedByReviews}', [DoctorController::class, 'indexBySpecializationsAndRatingAndReviews']);
+
+// Rotte api messaggi
+Route::post('/messages', [MessageController::class, 'store']);
 
 // Rotte api specializzazioni
 Route::apiResource('specializations', SpecializationController::class);
