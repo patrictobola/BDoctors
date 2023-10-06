@@ -11,11 +11,11 @@
                             <div class="card-text"> </div>
                             <div class="card-text">€ {{ $sponsor->cost }}</div>
                             <a href="#" class="btn btn-primary">Attiva Sponsor</a>
-                            <form id="payment-form" action="index" method="post">
+                            <form id="payment-form" action="payment" method="post">
                                 @csrf
                                 <!-- Putting the empty container you plan to pass to
-                                                                      'braintree.dropin.create' inside a form will make layout and flow
-                                                                      easier to manage -->
+                                                                                                  'braintree.dropin.create' inside a form will make layout and flow
+                                                                                                  easier to manage -->
                                 <div id="dropin-container"></div>
                                 <input type="submit" />
                                 <input type="hidden" id="nonce" name="payment_method_nonce" />
