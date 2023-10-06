@@ -11,6 +11,14 @@ const avaiblebNumbers = /^[0-9]*$/;
 specializations.forEach((specialization) => {
     specialization.addEventListener("change", (e) => {
         specialization.classList.remove("border-danger");
+        // if (specialization.checked) {
+        //     specialization.classList.remove("bg-white");
+        //     specialization.classList.add("bg-success");
+        // } else {
+        //     specialization.classList.remove("bg-success");
+        //     specialization.classList.add("bg-white");
+        // }
+
         labSpecializations.forEach((labSpecialization) => {
             if (labSpecialization.id === specialization.value)
                 labSpecialization.classList.remove("text-danger");

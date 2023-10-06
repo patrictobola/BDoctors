@@ -1,5 +1,6 @@
 <script >
 const apiBaseUri = 'http://127.0.0.1:8000/api/doctors/';
+const apiMessageUri = 'http://127.0.0.1:8000/api/messages';
 import axios from 'axios';
 
 export default {
@@ -7,15 +8,31 @@ export default {
 
     data: () => ({
         doctor: null,
+
+        message: {
+            doctor_id: null,
+            name: '',
+            last_name: '',
+            email: '',
+            text: '',
+
+        }
     }),
 
     methods: {
         getDoctor() {
             const endpoint = apiBaseUri + this.$route.params.id;
             axios.get(endpoint)
-                .then(res => { this.doctor = res.data; })
+                .then(res => {
+                    this.doctor = res.data;
+                    this.message.doctor_id = res.data.id;
+                })
                 .catch(err => { console.error(err) })
         },
+        sendMessage() {
+            const endpointmes = apiMessageUri + `?name=${this.message.name}&last_name=${this.message.last_name}&text=${this.message.text}&email=${this.message.email}`
+            axios.post(endpointmes)
+        }
     },
 
     computed: {
@@ -136,28 +153,32 @@ export default {
                 </div>
 
                 <div class="card px-3 pt-4">
-                    <form action="#" method="POST">
+                    <div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Nome<span
                                     class="text-danger">*</span></label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input v-model="message.name" type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Cognome<span
                                     class="text-danger">*</span></label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input v-model="message.last_name" type="email" class="form-control" id="exampleInputEmail2"
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email<span
                                     class="text-danger">*</span></label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input v-model="message.email" type="email" class="form-control" id="exampleInputEmail3"
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="col-md-12 mb-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="#" method="POST">
+                                    <form @submit.prevent="sendMessage()">
                                         <h5 class="card-title">Invia un messaggio</h5>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <textarea v-model="message.text" class="form-control"
+                                            id="exampleFormControlTextarea1" rows="3"></textarea>
                                         <div class="d-flex justify-content-end mt-3">
                                             <button class="btn btn-success">inviamessaggio</button>
                                         </div>
@@ -169,11 +190,11 @@ export default {
                         <div class="col-md-12 mb-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="#" method="POST">
+                                    <form>
                                         <h5 class="card-title">Invia una Recensione</h5>
                                         <label for="exampleFormControlTextarea1" class="form-label">Recensione
                                             scritta</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
                                         <label for="exampleFormControlTextarea1" class="form-label my-3">Valuta da 1 a
                                             5</label>
                                         <div class="d-flex">
@@ -184,23 +205,23 @@ export default {
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio1" value="option2">
-                                                <label class="ms-2 form-check-label" for="inlineRadio1">2</label>
+                                                    id="inlineRadio2" value="option2">
+                                                <label class="ms-2 form-check-label" for="inlineRadio2">2</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio1" value="option3">
-                                                <label class="ms-2 form-check-label" for="inlineRadio1">3</label>
+                                                    id="inlineRadio3" value="option3">
+                                                <label class="ms-2 form-check-label" for="inlineRadio3">3</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio1" value="option4">
-                                                <label class="ms-2 form-check-label" for="inlineRadio1">4</label>
+                                                    id="inlineRadio4" value="option4">
+                                                <label class="ms-2 form-check-label" for="inlineRadio4">4</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio1" value="option5">
-                                                <label class="ms-2 form-check-label" for="inlineRadio1">5</label>
+                                                    id="inlineRadio5" value="option5">
+                                                <label class="ms-2 form-check-label" for="inlineRadio5">5</label>
                                             </div>
 
                                         </div>
@@ -211,7 +232,7 @@ export default {
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
 
 
