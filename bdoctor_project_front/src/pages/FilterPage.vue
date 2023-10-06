@@ -381,7 +381,7 @@ export default {
             <!-- DOCTOR CARD -->
             <div class="row">
 
-                <li v-for="doctor in doctors" class="">
+                <li v-for="doctor in doctors" :class="doctor.sponsors.length ? 'border-danger' : ''">
                     <RouterLink :to="{ name: 'profile', params: { id: doctor.id } }">
                         <div class="doctor">
                             <!-- DOCTOR-IMG -->
@@ -393,6 +393,7 @@ export default {
                             <div>
                                 <div>
                                     <h5 class="ms-2 ">{{ doctor.user.name }} {{ doctor.user.last_name }}</h5>
+                                    <p v-if="doctor.sponsors.length">Yo sono sponsorizzato</p>
                                     <p class="ms-2 m-0">Specializzazioni: </p>
                                     <div class="spec-list d-flex">
                                         <p class="ms-2 m-0" v-for="specialization in doctor.specializations"
