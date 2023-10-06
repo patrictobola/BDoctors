@@ -199,7 +199,6 @@ export default {
                   <p class="ms-2 m-0" v-for="specialization in doctor.specializations" :key="specialization.id">{{
                     specialization.name }},</p>
                 </div>
-                
                 <p class="ms-2 m-0">Prestazioni: {{ doctor.performances }}</p>
               </div>
             </div>
