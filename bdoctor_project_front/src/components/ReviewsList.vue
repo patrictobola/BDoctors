@@ -41,7 +41,7 @@ export default {
 
                   <div class="doc-image mb-3">
                     <img v-if="review.doctor.profile_photo" :src="review.doctor.profile_photo">
-                    <img v-else src="placeholder">
+                    <img v-else src="../assets/img/placeholder.jpg">
                   </div>
                   <div>
 
