@@ -155,66 +155,48 @@ export default {
                     else this.doctors = newDoctors;
                 })
             }
+            // Se sono attivi tutti i filtri 
+            else if (this.specializationFilter && this.averageFilter && this.reviewsFilter) {
+                axios.get(endpoint + 'doctors/specialization/' + this.specializationFilter + '/' + this.averageFilter + '/' + this.reviewsFilter).then(res => {
+                    let flag = 0;
+                    let filteredDoctors = [];
 
-            // Se è attivo solo il filtro delle specializzazioni
-            else if (this.specializationFilter && !this.averageFilter) {
 
-                if (this.specializationFilter == '0') {
-                    axios.get(endpoint + 'doctors').then(res => {
-                        newDoctors = res.data.data;
-                        this.links = res.data.links
-                        if (this.reviewsFilter != '0') this.doctors = this.orderDoctorsByReviews(newDoctors);
-                        else this.doctors = newDoctors;
-                    })
-                }
-                else {
-                    axios.get(endpoint + 'doctors/specialization/' + this.specializationFilter).then(res => {
-                        let flag = 0;
-                        res.data.data.forEach((doctor) => {
-                            doctor.specializations.forEach((specialization) => {
-                                if (specialization.id == this.specializationFilter) flag = 1;
-                            })
-                            if (flag) {
-                                newDoctors.push(doctor);
-                                this.links = res.data.links
-                                flag = 0;
-                            }
+                    this.links = res.data.links
+                    res.data.data.forEach((doctor) => {
+                        doctor.specializations.forEach((specialization) => {
+                            if (specialization.id == this.specializationFilter) flag = 1;
                         })
-                        if (this.reviewsFilter != '0') this.doctors = this.orderDoctorsByReviews(newDoctors);
-                        else this.doctors = newDoctors;
+                        if (flag) {
+                            filteredDoctors.push(doctor);
+                            flag = 0;
+                        }
                     })
-                }
-            }
 
-            // Se è attivo solo il filtro della media dei voti
-            else if (!this.specializationFilter && this.averageFilter) {
-                axios.get(endpoint + 'doctors').then(res => {
+
+
                     let averages = [];
 
-                    res.data.data.forEach((doctor) => {
+                    filteredDoctors.forEach((doctor) => {
                         let sum = 0;
 
                         doctor.ratings.forEach((rating) => {
                             sum += parseInt(rating.vote);
                         })
-                        // console.log(sum);
                         const roundedRating = Math.round(sum / doctor.ratings.length);
-                        console.log(roundedRating);
                         averages.push(roundedRating);
                     })
 
-                    res.data.data.forEach((doctor, index) => {
+                    filteredDoctors.forEach((doctor, index) => {
                         if (averages[index] >= this.averageFilter) newDoctors.push(doctor);
                     })
 
-                    if (this.reviewsFilter) this.doctors = this.orderDoctorsByReviews(newDoctors);
-                    else this.doctors = newDoctors;
+                    this.doctors = newDoctors;
                 })
             }
-
-            // Se sono attivi entrambi i filtri
-            else {
-                axios.get(endpoint + 'doctors/specialization/' + this.specializationFilter + '/' + this.averageFilter).then(res => {
+            // // Se sono attivi specializzazioni e recensioni
+            else if (this.specializationFilter && this.reviewsFilter) {
+                axios.get(endpoint + 'doctors/specialization/' + this.specializationFilter + '/0/' + this.reviewsFilter).then(res => {
                     let flag = 0;
                     let filteredDoctors = [];
 
@@ -258,6 +240,86 @@ export default {
                     else this.doctors = newDoctors;
                 })
             }
+
+
+            // Se sono attivi specializzazioni e media voti minima
+            else if (this.specializationFilter && this.averageFilter) {
+                axios.get(endpoint + 'doctors/specialization/' + this.specializationFilter + '/' + this.averageFilter + '/0').then(res => {
+                    let flag = 0;
+                    let filteredDoctors = [];
+
+                    if (this.specializationFilter == '0' && this.averageFilter == '0') {
+                        this.fetchDoctors();
+                    }
+                    else {
+
+                        let flag = 0;
+                        this.links = res.data.links
+                        res.data.data.forEach((doctor) => {
+                            doctor.specializations.forEach((specialization) => {
+                                if (specialization.id == this.specializationFilter) flag = 1;
+                            })
+                            if (flag) {
+                                filteredDoctors.push(doctor);
+                                flag = 0;
+                            }
+                        })
+
+                    }
+
+                    let averages = [];
+
+                    filteredDoctors.forEach((doctor) => {
+                        let sum = 0;
+
+                        doctor.ratings.forEach((rating) => {
+                            sum += parseInt(rating.vote);
+                        })
+                        const roundedRating = Math.round(sum / doctor.ratings.length);
+                        console.log(roundedRating);
+                        averages.push(roundedRating);
+                    })
+
+                    filteredDoctors.forEach((doctor, index) => {
+                        if (averages[index] >= this.averageFilter) newDoctors.push(doctor);
+                    })
+
+                    if (this.reviewsFilter != '0') this.doctors = this.orderDoctorsByReviews(newDoctors);
+                    else this.doctors = newDoctors;
+                })
+            }
+
+
+            // Se è attivo solo il filtro delle specializzazioni
+            else if (this.specializationFilter && !this.averageFilter) {
+
+                if (this.specializationFilter == '0') {
+                    axios.get(endpoint + 'doctors').then(res => {
+                        newDoctors = res.data.data;
+                        this.links = res.data.links
+                        if (this.reviewsFilter != '0') this.doctors = this.orderDoctorsByReviews(newDoctors);
+                        else this.doctors = newDoctors;
+                    })
+                }
+                else {
+                    axios.get(endpoint + 'doctors/specialization/' + this.specializationFilter).then(res => {
+                        let flag = 0;
+                        res.data.data.forEach((doctor) => {
+                            doctor.specializations.forEach((specialization) => {
+                                if (specialization.id == this.specializationFilter) flag = 1;
+                            })
+                            if (flag) {
+                                newDoctors.push(doctor);
+                                this.links = res.data.links
+                                flag = 0;
+                            }
+                        })
+                        if (this.reviewsFilter != '0') this.doctors = this.orderDoctorsByReviews(newDoctors);
+                        else this.doctors = newDoctors;
+                    })
+                }
+            }
+
         },
 
     },
@@ -307,8 +369,9 @@ export default {
                 <label for="reviews" class="ms-md-2">Ordina per numero di recensioni: </label>
                 <select class="ms-2" id="reviews" v-model="reviewsFilter" @change="fetchFilteredDoctors()">
                     <option value="0">Seleziona...</option>
-                    <option value="1"> Crescente </option>
-                    <option value="2"> Decrescente </option>
+                    <option value="1"> 5 </option>
+                    <option value="10"> 10 </option>
+                    <option value="50"> 50 </option>
                 </select>
             </div>
         </form>
