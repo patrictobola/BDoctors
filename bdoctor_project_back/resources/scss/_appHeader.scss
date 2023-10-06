@@ -1,0 +1,24 @@
+.nav-box {
+    height: 100px;
+    background-image: linear-gradient(green 25%, transparent);
+    .navbar {
+        background-color: green;
+        a {
+            color: white;
+            font-size: 22px;
+        }
+        a:hover {
+            color: white;
+        }
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link.show {
+            color: white;
+        }
+        .dropdown-menu {
+            background-color: rgba(0, 185, 0, 0.548);
+        }
+        .dropdown-item:hover {
+            background-color: rgba(0, 185, 0, 0.548);
+        }
+    }
+}
