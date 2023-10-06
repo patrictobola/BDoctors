@@ -10,7 +10,7 @@ export default {
         doctor: null,
 
         message: {
-            doctor_id: null,
+            doctor_id: '',
             name: '',
             last_name: '',
             email: '',
@@ -30,7 +30,7 @@ export default {
                 .catch(err => { console.error(err) })
         },
         sendMessage() {
-            const endpointmes = apiMessageUri + `?name=${this.message.name}&last_name=${this.message.last_name}&text=${this.message.text}&email=${this.message.email}`
+            const endpointmes = apiMessageUri + `?name=${this.message.name}&last_name=${this.message.last_name}&text=${this.message.text}&email=${this.message.email}&doctor_id=${this.message.doctor_id}`
             axios.post(endpointmes)
         }
     },
@@ -59,13 +59,16 @@ export default {
                 <div class="card">
                     <div class="row g-0 m-4">
                         <div class="col-md-4">
-                            <img v-if="doctor && doctor.profile_photo" :src="doctor.profile_photo" class="card-img-top" alt="Doctor's Photo">
-                            <img v-else src="../assets/img/placeholder.jpg" class="card-img-top" >
+                            <img v-if="doctor && doctor.profile_photo" :src="doctor.profile_photo" class="card-img-top"
+                                alt="Doctor's Photo">
+                            <img v-else src="../assets/img/placeholder.jpg" class="card-img-top">
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
-                                <h5 class="card-title" v-if="doctor && doctor.user">Dr. {{ doctor.user.name }} {{ doctor.user.last_name }}</h5>
-                                <p class="card-text">Specializzazioni: <small class="d-block" v-if="doctor && doctor.specialization"
+                                <h5 class="card-title" v-if="doctor && doctor.user">Dr. {{ doctor.user.name }} {{
+                                    doctor.user.last_name }}</h5>
+                                <p class="card-text">Specializzazioni: <small class="d-block"
+                                        v-if="doctor && doctor.specialization"
                                         v-for="specialization, index in doctor.specializations" :key="specialization.id">
                                         {{ specialization.name }}
                                     </small>
@@ -75,7 +78,7 @@ export default {
                                     <!-- Inseriamo il codice per visualizzare le recensioni qui -->
                                     <p>
                                         <!-- v-if="doctor && doctor.rating" -->
-                                        <font-awesome-icon  v-for="i in 5" :key="i"
+                                        <font-awesome-icon v-for="i in 5" :key="i"
                                             :icon="i <= voteAverage ? ['fas', 'star'] : ['far', 'star']" />
                                     </p>
                                 </div>
@@ -177,7 +180,7 @@ export default {
                         <div class="col-md-12 mb-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <form @submit.prevent="sendMessage()">
+                                    <form @submit="sendMessage()">
                                         <h5 class="card-title">Invia un messaggio</h5>
                                         <textarea v-model="message.text" class="form-control"
                                             id="exampleFormControlTextarea1" rows="3"></textarea>
