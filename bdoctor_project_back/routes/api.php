@@ -26,6 +26,8 @@ Route::apiResource('doctors', DoctorController::class);
 Route::get('/doctors/specialization/{id}', [DoctorController::class, 'indexBySpecializations']);
 Route::get('/doctors/specialization/{id}/{rating}', [DoctorController::class, 'indexBySpecializationsAndRating']);
 
+Route::get('/braintree/client-token', 'BraintreeController@getClientToken');
+
 // Rotte api specializzazioni
 Route::apiResource('specializations', SpecializationController::class);
 

@@ -16,6 +16,16 @@ export default {
                 .then(res => { this.doctor = res.data; })
                 .catch(err => { console.error(err) })
         },
+
+        initializeBraintree() {
+            axios.get('/braintree/client-token')
+                .then(response => {
+                    const clientToken = response.data.clientToken;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
     },
 
     computed: {
@@ -221,6 +231,9 @@ export default {
             </div>
         </div>
         <RouterLink class="btn btn-primary" :to="{ name: 'main' }">Torna Indietro</RouterLink>
+    </div>
+    <div class="flex-end">
+        <button class="btn btn-success" @click="initializeBraintree">Initialize Braintree</button>
     </div>
 </template>
 
