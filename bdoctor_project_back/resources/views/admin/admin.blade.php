@@ -12,7 +12,7 @@
                         <div class="col-md-4">
                             {{-- Profile photo dashboard --}}
                             <img src="{{ $doctor->profile_photo ?? url('/user_placeholder.jpg') }}"class="card-img-top w-100"
-                            alt="Doctor's Photo">
+                                alt="Doctor's Photo">
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
@@ -169,14 +169,17 @@
             </div>
             <div class="col-md-6">
                 <!-- Col per la sponsor -->
-                <a href="">
+                <a href="{{ route('payments.index') }}">
                     {{-- Sponsor image --}}
                     <img src="{{ asset('sponsor.png') }}" alt="sponsor image" class="card-img-top w-100 rounded mb-3">
                 </a>
+                <!-- GRAFICO -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Grafici Futuri</h5>
-                        <!-- Contenuto dei futuri grafici qui -->
+                        <h5 class="card-title">Grafico dei dati</h5>
+                        <div>
+                            <canvas id="myChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -184,3 +187,7 @@
     </div>
     </div>
 @endsection
+
+<script>
+    @vite(['resources/js/grafic.js'])
+</script>
