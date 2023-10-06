@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DoctorController extends Controller
 {
@@ -31,17 +32,34 @@ class DoctorController extends Controller
 
         return response()->json($doctors);
     }
-    public function indexBySpecializationsAndRating(string $id, string $rating)
+    public function indexBySpecializationsAndRatingAndReviews(string $id, string $rating, int $minReviews = 0)
     {
         $specializationId = $id; // Replace with the desired specialization ID
         $minVote = $rating;
-        $doctors = Doctor::with('user', 'ratings', 'specializations', 'reviews')
+
+        $doctors = Doctor::with('user', 'specializations', 'ratings', 'reviews')
+            ->select('doctors.*')
+            ->leftJoin('reviews', 'doctors.id', '=', 'reviews.doctor_id')
             ->whereHas('specializations', function ($query) use ($specializationId) {
                 $query->where('specializations.id', $specializationId);
             })
-            ->withAvg('ratings', 'vote')
-            ->having('ratings_avg_vote', '>=', $minVote)
-            ->paginate(20);
+            ->groupBy('doctors.id')
+            ->selectRaw('COUNT(reviews.id) as review_count')
+            ->havingRaw('COUNT(reviews.id) >= ?', [$minReviews])
+            ->get();
+
+        $doctors = $doctors->filter(function ($doctor) use ($minVote) {
+            $averageRating = $doctor->ratings()->avg('vote');
+            return $averageRating >= $minVote;
+        });
+
+        $doctors = new LengthAwarePaginator(
+            $doctors->values()->forPage(request()->input('page'), 20),
+            $doctors->count(),
+            20,
+            null,
+            ['path' => url()->current()]
+        );
 
         return response()->json($doctors);
     }

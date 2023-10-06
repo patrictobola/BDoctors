@@ -59,12 +59,13 @@ export default {
                 <div class="card">
                     <div class="row g-0 m-4">
                         <div class="col-md-4">
-                            <img :src="doctor.profile_photo" class="card-img-top" alt="Doctor's Photo">
+                            <img v-if="doctor && doctor.profile_photo" :src="doctor.profile_photo" class="card-img-top" alt="Doctor's Photo">
+                            <img v-else src="../assets/img/placeholder.jpg" class="card-img-top" >
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
-                                <h5 class="card-title">Dr. {{ doctor.user.name }} {{ doctor.user.last_name }}</h5>
-                                <p class="card-text">Specializzazioni: <small class="d-block"
+                                <h5 class="card-title" v-if="doctor && doctor.user">Dr. {{ doctor.user.name }} {{ doctor.user.last_name }}</h5>
+                                <p class="card-text">Specializzazioni: <small class="d-block" v-if="doctor && doctor.specialization"
                                         v-for="specialization, index in doctor.specializations" :key="specialization.id">
                                         {{ specialization.name }}
                                     </small>
@@ -73,7 +74,8 @@ export default {
                                     <h5>Recensioni</h5>
                                     <!-- Inseriamo il codice per visualizzare le recensioni qui -->
                                     <p>
-                                        <font-awesome-icon v-for="i in 5" :key="i"
+                                        <!-- v-if="doctor && doctor.rating" -->
+                                        <font-awesome-icon  v-for="i in 5" :key="i"
                                             :icon="i <= voteAverage ? ['fas', 'star'] : ['far', 'star']" />
                                     </p>
                                 </div>
