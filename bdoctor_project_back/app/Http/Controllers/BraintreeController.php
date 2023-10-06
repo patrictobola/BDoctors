@@ -2,31 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BraintreeController extends Controller
 {
-    public function getClientToken()
+    public function payment(Request $request, Doctor $doctor)
     {
-        $user = Auth::user();
+        $user = Auth::id();
 
-        // Check se user è autenticato
-        if ($user) {
-            $gateway = new Gateway([
-                'environment' => config('services.braintree.environment'),
-                'merchantId' => config('services.braintree.merchant_id'),
-                'publicKey' => config('services.braintree.public_key'),
-                'privateKey' => config('services.braintree.private_key'),
-            ]);
 
-            $clientToken = $gateway->clientToken()->generate([
-                "customerId" => $user->id,
-            ]);
+        if ($doctor->user_id != $user) {
+            return view('notAuthorized');
+        }
 
-            return response()->json(['clientToken' => $clientToken]);
+        $payload = $request->input('payload', false);
+
+        $gateway = new Gateway([
+            'environment' => 'sandbox',
+            'merchantId' => '837hcd35nzkx3c3x',
+            'publicKey' => 'bf57n7wd4pz7xjh3',
+            'privateKey' => '4c0b31e8dc061d3e0ed7288a129ba5cf',
+        ]);
+
+        $result = $gateway->transaction()->sale([
+            'amount' => '300.00',
+            'paymentMethodNonce' => $request->payment_method_nonce,
+        ]);
+
+        if ($result->success) {
+            return to_route('index')->with('type', 'payment')->with('message', 'Payment successful')->with('alert', 'success');
         } else {
+            return 'Transaction declined. Reason: ' . $result->message;
         }
     }
 }
