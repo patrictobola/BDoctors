@@ -369,7 +369,7 @@ export default {
                 <label for="reviews" class="ms-md-2">Ordina per numero di recensioni: </label>
                 <select class="ms-2" id="reviews" v-model="reviewsFilter" @change="fetchFilteredDoctors()">
                     <option value="0">Seleziona...</option>
-                    <option value="1"> 5 </option>
+                    <option value="5"> 5 </option>
                     <option value="10"> 10 </option>
                     <option value="50"> 50 </option>
                 </select>
