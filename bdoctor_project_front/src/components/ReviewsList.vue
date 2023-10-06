@@ -41,7 +41,7 @@ export default {
 
                   <div class="doc-image mb-3">
                     <img v-if="review.doctor.profile_photo" :src="review.doctor.profile_photo">
-                    <img v-else src="placeholder">
+                    <img v-else src="../assets/img/placeholder.jpg">
                   </div>
                   <div>
 
@@ -67,7 +67,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .reviews-box {
   margin-top: 70px;
   padding: 0 25px;
@@ -82,7 +82,6 @@ export default {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  margin-left: 16px;
 
   img {
     width: 100px;

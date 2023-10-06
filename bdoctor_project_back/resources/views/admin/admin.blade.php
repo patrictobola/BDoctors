@@ -169,7 +169,7 @@
             </div>
             <div class="col-md-6">
                 <!-- Col per la sponsor -->
-                <a href="">
+                <a href="{{ route('payments.index') }}">
                     {{-- Sponsor image --}}
                     <img src="{{ asset('sponsor.png') }}" alt="sponsor image" class="card-img-top w-100 rounded mb-3">
                 </a>
