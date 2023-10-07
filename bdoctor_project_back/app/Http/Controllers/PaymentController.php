@@ -30,6 +30,7 @@ class PaymentController extends Controller
         $user = Auth::id();
         $doctor = Doctor::findOrFail($user);
         $sponsor = Sponsor::findOrFail($request->sponsor);
+        // Even if is already checked, i did another check to see if the doctor who sent the request is the same of the doctor whos logged in 
         if ($doctor->id == $request->doctor) {
 
             // I took the id of the sponsorship requested
@@ -58,7 +59,20 @@ class PaymentController extends Controller
             ]);
 
             if ($result->success) {
-                $doctor->sponsors()->attach($sponsor);
+                // Take current time 
+                $currentTimestamp = time();
+                // Calculate timestamp for sponsorship type
+                $expirationTimestamp = null;
+                if ($sponsorship == 1) $expirationTimestamp = $currentTimestamp + 86400;
+                else if ($sponsorship == 2) $expirationTimestamp = $currentTimestamp + 259200;
+                else if ($sponsorship == 3) $expirationTimestamp = $currentTimestamp + 518400;
+                // Format the next day timestamp as a date and time string
+                $nextDayString = date('Y-m-d H:i:s', $expirationTimestamp);
+
+                // Attach all the infos in the sponsors pivot table 
+                $doctor->sponsors()->attach($sponsor, ['expiration' => $nextDayString]);
+
+
                 return to_route('admin.admin')->with('type', 'payment')->with('message', 'Payment successful')->with('alert', 'success');
             } else {
                 return 'Transaction declined. Reason: ' . $result->message;
