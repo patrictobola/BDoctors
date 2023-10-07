@@ -28,37 +28,41 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $user = Auth::id();
+        $doctor = Doctor::findOrFail($user);
+        $sponsor = Sponsor::findOrFail($request->sponsor);
+        if ($doctor->id == $request->doctor) {
 
-        // I took the id of the sponsorship requested
-        $sponsorship = $request->sponsor;
+            // I took the id of the sponsorship requested
+            $sponsorship = $request->sponsor;
+            // Calculate the cost from the sponsorship requested
+            $cost = $sponsor->cost;
 
-        // Calculate the cost from the sponsorship requested
-        $cost = '';
-        if ($sponsorship == 1) $cost = '2.99';
-        else if ($sponsorship == 2) $cost = '5.99';
-        else if ($sponsorship == 3) $cost = '9.99';
-        // if ($doctor->user_id != $user) {
-        //     return view('notAuthorized');
-        // }
 
-        $payload = $request->input('payload', false);
 
-        $gateway = new Gateway([
-            'environment' => 'sandbox',
-            'merchantId' => '837hcd35nzkx3c3x',
-            'publicKey' => 'bf57n7wd4pz7xjh3',
-            'privateKey' => '4c0b31e8dc061d3e0ed7288a129ba5cf',
-        ]);
+            // if ($doctor->user_id != $user) {
+            //     return view('notAuthorized');
+            // }
 
-        $result = $gateway->transaction()->sale([
-            'amount' => $cost,
-            'paymentMethodNonce' => $request->payment_method_nonce,
-        ]);
+            $payload = $request->input('payload', false);
 
-        if ($result->success) {
-            return to_route('admin.admin')->with('type', 'payment')->with('message', 'Payment successful')->with('alert', 'success');
-        } else {
-            return 'Transaction declined. Reason: ' . $result->message;
+            $gateway = new Gateway([
+                'environment' => 'sandbox',
+                'merchantId' => '837hcd35nzkx3c3x',
+                'publicKey' => 'bf57n7wd4pz7xjh3',
+                'privateKey' => '4c0b31e8dc061d3e0ed7288a129ba5cf',
+            ]);
+
+            $result = $gateway->transaction()->sale([
+                'amount' => $cost,
+                'paymentMethodNonce' => $request->payment_method_nonce,
+            ]);
+
+            if ($result->success) {
+                $doctor->sponsors()->attach($sponsor);
+                return to_route('admin.admin')->with('type', 'payment')->with('message', 'Payment successful')->with('alert', 'success');
+            } else {
+                return 'Transaction declined. Reason: ' . $result->message;
+            }
         }
     }
     /**
