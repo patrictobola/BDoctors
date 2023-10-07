@@ -12,6 +12,7 @@ class BraintreeController extends Controller
 {
     public function payment(Request $request, Doctor $doctor)
     {
+        dd($doctor);
         $user = Auth::id();
         $sponsors = Sponsor::all();
         $type1 = $sponsors[0]->cost;

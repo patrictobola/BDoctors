@@ -28,8 +28,10 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->name('admin.')->group(
     Route::resource('/doctor', DoctorController::class);
 });
 
-Route::post('/payments/payment', [BraintreeController::class, 'payment']);
-Route::get('/payments/index', [PaymentController::class, 'index'])->name('payments.index');
+// Route::post('/payments/payment', [BraintreeController::class, 'payment']);
+Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
+Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
+Route::get('/payments/{type}', [PaymentController::class, 'show'])->name('payments.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
