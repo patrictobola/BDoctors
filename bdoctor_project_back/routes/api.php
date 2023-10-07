@@ -4,6 +4,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\SpecializationController;
+use App\Http\Controllers\BraintreeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,9 @@ Route::get('/doctors/specialization/{id}/{rating}/{orderedByReviews}', [DoctorCo
 
 // Rotte api messaggi
 Route::post('/messages', [MessageController::class, 'store']);
+
+// Rotte per pagamenti
+Route::post('/braintree/client-token', [BraintreeController::class, 'payment']);
 
 // Rotte api specializzazioni
 Route::apiResource('specializations', SpecializationController::class);
