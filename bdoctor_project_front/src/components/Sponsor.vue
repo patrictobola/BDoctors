@@ -60,11 +60,13 @@ export default {
   border-radius: 15px;
   font-size: 20px;
   margin-right: 20px;
+  margin-bottom: 10px;
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 .left-button:hover {
   color: white;
   background-color: #04D8C5; 
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+  scale: 1.1;
 }
 </style>

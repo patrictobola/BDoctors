@@ -35,8 +35,8 @@ export default {
               <a class="nav-link active d-min me-3" aria-current="page" href="#reviews-box">Recensioni</a>
               <a class="nav-link active d-min me-3" aria-current="page" href="#contatti">Contatti</a>
               <div class="d-flex align-items-center">
-                <a class="nav-link login-btn active text-white btn-nav" href="http://127.0.0.1:8000/login">Login</a>
-                <a class="nav-link active text-white btn-nav" href="http://127.0.0.1:8000/register">Sei un Professionista sanitario?</a>
+                <a class="nav-link login-btn text-white btn-nav" href="http://127.0.0.1:8000/login">Login</a>
+                <a class="nav-link  text-white btn-nav" href="http://127.0.0.1:8000/register">Sei un Professionista sanitario?</a>
               </div>
             </div>
           </div>

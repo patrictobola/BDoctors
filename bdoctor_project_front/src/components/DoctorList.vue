@@ -233,7 +233,7 @@ ul {
 }
 
 .btn {
-  background-color: rgb(22, 178, 50);
+  background-color:  #04D8C5;
   color: white;
   height: 35px;
 }
@@ -282,7 +282,7 @@ li {
 }
 
 .pagination>.active>a {
-  background-color: rgb(22, 178, 50);
+  background-color: #03C3A5;
 }
 
 .pagination {
@@ -294,18 +294,18 @@ li {
   border: none;
 
   a {
-    border: 1px solid rgb(22, 178, 50);
+    border: 1px solid  #04D8C5;
     border-radius: 10px;
   }
 }
 
 .disabled {
-  background-color: rgba(1, 80, 14, 0.274);
+  background-color: #03C3A5;
 }
 
 select {
   border: none;
-  background-color: rgba(22, 178, 51, 0.397);
+  background-color:  #04D8C5;
   border-radius: 10px;
 }
 
