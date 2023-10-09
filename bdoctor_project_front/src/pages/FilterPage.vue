@@ -387,7 +387,7 @@ export default {
                             <!-- DOCTOR-IMG -->
                             <div class="doc-image mb-3">
                                 <img v-if="doctor.profile_photo" :src="doctor.profile_photo">
-                                <img v-else src="placeholder">
+                                <img v-else src="../assets/img/placeholder.jpg">
                             </div>
                             <!-- DOCTOR INFO -->
                             <div>
