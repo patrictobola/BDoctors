@@ -1,6 +1,8 @@
 <?php
 
+
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\Api\RatingController;
 use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\SpecializationController;
@@ -30,6 +32,12 @@ Route::get('/doctors/specialization/{id}/{rating}/{orderedByReviews}', [DoctorCo
 
 // Rotte api messaggi
 Route::post('/messages', [MessageController::class, 'store']);
+
+// Rotte reviews
+Route::post('/reviews', [ReviewController::class, 'store']);
+
+// Rotte ratings
+Route::post('/ratings', [RatingController::class, 'store']);
 
 // Rotte per pagamenti
 Route::post('/braintree/client-token', [BraintreeController::class, 'payment']);

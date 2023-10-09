@@ -30,7 +30,10 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $review = new Review;
+        $review->fill($data);
+        $review->save();
     }
 
     /**

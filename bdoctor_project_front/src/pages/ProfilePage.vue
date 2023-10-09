@@ -1,6 +1,9 @@
 <script >
 const apiBaseUri = 'http://127.0.0.1:8000/api/doctors/';
 const apiMessageUri = 'http://127.0.0.1:8000/api/messages';
+const apiReviewUri = 'http://127.0.0.1:8000/api/reviews';
+const apiRatingUri = 'http://127.0.0.1:8000/api/ratings';
+
 import axios from 'axios';
 
 export default {
@@ -20,9 +23,9 @@ export default {
         review: {
             doctor_id: '',
             name: '',
-            last_name: '',
-
-
+            email: '',
+            vote: '',
+            text: ''
         }
     }),
 
@@ -41,6 +44,15 @@ export default {
             const endpointmes = apiMessageUri + `?name=${this.message.name}&last_name=${this.message.last_name}&text=${this.message.text}&email=${this.message.email}&doctor_id=${this.message.doctor_id}`
             axios.post(endpointmes)
         },
+        sendReviewAndRating() {
+            // if (this.review.vote && this.review.text) {
+            // const endpointreview = apiReviewUri + `?name=${this.review.name}&email=${this.review.email}&text=${this.review.text}&doctor_id=${this.review.doctor_id}`
+            // axios.post(endpointreview)
+            const endpointrating = apiRatingUri + `?vote=${this.review.vote}&doctor_id=${this.review.doctor_id}`
+            axios.post(endpointrating)
+            // }
+        },
+
 
         initializeBraintree() {
             axios.get('/braintree/client-token')
@@ -112,20 +124,20 @@ export default {
                         <div>
                             <div class="mb-3">
                                 <h3 class="mb-4">Invia un messaggio</h3>
-                                <label for="exampleInputEmail1" class="form-label">Nome<span
-                                        class="text-danger">*</span></label>
-                                <input v-model="message.name" type="email" class="form-control" id="exampleInputEmail1"
+                                <label for="exampleInputEmail1" class="form-label">Nome<span class="text-danger">*(campo
+                                        obbligatorio)*</span></label>
+                                <input v-model="message.name" type="text" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Cognome<span
-                                        class="text-danger">*</span></label>
-                                <input v-model="message.last_name" type="email" class="form-control" id="exampleInputEmail2"
+                                <label for="exampleInputEmail1" class="form-label">Cognome<span class="text-danger">*(campo
+                                        obbligatorio)*</span></label>
+                                <input v-model="message.email" type="text" class="form-control" id="exampleInputEmail2"
                                     aria-describedby="emailHelp">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Email<span
-                                        class="text-danger">*</span></label>
+                                <label for="exampleInputEmail1" class="form-label">Email<span class="text-danger">*(campo
+                                        obbligatorio)*</span></label>
                                 <input v-model="message.email" type="email" class="form-control" id="exampleInputEmail3"
                                     aria-describedby="emailHelp">
                             </div>
@@ -146,48 +158,50 @@ export default {
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <form>
-                                <h5 class="card-title">Invia una Recensione</h5>
+                            <form @submit.prevent="sendReviewAndRating()">
                                 <div class="mb-3">
-                                    <h3 class="mb-4">Invia un messaggio</h3>
-                                    <label for="exampleInputEmail1" class="form-label">Nome</label>
-                                    <input v-model="review.name" type="email" class="form-control" id="exampleInputName1"
+                                    <h3 class="mb-4">Invia una recensione</h3>
+                                    <label for="exampleInputEmail1" class="form-label">Nome<span
+                                            class="text-secondary">*(opzionale)</span></label>
+                                    <input v-model="review.name" type="text" class="form-control" id="exampleInputName1"
                                         aria-describedby="emailHelp">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Cognome</label>
-                                    <input v-model="review.last_name" type="email" class="form-control"
-                                        id="examplelast_name2" aria-describedby="emailHelp">
+                                    <label for="exampleInputEmail1" class="form-label">Email<span
+                                            class="text-secondary">*(opzionale)</span></label>
+                                    <input v-model="review.email" type="text" class="form-control" id="examplelast_name2"
+                                        aria-describedby="emailHelp">
                                 </div>
                                 <label for="exampleFormControlTextarea1" class="form-label">Recensione
                                     scritta</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+                                <textarea v-model="review.text" class="form-control" id="exampleFormControlTextarea2"
+                                    rows="3"></textarea>
                                 <label for="exampleFormControlTextarea1" class="form-label my-3">Valuta da 1 a
                                     5</label>
                                 <div class="d-flex">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio1" value="option1">
+                                        <input class="form-check-input" v-model="review.vote" type="radio"
+                                            name="inlineRadioOptions" id="inlineRadio1" value="1">
                                         <label class="form-check-label" for="inlineRadio1">1</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio2" value="option2">
+                                        <input class="ms-4 form-check-input" v-model="review.vote" type="radio"
+                                            name="inlineRadioOptions" id="inlineRadio2" value="2">
                                         <label class="ms-2 form-check-label" for="inlineRadio2">2</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio3" value="option3">
+                                        <input class="ms-4 form-check-input" v-model="review.vote" type="radio"
+                                            name="inlineRadioOptions" id="inlineRadio3" value="3">
                                         <label class="ms-2 form-check-label" for="inlineRadio3">3</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio4" value="option4">
+                                        <input class="ms-4 form-check-input" v-model="review.vote" type="radio"
+                                            name="inlineRadioOptions" id="inlineRadio4" value="4">
                                         <label class="ms-2 form-check-label" for="inlineRadio4">4</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
-                                            id="inlineRadio5" value="option5">
+                                        <input class="ms-4 form-check-input" v-model="review.vote" type="radio"
+                                            name="inlineRadioOptions" id="inlineRadio5" value="5">
                                         <label class="ms-2 form-check-label" for="inlineRadio5">5</label>
                                     </div>
 
