@@ -40,20 +40,6 @@
                 <div class="card my-3">
                     <div class="row g-0 m-4">
                         <div class="row">
-                            <!-- Col per i Voti -->
-                            <div class="col-md-8" id="voti">
-                                <div class="mb-4">
-                                    <h5 class="mb-3">Voti</h5>
-                                    <!-- Aggiungiamo qui il contenuto per visualizzare le informazioni sui voti -->
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quae eveniet.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card my-3">
-                    <div class="row g-0 m-4">
-                        <div class="row">
                             <!-- Col per i Messaggi -->
                             <div class="col" id="messaggi">
                                 <h5>Ultimi messagi ricevuti</h5>
