@@ -49,16 +49,17 @@
                                         @if ($message->doctor_id === $doctor->id)
                                             <div class="card mb-4">
                                                 <div class="card-header" id="heading{{ $message->id }}">
-                                                    <h5 class="mb-0">
-                                                        <button class="btn" data-toggle="collapse" data-target="#collapse{{ $message->id }}">
-                                                            <span style="color: black;">Nome: {{ $message->name }} {{ $message->last_name }}</span>
+                                                    <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                        <span>Nome: {{ $message->name }} {{ $message->last_name }}</span>
+                                                        <button class="btn btn-primary" data-toggle="collapse" data-target="#collapse{{ $message->id }}">
+                                                            Mostra di più
                                                         </button>
                                                     </h5>
                                                 </div>
                                                 <div id="collapse{{ $message->id }}" class="collapse" aria-labelledby="heading{{ $message->id }}" data-parent="#accordion">
                                                     <div class="card-body">
-                                                        <p>Email: {{ $message->email }}</p>
-                                                        <p>Contenuto: {{ $message->text }}</p>
+                                                        <p><strong>Email: </strong>{{ $message->email }}</p>
+                                                        <p><strong>Contenuto: </strong>{{ $message->text }}</p>
                                                     </div>
                                                 </div>
                                             </div>
