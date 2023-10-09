@@ -16,6 +16,13 @@ export default {
             email: '',
             text: '',
 
+        },
+        review: {
+            doctor_id: '',
+            name: '',
+            last_name: '',
+
+
         }
     }),
 
@@ -26,6 +33,7 @@ export default {
                 .then(res => {
                     this.doctor = res.data;
                     this.message.doctor_id = res.data.id;
+                    this.review.doctor_id = res.data.id;
                 })
                 .catch(err => { console.error(err) })
         },
@@ -140,6 +148,17 @@ export default {
                         <div class="card-body">
                             <form>
                                 <h5 class="card-title">Invia una Recensione</h5>
+                                <div class="mb-3">
+                                    <h3 class="mb-4">Invia un messaggio</h3>
+                                    <label for="exampleInputEmail1" class="form-label">Nome</label>
+                                    <input v-model="review.name" type="email" class="form-control" id="exampleInputName1"
+                                        aria-describedby="emailHelp">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Cognome</label>
+                                    <input v-model="review.last_name" type="email" class="form-control"
+                                        id="examplelast_name2" aria-describedby="emailHelp">
+                                </div>
                                 <label for="exampleFormControlTextarea1" class="form-label">Recensione
                                     scritta</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
