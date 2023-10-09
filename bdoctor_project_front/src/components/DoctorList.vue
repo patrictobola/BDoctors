@@ -182,7 +182,7 @@ export default {
     <!-- DOCTOR LIST -->
     <ul class="doctor-list" id="doctor-list">
       <!-- DOCTOR CARD -->
-      <li v-for="doctor in doctors">
+      <li v-for="doctor in doctors" :key="doctor.id">
         <RouterLink :to="{ name: 'profile', params: { id: doctor.id } }">
           <div class="doctor">
             <!-- DOCTOR-IMG -->

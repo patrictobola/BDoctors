@@ -15,10 +15,17 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::with(['user', 'ratings', 'specializations', 'reviews', 'sponsors'])
+        $doctors = Doctor::with(['user', 'ratings', 'specializations', 'reviews', 'sponsors' => function ($query) {
+            $query->select('expiration'); // Select the 'expiration' column from the pivot table
+        }])
             ->has('sponsors')
-            ->join('doctor_sponsor', 'doctors.id', '=', 'doctor_sponsor.doctor_id')
-            ->orderByDesc('doctor_sponsor.expiration') // Order by expiration in descending order
+            ->orderByDesc(function ($query) {
+                $query->select('expiration')
+                    ->from('doctor_sponsor')
+                    ->whereColumn('doctors.id', 'doctor_sponsor.doctor_id')
+                    ->orderByDesc('expiration')
+                    ->limit(1);
+            })
             ->paginate(5);
 
         return response()->json($doctors);
