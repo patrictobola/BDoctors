@@ -56,7 +56,7 @@ export default {
 .footer-box {
   width: 100%;
   height: 580px;
-  background-color: #03C3A5;
+  background-color: #429DA2 ;
   color: white;
   margin-top: 90px;
 }

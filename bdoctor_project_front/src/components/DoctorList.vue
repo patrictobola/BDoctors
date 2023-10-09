@@ -164,7 +164,6 @@ export default {
   <div class="doctors-box">
     <div class="d-flex justify-content-between">
       <h1>Medici in Evidenza:</h1>
-      <button type="button" class="btn d-flex align-items-center">Di più</button>
     </div>
 
     <form class="filetform">

@@ -34,12 +34,10 @@ export default {
               <a class="nav-link active d-min me-3" aria-current="page" href="#doctor-list">Dottori</a>
               <a class="nav-link active d-min me-3" aria-current="page" href="#reviews-box">Recensioni</a>
               <a class="nav-link active d-min me-3" aria-current="page" href="#contatti">Contatti</a>
-              <div class="d-flex align-items-center"><a class="nav-link login-btn active text-white btn-nav"
-                  href="http://127.0.0.1:8000/login">Login</a>
-                <a class="nav-link active text-white btn-nav" href="http://127.0.0.1:8000/register">Sei un Professionista
-                  sanitario?</a>
+              <div class="d-flex align-items-center">
+                <a class="nav-link login-btn active text-white btn-nav" href="http://127.0.0.1:8000/login">Login</a>
+                <a class="nav-link active text-white btn-nav" href="http://127.0.0.1:8000/register">Sei un Professionista sanitario?</a>
               </div>
-
             </div>
           </div>
         </div>
@@ -54,13 +52,24 @@ header {
   width: 100%;
 }
 
+
+.nav-link.active:hover {
+  position: relative;
+}
+
+.nav-link.active:hover::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #20c997;
+  bottom: -5px;
+  left: 0;
+}
+
 .image-container {
   padding: 0px;
   margin: 0px;
-}
-
-.login-btn {
-  height: 45px;
 }
 
 .nav-link {
@@ -90,6 +99,7 @@ img {
   flex-direction: row;
 }
 
+
 /* Buttons Navbar */
 .btn-nav {
   border-radius: 10px;
@@ -100,7 +110,17 @@ img {
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
+.btn-nav:hover {
+  color: white;
+  background-color: #04D8C5; 
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+  scale: 1.1;
+}
+
+
+
 
 @media screen and (min-width: 580px) {
   .nav {

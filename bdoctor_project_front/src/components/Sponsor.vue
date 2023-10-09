@@ -28,28 +28,43 @@ export default {
 
 <template>
   <div class="sponsor-box text-center">
-    <h1 class="pt-5">Sei un professionista? Fatti conoscere!</h1>
-    <div class="pt-5"><button>Sign up</button>
-      <button> Sponsor</button>
+    <div class="buttons-banner">
+      <button class="left-button">Registrati</button>
+      <button class="left-button">Sponsor</button>
     </div>
-    <h2 class="mt-5">Gia "tot" ne stanno usufruendo!</h2>
   </div>
 </template>
 
 <style scoped>
 .sponsor-box {
-  height: 400px;
-  background-color: rgb(22, 178, 50);
+  position: relative;
+  height: 500px;
   margin-top: 70px;
   color: white;
+  background-image: url(../assets/img/banner.png);
+  background-position: 0px -20px;
+  background-size: cover;
 }
 
-button {
-  border: rgb(19, 145, 42) 3px solid;
+.buttons-banner {
+  position: absolute; 
+  bottom: 10px; 
+  left: 90px;
+}
+
+.left-button {
+  border: 0;
+  color: black;
   padding: 17px 38px;
-  color: rgb(18, 122, 37);
+  background-color: #03C3A5;
   border-radius: 15px;
   font-size: 20px;
-  margin-left: 40px;
+  margin-right: 20px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+.left-button:hover {
+  color: white;
+  background-color: #04D8C5; 
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
 }
 </style>
