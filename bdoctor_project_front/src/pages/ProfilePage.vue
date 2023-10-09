@@ -258,9 +258,6 @@ export default {
         </div>
         <RouterLink class="btn btn-primary" :to="{ name: 'main' }">Torna Indietro</RouterLink>
     </div>
-    <div class="flex-end">
-        <button class="btn btn-success" @click="initializeBraintree">Initialize Braintree</button>
-    </div>
 </template>
 
 <style scoped>
