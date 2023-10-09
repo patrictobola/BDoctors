@@ -48,7 +48,7 @@ lastnameField.addEventListener('keyup', e =>{
         lastNameErrorField.innerHTML = `<span class="text-danger">${errors.last_name}</span>`
     }
     else {
-        delete errors.name
+        delete errors.last_name
         lastnameField.classList.remove('is-invalid');
         lastnameField.classList.add('is-valid');
         lastNameErrorField.classList.add('d-none')
