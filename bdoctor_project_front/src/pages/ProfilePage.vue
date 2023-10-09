@@ -100,89 +100,86 @@ export default {
             <div class="row mt-5 mb-3">
                 <!-- Col messaggi dottori -->
                 <div class="col-md-6">
-                <div class="card px-3 pt-4">
-                    <div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Nome<span
-                                    class="text-danger">*</span></label>
-                            <input v-model="message.name" type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Cognome<span
-                                    class="text-danger">*</span></label>
-                            <input v-model="message.last_name" type="email" class="form-control" id="exampleInputEmail2"
-                                aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email<span
-                                    class="text-danger">*</span></label>
-                            <input v-model="message.email" type="email" class="form-control" id="exampleInputEmail3"
-                                aria-describedby="emailHelp">
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <form @submit="sendMessage()">
-                                        <h5 class="card-title">Invia un messaggio</h5>
-                                        <textarea v-model="message.text" class="form-control"
-                                            id="exampleFormControlTextarea1" rows="3"></textarea>
-                                        <div class="d-flex justify-content-end mt-3">
-                                            <button class="btn btn-success">invia messaggio</button>
-                                        </div>
-                                    </form>
-                                </div>
+                    <div class="card px-3 pt-4">
+                        <div>
+                            <div class="mb-3">
+                                <h3 class="mb-4">Invia un messaggio</h3>
+                                <label for="exampleInputEmail1" class="form-label">Nome<span
+                                        class="text-danger">*</span></label>
+                                <input v-model="message.name" type="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Cognome<span
+                                        class="text-danger">*</span></label>
+                                <input v-model="message.last_name" type="email" class="form-control" id="exampleInputEmail2"
+                                    aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email<span
+                                        class="text-danger">*</span></label>
+                                <input v-model="message.email" type="email" class="form-control" id="exampleInputEmail3"
+                                    aria-describedby="emailHelp">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <form @submit="sendMessage()">
+                                    <h5 class="card-title">Messaggio</h5>
+                                    <textarea v-model="message.text" class="form-control" id="exampleFormControlTextarea1"
+                                        rows="3"></textarea>
+                                    <div class="d-flex justify-content-end mt-3">
+                                        <button class="btn btn-success">invia messaggio</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Col per la card per le future recensioni -->
-            <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <form>
-                                        <h5 class="card-title">Invia una Recensione</h5>
-                                        <label for="exampleFormControlTextarea1" class="form-label">Recensione
-                                            scritta</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
-                                        <label for="exampleFormControlTextarea1" class="form-label my-3">Valuta da 1 a
-                                            5</label>
-                                        <div class="d-flex">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio1" value="option1">
-                                                <label class="form-check-label" for="inlineRadio1">1</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio2" value="option2">
-                                                <label class="ms-2 form-check-label" for="inlineRadio2">2</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio3" value="option3">
-                                                <label class="ms-2 form-check-label" for="inlineRadio3">3</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio4" value="option4">
-                                                <label class="ms-2 form-check-label" for="inlineRadio4">4</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
-                                                    id="inlineRadio5" value="option5">
-                                                <label class="ms-2 form-check-label" for="inlineRadio5">5</label>
-                                            </div>
+                <!-- Col per la card per le future recensioni -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <form>
+                                <h5 class="card-title">Invia una Recensione</h5>
+                                <label for="exampleFormControlTextarea1" class="form-label">Recensione
+                                    scritta</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+                                <label for="exampleFormControlTextarea1" class="form-label my-3">Valuta da 1 a
+                                    5</label>
+                                <div class="d-flex">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio1" value="option1">
+                                        <label class="form-check-label" for="inlineRadio1">1</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio2" value="option2">
+                                        <label class="ms-2 form-check-label" for="inlineRadio2">2</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio3" value="option3">
+                                        <label class="ms-2 form-check-label" for="inlineRadio3">3</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio4" value="option4">
+                                        <label class="ms-2 form-check-label" for="inlineRadio4">4</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="ms-4 form-check-input" type="radio" name="inlineRadioOptions"
+                                            id="inlineRadio5" value="option5">
+                                        <label class="ms-2 form-check-label" for="inlineRadio5">5</label>
+                                    </div>
 
-                                        </div>
-                                        <div class="d-flex justify-content-end mt-3">
-                                            <button class="btn btn-success">invia Recensione</button>
-                                        </div>
-                                    </form>
                                 </div>
-                            </div>
-            </div>
+                                <div class="d-flex justify-content-end mt-3">
+                                    <button class="btn btn-success">invia Recensione</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <RouterLink class="btn btn-primary" :to="{ name: 'main' }">Torna Indietro</RouterLink>
