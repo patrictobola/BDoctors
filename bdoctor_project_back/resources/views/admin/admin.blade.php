@@ -51,7 +51,7 @@
                                                 <div class="card-header" id="heading{{ $message->id }}">
                                                     <h5 class="mb-0">
                                                         <button class="btn" data-toggle="collapse" data-target="#collapse{{ $message->id }}">
-                                                            <span style="color: black;">Nome: {{ $message->name }}{{ $message->last_name }}</span>
+                                                            <span style="color: black;">Nome: {{ $message->name }} {{ $message->last_name }}</span>
                                                         </button>
                                                     </h5>
                                                 </div>
