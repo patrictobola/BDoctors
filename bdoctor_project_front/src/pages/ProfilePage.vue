@@ -84,7 +84,7 @@ export default {
                                     </small>
                                 </p>
                                 <div class="mt-3">
-                                    <h5>Recensioni</h5>
+                                    <h5>Media voti</h5>
                                     <!-- Inseriamo il codice per visualizzare le recensioni qui -->
                                     <p>
                                         <!-- v-if="doctor && doctor.rating" -->
@@ -94,79 +94,12 @@ export default {
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-12">
-                            <div class="mt-4">
-                                <hr>
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        <ul class="list-inline text-center">
-                                            <li class="list-inline-item"><a href="#voti">Voti</a></li>
-                                            <li class="list-inline-item"><a href="#messaggi">Messaggi</a></li>
-                                            <li class="list-inline-item"><a href="#recensioni">Recensioni</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card my-3">
-                    <div class="row g-0 m-4">
-                        <div class="row">
-                            <!-- Col per i Voti -->
-                            <div class="col-md-8" id="voti">
-                                <div class="mb-4">
-                                    <h5 class="mb-3">Voti</h5>
-                                    <!-- Aggiungiamo qui il contenuto per visualizzare le informazioni sui voti -->
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card my-3">
-                    <div class="row g-0 m-4">
-                        <div class="row">
-                            <!-- Col per i Messaggi -->
-                            <div class="col-md-8" id="messaggi">
-                                <div class="mb-4">
-                                    <h5 class="mb-3">Messaggi</h5>
-                                    <!-- Aggiungiamo qui il contenuto per visualizzare le informazioni sui messaggi -->
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card my-3">
-                    <div class="row g-0 m-4">
-                        <div class="row">
-                            <!-- Col per le Recensioni -->
-                            <div class="col-md-8" id="recensioni">
-                                <div class="mb-4">
-                                    <h5 class="mb-3">Recensioni</h5>
-                                    <!-- Aggiungiamo qui il contenuto per visualizzare le informazioni sulle recensioni -->
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit...</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <!-- Col per la card per i futuri grafici -->
-                    <div class="col-md-12 mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Grafici Futuri</h5>
-                                <!-- Contenuto dei futuri grafici qui -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="row mt-5 mb-3">
+                <!-- Col messaggi dottori -->
+                <div class="col-md-6">
                 <div class="card px-3 pt-4">
                     <div>
                         <div class="mb-3">
@@ -195,14 +128,17 @@ export default {
                                         <textarea v-model="message.text" class="form-control"
                                             id="exampleFormControlTextarea1" rows="3"></textarea>
                                         <div class="d-flex justify-content-end mt-3">
-                                            <button class="btn btn-success">inviamessaggio</button>
+                                            <button class="btn btn-success">invia messaggio</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <!-- Col per la card per le future recensioni -->
-                        <div class="col-md-12 mb-3">
+                    </div>
+                </div>
+            </div>
+            <!-- Col per la card per le future recensioni -->
+            <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <form>
@@ -246,14 +182,7 @@ export default {
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <!-- Col per la card per i futuri messaggi -->
-
+            </div>
             </div>
         </div>
         <RouterLink class="btn btn-primary" :to="{ name: 'main' }">Torna Indietro</RouterLink>

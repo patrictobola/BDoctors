@@ -26,7 +26,7 @@ class DoctorSeeder extends Seeder
 
             $doctor = new Doctor();
             $doctor->user_id = $i + 1;
-            $doctor->profile_photo = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+            $doctor->profile_photo = $faker->imageUrl(200, 200, 'people', true);
             $doctor->cv = false;
             $doctor->phone_number = $faker->numberBetween(1000000000, 9999999999);
             $doctor->address = "Piazza la bomba, 5 00011 Roma";

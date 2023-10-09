@@ -366,12 +366,12 @@ export default {
                 </select>
             </div>
             <div class="my-2"><!-- Filtro numero di recensioni -->
-                <label for="reviews" class="ms-md-2">Ordina per numero di recensioni: </label>
+                <label for="reviews" class="ms-md-2">Ordina per numero minimo di recensioni: </label>
                 <select class="ms-2" id="reviews" v-model="reviewsFilter" @change="fetchFilteredDoctors()">
                     <option value="0">Seleziona...</option>
-                    <option value="5"> 5 </option>
-                    <option value="10"> 10 </option>
-                    <option value="50"> 50 </option>
+                    <option value="5"> 5 a 10 </option>
+                    <option value="10"> 10 a 50 </option>
+                    <option value="50"> 50 a 100 </option>
                 </select>
             </div>
         </form>
