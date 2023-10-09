@@ -39,11 +39,20 @@ class DoctorController extends Controller
     {
         $specializationId = $id; // Replace with the desired specialization ID
 
-        $doctors = Doctor::with('user', 'ratings', 'specializations', 'reviews', 'sponsors')
+        $doctors = Doctor::with(['user', 'ratings', 'specializations', 'reviews', 'sponsors' => function ($query) {
+            $query->select('expiration'); // Select the 'expiration' column from the pivot table
+        }])
             ->whereHas('specializations', function ($query) use ($specializationId) {
                 $query->where('specializations.id', $specializationId);
             })
             ->orderByRaw('IFNULL((SELECT COUNT(*) FROM doctor_sponsor WHERE doctor_sponsor.doctor_id = doctors.id), 0) DESC')
+            ->orderByDesc(function ($query) {
+                $query->select('expiration')
+                    ->from('doctor_sponsor')
+                    ->whereColumn('doctors.id', 'doctor_sponsor.doctor_id')
+                    ->orderByDesc('expiration')
+                    ->limit(1);
+            })
             ->paginate(20);
 
         return response()->json($doctors);
@@ -53,7 +62,9 @@ class DoctorController extends Controller
         $specializationId = $id; // Replace with the desired specialization ID
         $minVote = $rating;
 
-        $doctors = Doctor::with('user', 'specializations', 'ratings', 'reviews', 'sponsors')
+        $doctors = Doctor::with(['user', 'specializations', 'ratings', 'reviews', 'sponsors' => function ($query) {
+            $query->select('expiration'); // Select the 'expiration' column from the pivot table
+        }])
             ->select('doctors.*')
             ->leftJoin('reviews', 'doctors.id', '=', 'reviews.doctor_id')
             ->whereHas('specializations', function ($query) use ($specializationId) {
@@ -63,6 +74,13 @@ class DoctorController extends Controller
             ->selectRaw('COUNT(reviews.id) as review_count')
             ->havingRaw('COUNT(reviews.id) >= ?', [$minReviews])
             ->orderByRaw('IFNULL((SELECT COUNT(*) FROM doctor_sponsor WHERE doctor_sponsor.doctor_id = doctors.id), 0) DESC')
+            ->orderByDesc(function ($query) {
+                $query->select('expiration')
+                    ->from('doctor_sponsor')
+                    ->whereColumn('doctors.id', 'doctor_sponsor.doctor_id')
+                    ->orderByDesc('expiration')
+                    ->limit(1);
+            })
             ->get();
 
         $doctors = $doctors->filter(function ($doctor) use ($minVote) {
