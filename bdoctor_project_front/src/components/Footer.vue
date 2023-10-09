@@ -6,7 +6,7 @@ export default {
 </script>
 
 <template>
-  <div class="footer-box ">
+  <div class="footer-box" id="contatti">
     <!-- CONTACTS -->
     <div class="media580">
       <div class="d-flex ms-3 pt-5">
@@ -56,7 +56,7 @@ export default {
 .footer-box {
   width: 100%;
   height: 580px;
-  background-color: rgb(11, 94, 26);
+  background-color: #03C3A5;
   color: white;
   margin-top: 90px;
 }

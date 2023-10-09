@@ -19,7 +19,6 @@ class DoctorSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-
         for ($i = 0; $i < 50; $i++) {
 
             $specializations_ids = Specialization::pluck('id')->toArray();

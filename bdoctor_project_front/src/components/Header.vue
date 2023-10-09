@@ -20,7 +20,7 @@ export default {
 
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg" id="navbar">
       <div class="d-flex justify-content-between nav-box w-100">
         <!-- Logo Img -->
         <figure class="px-4 d-flex justify-content-center image-container">
@@ -31,9 +31,9 @@ export default {
           <div class="navbar navbar-links" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link active d-min me-3" aria-current="page" href="http://localhost:5173/">Home</a>
-              <a class="nav-link active d-min me-3" aria-current="page" href="#">Dottori</a>
-              <a class="nav-link active d-min me-3" aria-current="page" href="#">Recensioni</a>
-              <a class="nav-link active d-min me-3" aria-current="page" href="#">Contatti</a>
+              <a class="nav-link active d-min me-3" aria-current="page" href="#doctor-list">Dottori</a>
+              <a class="nav-link active d-min me-3" aria-current="page" href="#reviews-box">Recensioni</a>
+              <a class="nav-link active d-min me-3" aria-current="page" href="#contatti">Contatti</a>
               <div class="d-flex align-items-center"><a class="nav-link login-btn active text-white btn-nav"
                   href="http://127.0.0.1:8000/login">Login</a>
                 <a class="nav-link active text-white btn-nav" href="http://127.0.0.1:8000/register">Sei un Professionista
@@ -52,7 +52,6 @@ export default {
 header {
   height: 200px;
   width: 100%;
-  background-image: linear-gradient(rgb(22, 178, 50), transparent);
 }
 
 .image-container {
