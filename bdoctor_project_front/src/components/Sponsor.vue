@@ -29,13 +29,17 @@ export default {
 <template>
   <div class="sponsor-box text-center">
     <div class="buttons-banner">
-      <button class="left-button">Registrati</button>
-      <button class="left-button">Sponsor</button>
+      <a href="http://127.0.0.1:8000/register" class="left-button">Registrati</a>
+      <a href="http://127.0.0.1:8000/register" class="left-button">Sponsor</a>
     </div>
   </div>
 </template>
 
 <style scoped>
+a{
+  text-decoration: none;
+  color: black;
+}
 .sponsor-box {
   position: relative;
   height: 500px;
@@ -48,7 +52,7 @@ export default {
 
 .buttons-banner {
   position: absolute; 
-  bottom: 10px; 
+  bottom: 50px; 
   left: 90px;
 }
 
@@ -67,6 +71,5 @@ export default {
   color: white;
   background-color: #04D8C5; 
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
-  scale: 1.1;
 }
 </style>
