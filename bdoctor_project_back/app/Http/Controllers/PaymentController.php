@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use App\Models\Sponsor;
 use App\Models\Payment;
+use App\Models\User;
 use Braintree\Gateway;
 
 use Illuminate\Support\Facades\Auth;
@@ -93,9 +94,11 @@ class PaymentController extends Controller
      */
     public function show(string $id, Request $request)
     {
-        $sponsor = $id;
+        $user_id = Auth::id();
+        $user = User::findOrFail($user_id);
+        $sponsor = Sponsor::findOrFail($id);
         $doctor = $request->query('doctor');
-        return view('payments.show', compact('sponsor', 'doctor'));
+        return view('payments.show', compact('sponsor', 'doctor', 'user'));
     }
 
     /**

@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="container">
+        <h2 class="text-center">Conferma Pagamento</h2>
+        <div class="payment-confirmation">
+            <p>Gentile Dottore {{ $user->name }},</p>
+            <p>Stai per procedere con il pagamento per la sponsorizzazione "{{ $sponsor->name }}".</p>
+            <p class="my-2">{{ $sponsor->type }}</p>
+        </div>
         <form id="payment-form" action="{{ route('payments.store') }}" method="post">
             @csrf
             <!-- Putting the empty container you plan to pass to 'braintree.dropin.create' inside a form will make layout and flow easier to manage  -->
