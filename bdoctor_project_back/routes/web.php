@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\BraintreeController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\ProfileController;
 
@@ -28,8 +29,10 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->name('admin.')->group(
     Route::resource('/doctor', DoctorController::class);
 });
 
-Route::get('/payments/index', [PaymentController::class, 'index'])->name('payments.index');
-
+// Route::post('/payments/payment', [BraintreeController::class, 'payment']);
+Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
+Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
+Route::get('/payments/{type}', [PaymentController::class, 'show'])->name('payments.show');
 
 
 Route::middleware('auth')->group(function () {

@@ -163,7 +163,7 @@ export default {
   <!-- DOCTORS -->
   <div class="doctors-box">
     <div class="d-flex justify-content-between">
-      <h1>Ultimi professionisti registrati:</h1>
+      <h1>Medici in Evidenza:</h1>
       <button type="button" class="btn d-flex align-items-center">Di più</button>
     </div>
 

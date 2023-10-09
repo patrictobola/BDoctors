@@ -15,7 +15,10 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::with('user', 'ratings', 'specializations', 'reviews')->orderByDesc('created_at')->paginate(5);
+        $doctors = Doctor::with('user', 'ratings', 'specializations', 'reviews', 'sponsors')
+            ->has('sponsors')
+            ->orderByDesc('created_at')
+            ->paginate(5);
         return response()->json($doctors);
     }
 
@@ -24,10 +27,11 @@ class DoctorController extends Controller
     {
         $specializationId = $id; // Replace with the desired specialization ID
 
-        $doctors = Doctor::with('user', 'ratings', 'specializations', 'reviews')
+        $doctors = Doctor::with('user', 'ratings', 'specializations', 'reviews', 'sponsors')
             ->whereHas('specializations', function ($query) use ($specializationId) {
                 $query->where('specializations.id', $specializationId);
             })
+            ->orderByRaw('IFNULL((SELECT COUNT(*) FROM doctor_sponsor WHERE doctor_sponsor.doctor_id = doctors.id), 0) DESC')
             ->paginate(20);
 
         return response()->json($doctors);
@@ -37,7 +41,7 @@ class DoctorController extends Controller
         $specializationId = $id; // Replace with the desired specialization ID
         $minVote = $rating;
 
-        $doctors = Doctor::with('user', 'specializations', 'ratings', 'reviews')
+        $doctors = Doctor::with('user', 'specializations', 'ratings', 'reviews', 'sponsors')
             ->select('doctors.*')
             ->leftJoin('reviews', 'doctors.id', '=', 'reviews.doctor_id')
             ->whereHas('specializations', function ($query) use ($specializationId) {
@@ -46,6 +50,7 @@ class DoctorController extends Controller
             ->groupBy('doctors.id')
             ->selectRaw('COUNT(reviews.id) as review_count')
             ->havingRaw('COUNT(reviews.id) >= ?', [$minReviews])
+            ->orderByRaw('IFNULL((SELECT COUNT(*) FROM doctor_sponsor WHERE doctor_sponsor.doctor_id = doctors.id), 0) DESC')
             ->get();
 
         $doctors = $doctors->filter(function ($doctor) use ($minVote) {

@@ -13,6 +13,9 @@
     <!-- CHART.JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    {{-- Brain tree --}}
+    <script src="https://js.braintreegateway.com/web/dropin/1.40.2/js/dropin.min.js"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

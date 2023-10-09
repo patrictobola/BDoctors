@@ -32,7 +32,17 @@ export default {
         sendMessage() {
             const endpointmes = apiMessageUri + `?name=${this.message.name}&last_name=${this.message.last_name}&text=${this.message.text}&email=${this.message.email}&doctor_id=${this.message.doctor_id}`
             axios.post(endpointmes)
-        }
+        },
+
+        initializeBraintree() {
+            axios.get('/braintree/client-token')
+                .then(response => {
+                    const clientToken = response.data.clientToken;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
     },
 
     computed: {
@@ -247,6 +257,9 @@ export default {
             </div>
         </div>
         <RouterLink class="btn btn-primary" :to="{ name: 'main' }">Torna Indietro</RouterLink>
+    </div>
+    <div class="flex-end">
+        <button class="btn btn-success" @click="initializeBraintree">Initialize Braintree</button>
     </div>
 </template>
 
