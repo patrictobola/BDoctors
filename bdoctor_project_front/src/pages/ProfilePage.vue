@@ -89,10 +89,10 @@ export default {
 
 <template>
     <div class="container">
-        <h1 class="text-center my-3">Profilo Personale</h1>
+        <h1 class="text-center my-3 mb-5">Profilo Personale</h1>
         <div class="row">
             <div class="col-md-6">
-                <div class="card">
+                <div class="card profile-basic">
                     <div class="row g-0 m-4">
                         <div class="col-md-4">
                             <img v-if="doctor && doctor.profile_photo" :src="doctor.profile_photo" class="card-img-top"
@@ -100,13 +100,12 @@ export default {
                             <img v-else src="../assets/img/placeholder.jpg" class="card-img-top">
                         </div>
                         <div class="col-md-4">
-                            <div class="card-body">
+                            <div class="card-body doctor-body">
                                 <h5 class="card-title" v-if="doctor && doctor.user">Dr. {{ doctor.user.name }} {{
                                     doctor.user.last_name }}</h5>
-                                <p class="card-text">Specializzazioni: <small class="d-block"
-                                        v-if="doctor && doctor.specialization"
-                                        v-for="specialization, index in doctor.specializations" :key="specialization.id">
-                                        {{ specialization.name }}
+                                <p class="card-text specializations">Specializzazioni: <small class="d-block"
+                                        v-for="specialization in doctor.specializations" :key="specialization.id">
+                                        {{ specialization.name }},
                                     </small>
                                 </p>
                                 <div class="mt-3">
@@ -125,11 +124,13 @@ export default {
             </div>
             <!-- Ultime recensioni ricevute -->
             <div class="col">
-                        <div class="card">
-                            <h5>inserire ultime recensioni ricevute</h5>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem possimus hic quod exercitationem nostrum quae illum, dolores voluptas totam nemo, praesentium voluptate molestiae sunt rerum obcaecati similique error consectetur blanditiis.</p>
-                        </div>
-                    </div>
+                <div class="card">
+                    <h5>inserire ultime recensioni ricevute</h5>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem possimus hic quod exercitationem
+                        nostrum quae illum, dolores voluptas totam nemo, praesentium voluptate molestiae sunt rerum
+                        obcaecati similique error consectetur blanditiis.</p>
+                </div>
+            </div>
             <div class="row mt-5 mb-3">
                 <!-- Col messaggi dottori -->
                 <div class="col-md-6">
@@ -160,7 +161,7 @@ export default {
                                     <textarea v-model="message.text" class="form-control" id="exampleFormControlTextarea1"
                                         rows="3"></textarea>
                                     <div class="d-flex justify-content-end mt-3">
-                                        <button class="btn btn-success">invia messaggio</button>
+                                        <button class="btn">invia messaggio</button>
                                     </div>
                                 </form>
                             </div>
@@ -220,7 +221,7 @@ export default {
 
                                 </div>
                                 <div class="d-flex justify-content-end mt-3">
-                                    <button class="btn btn-success">invia Recensione</button>
+                                    <button class="btn">invia Recensione</button>
                                 </div>
                             </form>
                         </div>
@@ -234,7 +235,29 @@ export default {
 
 <style scoped>
 .form-check-input:checked {
-    background-color: rgb(22, 178, 50);
-    border-color: rgb(22, 178, 50);
+    background-color: #04D8C5;
+    border-color: #04D8C5;
+}
+
+button {
+    background-color: #04D8C5;
+    color: white;
+}
+
+.card {
+    border-color: #04D8C5;
+}
+
+.profile-basic {
+    border: none;
+}
+
+.specializations {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.doctor-body {
+    padding-top: 0;
 }
 </style>

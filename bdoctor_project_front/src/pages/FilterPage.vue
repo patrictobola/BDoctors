@@ -339,11 +339,7 @@ export default {
 <template>
     <!-- DOCTORS -->
     <div class="doctors-box">
-        <div class="d-flex justify-content-between">
-            <h1>doctors</h1>
-            <button type="button" class="btn d-flex align-items-center">Di più</button>
-        </div>
-
+        <h1>doctors</h1>
         <form class="filetform">
             <!-- Filtro specializzazione -->
             <div class="my-2"><label for="specialization">Specializzazione: </label>
@@ -432,6 +428,10 @@ ul {
     padding: 0;
 }
 
+option {
+    color: black;
+}
+
 .doctors-box {
     margin-top: 40px;
     padding: 0 25px;
@@ -446,6 +446,14 @@ ul {
 .doctor-list {
     width: 100%;
 
+    li {
+        border: 4px solid rgba(4, 216, 198, 0.437);
+        transition: box-shadow 1.2s;
+    }
+
+    li:hover {
+        box-shadow: 9px 11px 11px #888888;
+    }
 }
 
 .doc-image {
@@ -482,13 +490,11 @@ ul {
     flex: 0 0 auto;
     width: calc(50% - 20px);
     margin: 15px 10px 0px 10px;
-    border: 4px solid rgba(22, 178, 51, 0.274);
     border-radius: 42px 10px 10px 42px;
-
 }
 
 .pagination>.active>a {
-    background-color: rgb(22, 178, 50);
+    background-color: #03C3A5;
 }
 
 .pagination {
@@ -500,18 +506,23 @@ ul {
     border: none;
 
     a {
-        border: 1px solid rgb(22, 178, 50);
+        border: 1px solid #04D8C5;
         border-radius: 10px;
+        margin-right: 10px;
     }
 }
 
 .disabled {
-    background-color: rgba(1, 80, 14, 0.274);
+    background-color: #03C3A5;
+    color: white;
+    font-size: 20px;
 }
 
 select {
     border: none;
-    background-color: rgba(22, 178, 51, 0.397);
+    color: white;
+    padding: 6px 7px;
+    background-color: #04D8C5;
     border-radius: 10px;
 }
 
@@ -522,7 +533,7 @@ option {
 @media screen and (min-width: 580px) {
     .doctor-list li {
         padding-right: 20px;
-
+        padding-left: 0;
     }
 }
 
@@ -532,7 +543,6 @@ option {
     }
 
     .doctor-list li {
-        border: 4px solid rgba(22, 178, 51, 0.274);
         border-radius: 42px 10px 10px 10px;
     }
 
