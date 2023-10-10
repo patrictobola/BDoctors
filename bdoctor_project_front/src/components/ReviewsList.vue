@@ -111,7 +111,7 @@ ul {
 }
 
 .pagination>.active>a {
-  background-color: rgb(22, 178, 50);
+  background-color: #03C3A5;
   border: none;
 }
 
@@ -126,12 +126,12 @@ ul {
 }
 
 .page-link {
-  border: 1px solid rgb(22, 178, 50);
+  border: 1px solid #03C3A5;
   border-radius: 10px;
 }
 
 .disabled {
-  background-color: rgba(1, 80, 14, 0.274);
+  background-color: #03C3A5;
 }
 
 @media screen and (min-width: 780px) {

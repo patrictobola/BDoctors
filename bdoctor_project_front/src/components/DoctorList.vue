@@ -327,7 +327,7 @@ option {
 
   li {
     margin-right: 10px;
-    border: 4px solid rgba(22, 178, 51, 0.274);
+    border: 4px solid #04D8C5 ;
     border-radius: 42px 10px 10px 10px;
   }
 
