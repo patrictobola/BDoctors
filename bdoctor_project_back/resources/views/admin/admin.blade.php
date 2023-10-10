@@ -94,7 +94,7 @@
                 <!-- GRAFICO -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Grafico dei dati</h5>
+                        <h5 class="card-title">Statistiche account</h5>
                         <div>
                             <canvas id="myChart"></canvas>
                         </div>

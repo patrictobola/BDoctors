@@ -8,9 +8,10 @@ export default {
 <template>
   <div class="footer-box" id="contatti">
     <!-- CONTACTS -->
-    <div class="media580">
+    <div class="d-flex justify-content-center">
       <div class="d-flex ms-3 pt-5">
-        <div>
+        <div class="contacts me-5">
+          <!-- CONTACTS -->
           <ul>
             <h2>Contatti</h2>
             <li><a href="https://www.linkedin.com/in/matteo-pizzichemi-5b1398256/" target="_blank">Matteo</a></li>
@@ -19,9 +20,10 @@ export default {
             <li><a href="https://www.linkedin.com/in/giacomo-portaluppi-19a94628b/" target="_blank">Giacomo</a></li>
             <li><a href="https://www.linkedin.com/in/stefan-simerea-929794291/" target="_blank">Stefan</a></li>
           </ul>
-        </div><!-- SOCIALS -->
-        <div class="socials">
+        </div>
+        <div class="socials me-5">
           <h2>Socials</h2>
+          <!-- SOCIALS -->
           <ul>
             <li><a href="https://github.com/matteo2302/Matteo-Pizzichemi" target="_blank">Matteo</a></li>
             <li><a href="https://github.com/GLCVLL" target="_blank">Gioele</a></li>
@@ -31,9 +33,10 @@ export default {
           </ul>
         </div>
       </div>
-      <div class="sponsor-box">
+      <div class="sponsor-box me-5">
         <h2 class="sponsor ">Sponsor</h2>
-        <ul class="ms-3">
+        <!-- SPONSOR -->
+        <ul>
           <li><a href="https://boolean.careers/" target="_blank">Boolean</a></li>
           <li><a href="https://github.com/matteo2302/Matteo-Pizzichemi" target="_blank">Matteo</a></li>
             <li><a href="https://github.com/GLCVLL" target="_blank">Gioele</a></li>
@@ -58,6 +61,7 @@ export default {
 
 ul {
   list-style: none;
+  padding: 0px;
 }
 
 .sponsor-box {
