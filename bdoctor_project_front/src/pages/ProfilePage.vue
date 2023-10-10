@@ -50,10 +50,10 @@ export default {
                 axios.post(endpointreview)
                 const endpointrating = apiRatingUri + `?vote=${this.review.vote}&doctor_id=${this.review.doctor_id}`
                 axios.post(endpointrating)
-            } else if (this.review.vote) {
+            } else if (this.review.text) {
                 const endpointreview = apiReviewUri + `?name=${this.review.name}&email=${this.review.email}&text=${this.review.text}&doctor_id=${this.review.doctor_id}`
                 axios.post(endpointreview)
-            } else if (this.review.text) {
+            } else if (this.review.vote) {
                 const endpointrating = apiRatingUri + `?vote=${this.review.vote}&doctor_id=${this.review.doctor_id}`
                 axios.post(endpointrating)
             }
