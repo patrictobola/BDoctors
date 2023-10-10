@@ -11,7 +11,6 @@ export default {
 
     data: () => ({
         doctor: null,
-        // reviews: null,
         message: {
             doctor_id: '',
             name: '',
@@ -40,12 +39,6 @@ export default {
                 })
                 .catch(err => { console.error(err) })
         },
-        // getReviews() {
-        //     const endpoint = apiReviewUri + this.$route.params.id;
-        //     axios.get(endpoint).then(res => {
-        //         this.reviews = res.data;
-        //     })
-        // },
         sendMessage() {
             const endpointmes = apiMessageUri + `?name=${this.message.name}&last_name=${this.message.last_name}&text=${this.message.text}&email=${this.message.email}&doctor_id=${this.message.doctor_id}`
             axios.post(endpointmes)
@@ -130,11 +123,24 @@ export default {
             </div>
             <!-- Ultime recensioni ricevute -->
             <div class="col">
-                <div class="card">
-                    <h5>inserire ultime recensioni ricevute</h5>
-                    <div class="card" v-for="review in doctor.reviews">
-                        <p class="mb-1">{{ review.name }}:</p>
-                        <p>{{ review.text }}</p>
+
+                <h5>Ultime recensioni ricevute</h5>
+                <div class="accordion" v-for="review in   doctor.reviews  " :key="review.id">
+                    <div class="accordion-item">
+                        <div class="accordion-header d-flex justify-content-between align-items-center">
+                            <h5>{{ review.name }}</h5>
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                :data-bs-target="'#collapseTwo' + review.id" aria-expanded="false"
+                                aria-controls="collapseTwo">
+                                mostra
+                            </button>
+
+                        </div>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>{{ review.text }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -266,5 +272,11 @@ button {
 
 .doctor-body {
     padding-top: 0;
+}
+
+.accordion-button {
+    width: 155px;
+    height: 20px;
+
 }
 </style>
