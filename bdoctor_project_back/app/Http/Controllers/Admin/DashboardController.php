@@ -97,84 +97,84 @@ class DashboardController extends Controller
             ->whereYear('date', 2022)
             ->get();
 
-        $ratingsGen2022 = [];
-        // Voti di Gennaio 2022
+        $ratingsGen2023 = [];
+        // Voti di Gennaio 2023
         foreach ($ratings as $rating) {
             $date = Carbon::parse($rating->date);
-            if ($date->month === 1 && $date->year === 2022) {
-                $ratingsGen2022[] = $date->format('Y-m-d');
+            if ($date->month === 1 && $date->year === 2023) {
+                $ratingsGen2023[] = $date->format('Y-m-d');
             }
         };
-        $ratingsFeb2022 = [];
-        // Voti di Gennaio 2022
+        $ratingsFeb2023 = [];
+        // Voti di Gennaio 2023
         foreach ($ratings as $rating) {
             $date = Carbon::parse($rating->date);
-            if ($date->month === 2 && $date->year === 2022) {
-                $ratingsFeb2022[] = $date->format('Y-m-d');
+            if ($date->month === 2 && $date->year === 2023) {
+                $ratingsFeb2023[] = $date->format('Y-m-d');
             }
         };
-        $ratingsMar2022 = [];
-        // Voti di Gennaio 2022
+        $ratingsMar2023 = [];
+        // Voti di Gennaio 2023
         foreach ($ratings as $rating) {
             $date = Carbon::parse($rating->date);
-            if ($date->month === 3 && $date->year === 2022) {
-                $ratingsMar2022[] = $date->format('Y-m-d');
+            if ($date->month === 3 && $date->year === 2023) {
+                $ratingsMar2023[] = $date->format('Y-m-d');
             }
         };
-        $ratingsApr2022 = [];
-        // Voti di Gennaio 2022
+        $ratingsApr2023 = [];
+        // Voti di Gennaio 2023
         foreach ($ratings as $rating) {
             $date = Carbon::parse($rating->date);
-            if ($date->month === 4 && $date->year === 2022) {
-                $ratingsApr2022[] = $date->format('Y-m-d');
+            if ($date->month === 4 && $date->year === 2023) {
+                $ratingsApr2023[] = $date->format('Y-m-d');
             }
         };
-        $ratingsMag2022 = [];
-        // Voti di Gennaio 2022
+        $ratingsMag2023 = [];
+        // Voti di Gennaio 2023
         foreach ($ratings as $rating) {
             $date = Carbon::parse($rating->date);
-            if ($date->month === 5 && $date->year === 2022) {
-                $ratingsMag2022[] = $date->format('Y-m-d');
+            if ($date->month === 5 && $date->year === 2023) {
+                $ratingsMag2023[] = $date->format('Y-m-d');
             }
         };
-        $ratingsGiu2022 = [];
-        // Voti di Gennaio 2022
+        $ratingsGiu2023 = [];
+        // Voti di Gennaio 2023
         foreach ($ratings as $rating) {
             $date = Carbon::parse($rating->date);
-            if ($date->month === 6 && $date->year === 2022) {
-                $ratingsGiu2022[] = $date->format('Y-m-d');
+            if ($date->month === 6 && $date->year === 2023) {
+                $ratingsGiu2023[] = $date->format('Y-m-d');
             }
         };
-        $ratingsLug2022 = [];
-        // Voti di Gennaio 2022
+        $ratingsLug2023 = [];
+        // Voti di Gennaio 2023
         foreach ($ratings as $rating) {
             $date = Carbon::parse($rating->date);
-            if ($date->month === 7 && $date->year === 2022) {
-                $ratingsLug2022[] = $date->format('Y-m-d');
+            if ($date->month === 7 && $date->year === 2023) {
+                $ratingsLug2023[] = $date->format('Y-m-d');
             }
         };
-        $ratingsAgo2022 = [];
-        // Voti di Gennaio 2022
+        $ratingsAgo2023 = [];
+        // Voti di Gennaio 2023
         foreach ($ratings as $rating) {
             $date = Carbon::parse($rating->date);
-            if ($date->month === 8 && $date->year === 2022) {
-                $ratingsAgo2022[] = $date->format('Y-m-d');
+            if ($date->month === 8 && $date->year === 2023) {
+                $ratingsAgo2023[] = $date->format('Y-m-d');
             }
         };
-        $ratingsSet2022 = [];
-        // Voti di Gennaio 2022
+        $ratingsSet2023 = [];
+        // Voti di Gennaio 2023
         foreach ($ratings as $rating) {
             $date = Carbon::parse($rating->date);
-            if ($date->month === 9 && $date->year === 2022) {
-                $ratingsSet2022[] = $date->format('Y-m-d');
+            if ($date->month === 9 && $date->year === 2023) {
+                $ratingsSet2023[] = $date->format('Y-m-d');
             }
         };
-        $ratingsOtt2022 = [];
-        // Voti di Gennaio 2022
+        $ratingsOtt2023 = [];
+        // Voti di Gennaio 2023
         foreach ($ratings as $rating) {
             $date = Carbon::parse($rating->date);
-            if ($date->month === 10 && $date->year === 2022) {
-                $ratingsOtt2022[] = $date->format('Y-m-d');
+            if ($date->month === 10 && $date->year === 2023) {
+                $ratingsOtt2023[] = $date->format('Y-m-d');
             }
         };
         $ratingsNov2022 = [];
@@ -198,16 +198,16 @@ class DashboardController extends Controller
 
         return view('admin.admin', compact(
             'ratings',
-            'ratingsGen2022',
-            'ratingsFeb2022',
-            'ratingsMar2022',
-            'ratingsApr2022',
-            'ratingsMag2022',
-            'ratingsGiu2022',
-            'ratingsLug2022',
-            'ratingsAgo2022',
-            'ratingsSet2022',
-            'ratingsOtt2022',
+            'ratingsGen2023',
+            'ratingsFeb2023',
+            'ratingsMar2023',
+            'ratingsApr2023',
+            'ratingsMag2023',
+            'ratingsGiu2023',
+            'ratingsLug2023',
+            'ratingsAgo2023',
+            'ratingsSet2023',
+            'ratingsOtt2023',
             'ratingsNov2022',
             'ratingsDic2022',
             'doctor',

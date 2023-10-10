@@ -79,7 +79,7 @@
                             <!-- Col per le Recensioni -->
                             <div class="col" id="recensioni">
                                 <h5>Ultime recensioni ricevuti</h5>
-                                 <!-- Recensioni Accordions -->
+                                <!-- Recensioni Accordions -->
                                 <div class="mb-4">
                                     <div id="accordion">
                                         @foreach ($reviews as $review)
@@ -95,7 +95,8 @@
                                                         </h5>
                                                     </div>
                                                     <div id="collapse{{ $review->id }}" class="collapse"
-                                                        aria-labelledby="heading{{ $review->id }}" data-parent="#accordion">
+                                                        aria-labelledby="heading{{ $review->id }}"
+                                                        data-parent="#accordion">
                                                         <div class="card-body">
                                                             <p><strong>Email: </strong>{{ $review->email }}</p>
                                                             <p><strong>Contenuto: </strong>{{ $review->text }}</p>
@@ -186,16 +187,16 @@
 <script type="module">
     const ratings = @json($ratings);
 
-    const ratingsGen = @json($ratingsGen2022);
-    const ratingsFeb = @json($ratingsFeb2022);
-    const ratingsMar = @json($ratingsMar2022);
-    const ratingsApr = @json($ratingsApr2022);
-    const ratingsMag = @json($ratingsMag2022);
-    const ratingsGiu = @json($ratingsGiu2022);
-    const ratingsLug = @json($ratingsLug2022);
-    const ratingsAgo = @json($ratingsAgo2022);
-    const ratingsSet = @json($ratingsSet2022);
-    const ratingsOtt = @json($ratingsOtt2022);
+    const ratingsGen = @json($ratingsGen2023);
+    const ratingsFeb = @json($ratingsFeb2023);
+    const ratingsMar = @json($ratingsMar2023);
+    const ratingsApr = @json($ratingsApr2023);
+    const ratingsMag = @json($ratingsMag2023);
+    const ratingsGiu = @json($ratingsGiu2023);
+    const ratingsLug = @json($ratingsLug2023);
+    const ratingsAgo = @json($ratingsAgo2023);
+    const ratingsSet = @json($ratingsSet2023);
+    const ratingsOtt = @json($ratingsOtt2023);
     const ratingsNov = @json($ratingsNov2022);
     const ratingsDic = @json($ratingsDic2022);
 
