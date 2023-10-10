@@ -44,10 +44,9 @@ export default {
                     <img v-else src="../assets/img/placeholder.jpg">
                   </div>
                   <div>
-
-                    <h3 class="ms-3 m-0">Dr. {{ review.doctor.user.name }} {{
-                      review.doctor.user.last_name }}</h3>
-                    <h6 class="ms-3 mt-3">{{ review.name }}</h6>
+                    <h3 class="ms-3 ms-0">Dr. {{ review.name }}</h3>
+                    <h6 class="ms-3 mt-3">{{ review.doctor.user.name }} {{
+                      review.doctor.user.last_name }}</h6>
                     <p class="ms-3 m-0">{{ review.text }}</p>
                   </div>
                 </div>

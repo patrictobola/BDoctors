@@ -27,9 +27,12 @@
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
                                         <ul class="list-inline text-center">
-                                            <li class="list-inline-item"><a href="#voti" class="btn btn-primary rounded-2">Voti</a></li>
-                                            <li class="list-inline-item"><a href="#messaggi" class="btn btn-primary rounded-2">Messaggi</a></li>
-                                            <li class="list-inline-item"><a href="#recensioni" class="btn btn-primary rounded-2">Recensioni</a></li>
+                                            <li class="list-inline-item"><a href="#voti"
+                                                    class="btn btn-primary rounded-2">Voti</a></li>
+                                            <li class="list-inline-item"><a href="#messaggi"
+                                                    class="btn btn-primary rounded-2">Messaggi</a></li>
+                                            <li class="list-inline-item"><a href="#recensioni"
+                                                    class="btn btn-primary rounded-2">Recensioni</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -51,12 +54,14 @@
                                                 <div class="card-header" id="heading{{ $message->id }}">
                                                     <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                         <span>Nome: {{ $message->name }} {{ $message->last_name }}</span>
-                                                        <button class="btn btn-primary rounded-3" data-toggle="collapse" data-target="#collapse{{ $message->id }}">
+                                                        <button class="btn btn-primary rounded-3" data-toggle="collapse"
+                                                            data-target="#collapse{{ $message->id }}">
                                                             Mostra di più
                                                         </button>
                                                     </h5>
                                                 </div>
-                                                <div id="collapse{{ $message->id }}" class="collapse" aria-labelledby="heading{{ $message->id }}" data-parent="#accordion">
+                                                <div id="collapse{{ $message->id }}" class="collapse"
+                                                    aria-labelledby="heading{{ $message->id }}" data-parent="#accordion">
                                                     <div class="card-body">
                                                         <p><strong>Email: </strong>{{ $message->email }}</p>
                                                         <p><strong>Contenuto: </strong>{{ $message->text }}</p>
@@ -94,7 +99,7 @@
                 <!-- GRAFICO -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Statistiche account</h5>
+                        <h5 class="card-title">Statistiche messaggi ricevuti</h5>
                         <div>
                             <canvas id="myChart"></canvas>
                         </div>
@@ -106,6 +111,42 @@
     </div>
 @endsection
 
-<script>
-    @vite(['resources/js/grafic.js'])
+<script type="module">
+    const messages = @json($messages);
+
+    const messagesGen = @json($messagesGen2022);
+    const messagesFeb = @json($messagesFeb2022);
+    const messagesMar = @json($messagesMar2022);
+    const messagesApr = @json($messagesApr2022);
+    const messagesMag = @json($messagesMag2022);
+    const messagesGiu = @json($messagesGiu2022);
+    const messagesLug = @json($messagesLug2022);
+    const messagesAug = @json($messagesAug2022);
+    const messagesSet = @json($messagesSet2022);
+    const messagesOtt = @json($messagesOtt2022);
+    const messagesNov = @json($messagesNov2022);
+    const messagesDec = @json($messagesDec2022);
+
+
+
+    console.log(messages)
+    const ctx = document.getElementById('myChart');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Nov', 'Dec','Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Aug', 'Set', 'Ott'],
+            datasets: [{
+                label: '# of Messages',
+                data: [messagesGen.length, messagesFeb.length, messagesMar.length, messagesApr.length, messagesMag.length, messagesGiu.length, messagesLug.length, messagesAug.length, messagesSet.length, messagesOtt.length, messagesNov.length, messagesDec.length ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 </script>
