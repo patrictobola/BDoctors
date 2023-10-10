@@ -134,6 +134,14 @@ ul {
   background-color: #03C3A5;
 }
 
+.page-link:hover {
+  color: black;
+}
+
+.active>.page-link {
+  color: white;
+}
+
 @media screen and (min-width: 780px) {
   ul {
     display: flex;

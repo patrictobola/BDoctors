@@ -36,7 +36,8 @@ export default {
               <a class="nav-link active d-min me-3" aria-current="page" href="#contatti">Contatti</a>
               <div class="d-flex align-items-center">
                 <a class="nav-link login-btn text-white btn-nav" href="http://127.0.0.1:8000/login">Login</a>
-                <a class="nav-link  text-white btn-nav" href="http://127.0.0.1:8000/register">Sei un Professionista sanitario?</a>
+                <a class="nav-link  text-white btn-nav" href="http://127.0.0.1:8000/register">Sei un Professionista
+                  sanitario?</a>
               </div>
             </div>
           </div>
@@ -110,12 +111,14 @@ img {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  transition: background-color 0.3s, box-shadow 0.3s;
+  transition: background-color 1s, box-shadow 1s, scale 1s;
 }
+
 .btn-nav:hover {
   color: white;
-  background-color: #04D8C5; 
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+  background-color: #04D8C5;
+  box-shadow: 0px 9px 11px #888888;
+
   scale: 1.1;
 }
 

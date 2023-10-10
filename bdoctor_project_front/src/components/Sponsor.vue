@@ -36,10 +36,11 @@ export default {
 </template>
 
 <style scoped>
-a{
+a {
   text-decoration: none;
   color: black;
 }
+
 .sponsor-box {
   position: relative;
   height: 500px;
@@ -51,25 +52,28 @@ a{
 }
 
 .buttons-banner {
-  position: absolute; 
-  bottom: 50px; 
+  position: absolute;
+  bottom: 50px;
   left: 90px;
 }
 
 .left-button {
   border: 0;
-  color: black;
+  color: white;
   padding: 17px 38px;
   background-color: #03C3A5;
   border-radius: 15px;
   font-size: 20px;
-  margin-right: 20px;
+  margin-right: 35px;
   margin-bottom: 10px;
-  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.6);
+  transition: background-color 0.5s, box-shadow 0.5s, padding 0.5s, font-size 0.5s;
 }
+
 .left-button:hover {
-  color: white;
-  background-color: #04D8C5; 
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+  background-color: #04D8C5;
+  box-shadow: 0 0 35px 7px rgba(255, 255, 255, 0.6);
+  padding: 20px 60px;
+  font-size: 27px;
 }
 </style>

@@ -233,7 +233,7 @@ ul {
 }
 
 .btn {
-  background-color:  #04D8C5;
+  background-color: #04D8C5;
   color: white;
   height: 35px;
 }
@@ -241,6 +241,14 @@ ul {
 .doctor-list {
   width: 100%;
 
+  li {
+    border: 4px solid rgba(4, 216, 198, 0.437);
+    transition: box-shadow 1.2s;
+  }
+
+  li:hover {
+    box-shadow: 9px 11px 11px #888888;
+  }
 }
 
 .doc-image {
@@ -276,10 +284,10 @@ li {
   list-style: none;
   margin-top: 15px;
   margin-right: 15px;
-  border: 4px solid rgba(22, 178, 51, 0.274);
-  border-radius: 42px 10px 10px 42px;
-
+  border: 4px solid #04D8C5;
+  border-radius: 44px 10px 10px 44px;
 }
+
 
 .pagination>.active>a {
   background-color: #03C3A5;
@@ -294,23 +302,28 @@ li {
   border: none;
 
   a {
-    border: 1px solid  #04D8C5;
+    border: 1px solid #04D8C5;
     border-radius: 10px;
   }
 }
 
 .disabled {
   background-color: #03C3A5;
+  color: white;
+  font-size: 20px;
 }
 
 select {
   border: none;
-  background-color:  #04D8C5;
+  color: white;
+  padding: 6px 7px;
+  background-color: #04D8C5;
   border-radius: 10px;
 }
 
 option {
   background-color: white;
+  color: black;
 }
 
 @media screen and (min-width: 580px) {
@@ -327,8 +340,8 @@ option {
 
   li {
     margin-right: 10px;
-    border: 4px solid #04D8C5 ;
-    border-radius: 42px 10px 10px 10px;
+    border: 4px solid #04D8C5;
+    border-radius: 44px 10px 10px 10px;
   }
 
   .doctors-box {
