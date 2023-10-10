@@ -47,7 +47,7 @@ export default {
         //     })
         // },
         sendMessage() {
-            const endpointmes = apiMessageUri + `?name=${this.message.name}&last_name=${this.message.last_name}&text=${this.message.text}&email=${this.message.email}&doctor_id=${this.message.doctor_id}`
+            const endpointmes = apiMessageUri + `?name=${this.message.name}&last_name=${this.message.last_name}&text=${this.message.text}&email=${this.message.email}&doctor_id=${this.message.doctor_id}&date=2023-12-21`
             axios.post(endpointmes)
         },
         sendReviewAndRating() {
@@ -153,7 +153,7 @@ export default {
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Cognome<span class="text-danger">*(campo
                                         obbligatorio)*</span></label>
-                                <input v-model="message.email" type="text" class="form-control" id="exampleInputEmail2"
+                                <input v-model="message.last_name" type="text" class="form-control" id="exampleInputEmail2"
                                     aria-describedby="emailHelp">
                             </div>
                             <div class="mb-3">

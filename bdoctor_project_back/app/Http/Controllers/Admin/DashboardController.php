@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Message;
+use App\Models\Review;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,7 @@ class DashboardController extends Controller
         $user_id = Auth::id();
         $doctor = Doctor::findOrFail($user_id);
         $messages = Message::where('doctor_id', '=', $user_id)->get();
+        $reviews = Review::where('doctor_id', '=', $user_id)->get();
 
         // Messagi di Gennaio 2022
         $messagesGen2022 = Message::where('doctor_id', $user_id)
@@ -92,7 +94,7 @@ class DashboardController extends Controller
         ->get();
 
 
-        return view('admin.admin', compact('doctor', 'messages', 
+        return view('admin.admin', compact('doctor', 'messages', 'reviews', 
         'messagesGen2022',
         'messagesFeb2022',
         'messagesMar2022',
