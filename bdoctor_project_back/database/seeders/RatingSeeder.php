@@ -18,6 +18,12 @@ class RatingSeeder extends Seeder
         for ($i = 0; $i < 1000; $i++) {
             $vote = new Rating();
             $vote->vote = $faker->numberBetween(1, 5);
+
+            //Date comprese in un anno
+            $startDate = '2022-01-01T00:00:00';
+            $endDate = '2023-12-31T23:59:59';
+            $vote->date = $faker->dateTimeBetween($startDate, $endDate)->format('Y-m-d H:i:s');
+
             $vote->save();
         }
     }

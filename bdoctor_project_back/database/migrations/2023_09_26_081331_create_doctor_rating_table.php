@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('doctor_id')->constrained();
             $table->foreignId('rating_id')->constrained();
 
-
             $table->timestamps();
         });
     }
