@@ -11,7 +11,7 @@ export default {
 
     data: () => ({
         doctor: null,
-
+        // reviews: null,
         message: {
             doctor_id: '',
             name: '',
@@ -40,6 +40,12 @@ export default {
                 })
                 .catch(err => { console.error(err) })
         },
+        // getReviews() {
+        //     const endpoint = apiReviewUri + this.$route.params.id;
+        //     axios.get(endpoint).then(res => {
+        //         this.reviews = res.data;
+        //     })
+        // },
         sendMessage() {
             const endpointmes = apiMessageUri + `?name=${this.message.name}&last_name=${this.message.last_name}&text=${this.message.text}&email=${this.message.email}&doctor_id=${this.message.doctor_id}`
             axios.post(endpointmes)
@@ -126,9 +132,10 @@ export default {
             <div class="col">
                 <div class="card">
                     <h5>inserire ultime recensioni ricevute</h5>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem possimus hic quod exercitationem
-                        nostrum quae illum, dolores voluptas totam nemo, praesentium voluptate molestiae sunt rerum
-                        obcaecati similique error consectetur blanditiis.</p>
+                    <div class="card" v-for="review in doctor.reviews">
+                        <p class="mb-1">{{ review.name }}:</p>
+                        <p>{{ review.text }}</p>
+                    </div>
                 </div>
             </div>
             <div class="row mt-5 mb-3">
