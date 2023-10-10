@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
             $table->enum('vote', ['1', '2', '3', '4', '5']);
+            $table->date('date');
             $table->timestamps();
         });
     }

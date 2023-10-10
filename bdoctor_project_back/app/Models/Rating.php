@@ -11,7 +11,7 @@ class Rating extends Model
 
 
     protected $fillable = [
-        'vote',
+        'vote', 'date',
     ];
 
     public function doctors()
