@@ -9,12 +9,11 @@ class Review extends Model
 {
     use HasFactory;
 
-
-
     protected $fillable = [
         'name',
         'text',
         'email',
+        'doctor_id',
     ];
 
     public function doctor()
