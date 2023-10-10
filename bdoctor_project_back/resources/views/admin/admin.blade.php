@@ -27,8 +27,6 @@
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
                                         <ul class="list-inline text-center">
-                                            <li class="list-inline-item"><a href="#voti"
-                                                    class="btn btn-primary rounded-2">Voti</a></li>
                                             <li class="list-inline-item"><a href="#messaggi"
                                                     class="btn btn-primary rounded-2">Messaggi</a></li>
                                             <li class="list-inline-item"><a href="#recensioni"
@@ -96,12 +94,21 @@
                     {{-- Sponsor image --}}
                     <img src="{{ asset('sponsor.png') }}" alt="sponsor image" class="card-img-top w-100 rounded mb-3">
                 </a>
-                <!-- GRAFICO -->
+                <!-- GRAFICO MESSAGGI -->
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Statistiche messaggi ricevuti</h5>
                         <div>
                             <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                {{-- GRAFICO VOTI --}}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Statistiche voti ricevuti</h5>
+                        <div>
+                            <canvas id="ratingsChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -134,10 +141,55 @@
     const chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Nov', 'Dec','Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Aug', 'Set', 'Ott'],
+            labels: ['Nov', 'Dec', 'Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Aug', 'Set', 'Ott'],
             datasets: [{
                 label: '# of Messages',
-                data: [messagesGen.length, messagesFeb.length, messagesMar.length, messagesApr.length, messagesMag.length, messagesGiu.length, messagesLug.length, messagesAug.length, messagesSet.length, messagesOtt.length, messagesNov.length, messagesDec.length ],
+                data: [messagesGen.length, messagesFeb.length, messagesMar.length, messagesApr.length,
+                    messagesMag.length, messagesGiu.length, messagesLug.length, messagesAug.length,
+                    messagesSet.length, messagesOtt.length, messagesNov.length, messagesDec.length
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+<script type="module">
+    const ratings = @json($ratings);
+
+    const ratingsGen = @json($ratingsGen2022);
+    const ratingsFeb = @json($ratingsFeb2022);
+    const ratingsMar = @json($ratingsMar2022);
+    const ratingsApr = @json($ratingsApr2022);
+    const ratingsMag = @json($ratingsMag2022);
+    const ratingsGiu = @json($ratingsGiu2022);
+    const ratingsLug = @json($ratingsLug2022);
+    const ratingsAgo = @json($ratingsAgo2022);
+    const ratingsSet = @json($ratingsSet2022);
+    const ratingsOtt = @json($ratingsOtt2022);
+    const ratingsNov = @json($ratingsNov2022);
+    const ratingsDic = @json($ratingsDic2022);
+
+
+
+
+    const ctx = document.getElementById('ratingsChart');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Nov', 'Dic', 'Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott'],
+            datasets: [{
+                label: '# of Ratings',
+                data: [ratingsGen.length, ratingsFeb.length, ratingsMar.length, ratingsApr.length,
+                    ratingsMag.length, ratingsGiu.length, ratingsLug.length, ratingsAgo.length,
+                    ratingsSet.length, ratingsOtt.length, ratingsNov.length, ratingsDic.length
+                ],
                 borderWidth: 1
             }]
         },
