@@ -11,7 +11,7 @@
         <form id="payment-form" action="{{ route('payments.store') }}" method="post">
             @csrf
             <!-- Putting the empty container you plan to pass to 'braintree.dropin.create' inside a form will make layout and flow easier to manage  -->
-            <input type="hidden" id="sponsor" name="sponsor" value="{{ $sponsor }}" />
+            <input type="hidden" id="sponsor" name="sponsor" value="{{ $sponsor->id }}" />
             <input type="hidden" id="doctor" name="doctor" value="{{ $doctor }}" />
             <div id="dropin-container"></div>
             <input type="submit" />
