@@ -124,25 +124,28 @@ export default {
             <!-- Ultime recensioni ricevute -->
             <div class="col">
 
-                <h5>Ultime recensioni ricevute</h5>
-                <div class="accordion" v-for="review in   doctor.reviews  " :key="review.id">
-                    <div class="accordion-item">
-                        <div class="accordion-header d-flex justify-content-between align-items-center">
-                            <h5>{{ review.name }}</h5>
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                :data-bs-target="'#collapseTwo' + review.id" aria-expanded="false"
-                                aria-controls="collapseTwo">
-                                mostra
-                            </button>
+            <h5>Ultime recensioni ricevute</h5>
+            <div class="accordion mb-2" v-for="review in doctor.reviews" :key="review.id">
+            <div class="accordion-item">
+            <div class="accordion-header d-flex justify-content-between align-items-center">
+            <h5 class="ms-2">Nome:{{ review.name }}</h5>
 
-                        </div>
-                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>{{ review.text }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Buttons Accordion -->
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            :data-bs-target="'#collapseTwo' + review.id" aria-expanded="false"
+            :aria-controls="'collapseTwo' + review.id">
+            mostra
+            </button>
+
+            </div>
+            <div :id="'collapseTwo' + review.id" class="accordion-collapse collapse" :aria-labelledby="'headingTwo' + review.id">
+            <div class="accordion-body">
+            <p>Recensione: {{ review.text }}</p>
+            </div>
+            </div>
+            </div>
+            </div>
+
             </div>
             <div class="row mt-5 mb-3">
                 <!-- Col messaggi dottori -->
