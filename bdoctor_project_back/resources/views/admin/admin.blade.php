@@ -99,7 +99,7 @@
                 <!-- GRAFICO -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Statistiche account</h5>
+                        <h5 class="card-title">Statistiche messaggi ricevuti</h5>
                         <div>
                             <canvas id="myChart"></canvas>
                         </div>
@@ -113,15 +113,31 @@
 
 <script type="module">
     const messages = @json($messages);
+
+    const messagesGen = @json($messagesGen2022);
+    const messagesFeb = @json($messagesFeb2022);
+    const messagesMar = @json($messagesMar2022);
+    const messagesApr = @json($messagesApr2022);
+    const messagesMag = @json($messagesMag2022);
+    const messagesGiu = @json($messagesGiu2022);
+    const messagesLug = @json($messagesLug2022);
+    const messagesAug = @json($messagesAug2022);
+    const messagesSet = @json($messagesSet2022);
+    const messagesOtt = @json($messagesOtt2022);
+    const messagesNov = @json($messagesNov2022);
+    const messagesDec = @json($messagesDec2022);
+
+
+
     console.log(messages)
     const ctx = document.getElementById('myChart');
     const chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott'],
+            labels: ['Nov', 'Dec','Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Aug', 'Set', 'Ott'],
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, messages.length],
+                label: '# of Messages',
+                data: [messagesGen.length, messagesFeb.length, messagesMar.length, messagesApr.length, messagesMag.length, messagesGiu.length, messagesLug.length, messagesAug.length, messagesSet.length, messagesOtt.length, messagesNov.length, messagesDec.length ],
                 borderWidth: 1
             }]
         },
