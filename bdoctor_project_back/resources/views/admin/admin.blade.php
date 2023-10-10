@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 {{-- GRAFICO VOTI --}}
-                <div class="card">
+                <div class="card my-3">
                     <div class="card-body">
                         <h5 class="card-title">Statistiche voti ricevuti</h5>
                         <div>
