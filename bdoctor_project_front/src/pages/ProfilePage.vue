@@ -45,12 +45,18 @@ export default {
             axios.post(endpointmes)
         },
         sendReviewAndRating() {
-            // if (this.review.vote && this.review.text) {
-            // const endpointreview = apiReviewUri + `?name=${this.review.name}&email=${this.review.email}&text=${this.review.text}&doctor_id=${this.review.doctor_id}`
-            // axios.post(endpointreview)
-            const endpointrating = apiRatingUri + `?vote=${this.review.vote}&doctor_id=${this.review.doctor_id}`
-            axios.post(endpointrating)
-            // }
+            if (this.review.vote && this.review.text) {
+                const endpointreview = apiReviewUri + `?name=${this.review.name}&email=${this.review.email}&text=${this.review.text}&doctor_id=${this.review.doctor_id}`
+                axios.post(endpointreview)
+                const endpointrating = apiRatingUri + `?vote=${this.review.vote}&doctor_id=${this.review.doctor_id}`
+                axios.post(endpointrating)
+            } else if (this.review.vote) {
+                const endpointreview = apiReviewUri + `?name=${this.review.name}&email=${this.review.email}&text=${this.review.text}&doctor_id=${this.review.doctor_id}`
+                axios.post(endpointreview)
+            } else if (this.review.text) {
+                const endpointrating = apiRatingUri + `?vote=${this.review.vote}&doctor_id=${this.review.doctor_id}`
+                axios.post(endpointrating)
+            }
         },
 
 
@@ -158,7 +164,7 @@ export default {
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <form @submit.prevent="sendReviewAndRating()">
+                            <form @submit="sendReviewAndRating()">
                                 <div class="mb-3">
                                     <h3 class="mb-4">Invia una recensione</h3>
                                     <label for="exampleInputEmail1" class="form-label">Nome<span
