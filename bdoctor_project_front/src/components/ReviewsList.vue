@@ -33,13 +33,13 @@ export default {
     <!-- REVIEWS CARD -->
     <ul>
       <div class="row">
-        <li v-for="review in reviews " class="reviews pe-3">
+        <li v-for="review in reviews " class="reviews pe-2">
           <a href="#reviews-box" alt="review">
             <div class="review mx-3">
               <div class="mt-3">
                 <div class="d-flex">
 
-                  <div class="doc-image mb-3">
+                  <div class="doc-image mb-3 ms-2">
                     <img v-if="review.doctor.profile_photo" :src="review.doctor.profile_photo">
                     <img v-else src="../assets/img/placeholder.jpg">
                   </div>

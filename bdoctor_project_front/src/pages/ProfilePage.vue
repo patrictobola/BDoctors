@@ -123,6 +123,13 @@ export default {
                     </div>
                 </div>
             </div>
+            <!-- Ultime recensioni ricevute -->
+            <div class="col">
+                        <div class="card">
+                            <h5>inserire ultime recensioni ricevute</h5>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem possimus hic quod exercitationem nostrum quae illum, dolores voluptas totam nemo, praesentium voluptate molestiae sunt rerum obcaecati similique error consectetur blanditiis.</p>
+                        </div>
+                    </div>
             <div class="row mt-5 mb-3">
                 <!-- Col messaggi dottori -->
                 <div class="col-md-6">
