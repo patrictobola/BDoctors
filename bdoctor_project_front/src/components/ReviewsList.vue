@@ -89,7 +89,8 @@ export default {
 
 .review {
   height: 150px;
-  border: 3px solid rgba(63, 223, 92, 0.349);
+  border: 3px solid rgba(4, 216, 198, 0.437);
+  transition: box-shadow 1.2s;
   border-radius: 0px 25px 25px 25px;
 }
 
