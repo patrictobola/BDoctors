@@ -14,13 +14,11 @@ class RatingController extends Controller
 
     {
         $data = $request->all();
-        $doctor_id = $data['doctor_id'];
-        // $user_id = Auth::id();
-        $doctor = Doctor::findOrFail($doctor_id);
         $rating = new Rating;
         $rating->fill($data);
         $rating->save();
-        // dd($doctor);
-        $doctor->ratings()->attach($doctor);
+        $user_id = $data['doctor_id'];
+        $doctor = Doctor::findOrFail($user_id);
+        $doctor->ratings()->attach($rating);
     }
 }

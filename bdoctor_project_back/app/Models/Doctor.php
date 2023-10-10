@@ -34,7 +34,7 @@ class Doctor extends Model
     }
     public function ratings()
     {
-        return $this->belongsToMany(Rating::class);
+        return $this->belongsToMany(Rating::class)->withTimestamps();
     }
     public function user()
     {
