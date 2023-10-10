@@ -27,9 +27,12 @@
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
                                         <ul class="list-inline text-center">
-                                            <li class="list-inline-item"><a href="#voti" class="btn btn-primary rounded-2">Voti</a></li>
-                                            <li class="list-inline-item"><a href="#messaggi" class="btn btn-primary rounded-2">Messaggi</a></li>
-                                            <li class="list-inline-item"><a href="#recensioni" class="btn btn-primary rounded-2">Recensioni</a></li>
+                                            <li class="list-inline-item"><a href="#voti"
+                                                    class="btn btn-primary rounded-2">Voti</a></li>
+                                            <li class="list-inline-item"><a href="#messaggi"
+                                                    class="btn btn-primary rounded-2">Messaggi</a></li>
+                                            <li class="list-inline-item"><a href="#recensioni"
+                                                    class="btn btn-primary rounded-2">Recensioni</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -51,12 +54,14 @@
                                                 <div class="card-header" id="heading{{ $message->id }}">
                                                     <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                         <span>Nome: {{ $message->name }} {{ $message->last_name }}</span>
-                                                        <button class="btn btn-primary rounded-3" data-toggle="collapse" data-target="#collapse{{ $message->id }}">
+                                                        <button class="btn btn-primary rounded-3" data-toggle="collapse"
+                                                            data-target="#collapse{{ $message->id }}">
                                                             Mostra di più
                                                         </button>
                                                     </h5>
                                                 </div>
-                                                <div id="collapse{{ $message->id }}" class="collapse" aria-labelledby="heading{{ $message->id }}" data-parent="#accordion">
+                                                <div id="collapse{{ $message->id }}" class="collapse"
+                                                    aria-labelledby="heading{{ $message->id }}" data-parent="#accordion">
                                                     <div class="card-body">
                                                         <p><strong>Email: </strong>{{ $message->email }}</p>
                                                         <p><strong>Contenuto: </strong>{{ $message->text }}</p>
@@ -106,6 +111,26 @@
     </div>
 @endsection
 
-<script>
-    @vite(['resources/js/grafic.js'])
+<script type="module">
+    const messages = @json($messages);
+    console.log(messages)
+    const ctx = document.getElementById('myChart');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, messages.length],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 </script>

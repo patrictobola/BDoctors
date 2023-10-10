@@ -17,7 +17,8 @@ class DashboardController extends Controller
     {
         $user_id = Auth::id();
         $doctor = Doctor::findOrFail($user_id);
-        $messages = Message::all();
+        $messages = Message::where('doctor_id', '=', $user_id)->get();
+        // dd($messages);
         return view('admin.admin', compact('doctor', 'messages'));
     }
 
