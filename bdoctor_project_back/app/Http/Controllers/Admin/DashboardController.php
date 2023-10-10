@@ -17,8 +17,95 @@ class DashboardController extends Controller
     {
         $user_id = Auth::id();
         $doctor = Doctor::findOrFail($user_id);
-        $messages = Message::all();
-        return view('admin.admin', compact('doctor', 'messages'));
+        $messages = Message::where('doctor_id', '=', $user_id)->get();
+
+        // Messagi di Gennaio 2022
+        $messagesGen2022 = Message::where('doctor_id', $user_id)
+        ->whereMonth('date', 1) 
+        ->whereYear('date', 2022)
+        ->get();
+
+        // Messaggi di Febbraio 2022
+        $messagesFeb2022 = Message::where('doctor_id', $user_id)
+        ->whereMonth('date', 2)
+        ->whereYear('date', 2022)
+        ->get();
+
+        // Messaggi di Marzo 2022
+        $messagesMar2022 = Message::where('doctor_id', $user_id)
+        ->whereMonth('date', 3)
+        ->whereYear('date', 2022)
+        ->get();
+
+        // Messaggi di Aprile 2022
+        $messagesApr2022 = Message::where('doctor_id', $user_id)
+        ->whereMonth('date', 4)
+        ->whereYear('date', 2022)
+        ->get();
+
+        // Messaggi di Maggio 2022
+        $messagesMag2022 = Message::where('doctor_id', $user_id)
+        ->whereMonth('date', 5)
+        ->whereYear('date', 2022)
+        ->get();
+
+        // Messaggi di Giugno 2022
+        $messagesGiu2022 = Message::where('doctor_id', $user_id)
+        ->whereMonth('date', 6)
+        ->whereYear('date', 2022)
+        ->get();
+
+        // Messaggi di Luglio 2022
+        $messagesLug2022 = Message::where('doctor_id', $user_id)
+        ->whereMonth('date', 7)
+        ->whereYear('date', 2022)
+        ->get();
+
+        // Messaggi di Agosto 2022
+        $messagesAug2022 = Message::where('doctor_id', $user_id)
+        ->whereMonth('date', 8)
+        ->whereYear('date', 2022)
+        ->get();
+
+        // Messaggi di Settembre 2022
+        $messagesSet2022 = Message::where('doctor_id', $user_id)
+        ->whereMonth('date', 9)
+        ->whereYear('date', 2022)
+        ->get();
+
+        // Messaggi di Ottobre 2022
+        $messagesOtt2022 = Message::where('doctor_id', $user_id)
+        ->whereMonth('date', 10)
+        ->whereYear('date', 2022)
+        ->get();
+
+        // Messaggi di Novembre 2022
+        $messagesNov2022 = Message::where('doctor_id', $user_id)
+        ->whereMonth('date', 11)
+        ->whereYear('date', 2022)
+        ->get();
+
+        // Messaggi di Dicembre 2022
+        $messagesDec2022 = Message::where('doctor_id', $user_id)
+        ->whereMonth('date', 12)
+        ->whereYear('date', 2022)
+        ->get();
+
+
+        return view('admin.admin', compact('doctor', 'messages', 
+        'messagesGen2022',
+        'messagesFeb2022',
+        'messagesMar2022',
+        'messagesApr2022',
+        'messagesMag2022',
+        'messagesGiu2022',
+        'messagesLug2022',
+        'messagesAug2022',
+        'messagesSet2022',
+        'messagesOtt2022',
+        'messagesNov2022',
+        'messagesDec2022',
+        ));
     }
 
     /**

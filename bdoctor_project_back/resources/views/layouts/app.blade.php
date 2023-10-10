@@ -26,7 +26,6 @@
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
