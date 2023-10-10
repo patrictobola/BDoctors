@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Message;
+use App\Models\Review;
 use App\Models\Doctor;
 use App\Models\Rating;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class DashboardController extends Controller
         $doctor = Doctor::findOrFail($user_id);
         $messages = Message::where('doctor_id', '=', $user_id)->get();
         $ratings = $doctor->ratings()->get();
+        $reviews = Review::where('doctor_id', '=', $user_id)->get();
 
         // $date = Carbon::createFromFormat('Y-m-d H:i:s', $rating->date);
         // Messagi di Gennaio 2022
@@ -222,6 +224,8 @@ class DashboardController extends Controller
             'messagesOtt2022',
             'messagesNov2022',
             'messagesDec2022',
+            'reviews',
+
         ));
     }
 

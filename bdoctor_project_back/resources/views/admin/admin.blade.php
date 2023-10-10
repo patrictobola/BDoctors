@@ -77,11 +77,34 @@
                     <div class="row g-0 m-4">
                         <div class="row">
                             <!-- Col per le Recensioni -->
-                            <div class="col-md-8" id="recensioni">
+                            <div class="col" id="recensioni">
                                 <h5>Ultime recensioni ricevuti</h5>
+                                 <!-- Recensioni Accordions -->
                                 <div class="mb-4">
-                                    <!-- Aggiungiamo qui il contenuto per visualizzare le informazioni sui recensioni -->
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quae eveniet.</p>
+                                    <div id="accordion">
+                                        @foreach ($reviews as $review)
+                                            @if ($review->doctor_id === $doctor->id)
+                                                <div class="card mb-4">
+                                                    <div class="card-header" id="heading{{ $review->id }}">
+                                                        <h5 class="mb-0 d-flex justify-content-between align-items-center">
+                                                            <span>Nome: {{ $review->name }}</span>
+                                                            <button class="btn btn-primary rounded-3" data-toggle="collapse"
+                                                                data-target="#collapse{{ $review->id }}">
+                                                                Mostra di più
+                                                            </button>
+                                                        </h5>
+                                                    </div>
+                                                    <div id="collapse{{ $review->id }}" class="collapse"
+                                                        aria-labelledby="heading{{ $review->id }}" data-parent="#accordion">
+                                                        <div class="card-body">
+                                                            <p><strong>Email: </strong>{{ $review->email }}</p>
+                                                            <p><strong>Contenuto: </strong>{{ $review->text }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>

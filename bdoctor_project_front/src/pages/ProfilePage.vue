@@ -11,7 +11,6 @@ export default {
 
     data: () => ({
         doctor: null,
-        // reviews: null,
         message: {
             doctor_id: '',
             name: '',
@@ -40,14 +39,8 @@ export default {
                 })
                 .catch(err => { console.error(err) })
         },
-        // getReviews() {
-        //     const endpoint = apiReviewUri + this.$route.params.id;
-        //     axios.get(endpoint).then(res => {
-        //         this.reviews = res.data;
-        //     })
-        // },
         sendMessage() {
-            const endpointmes = apiMessageUri + `?name=${this.message.name}&last_name=${this.message.last_name}&text=${this.message.text}&email=${this.message.email}&doctor_id=${this.message.doctor_id}`
+            const endpointmes = apiMessageUri + `?name=${this.message.name}&last_name=${this.message.last_name}&text=${this.message.text}&email=${this.message.email}&doctor_id=${this.message.doctor_id}&date=2023-12-21`
             axios.post(endpointmes)
         },
         sendReviewAndRating() {
@@ -130,13 +123,29 @@ export default {
             </div>
             <!-- Ultime recensioni ricevute -->
             <div class="col">
-                <div class="card">
-                    <h5>inserire ultime recensioni ricevute</h5>
-                    <div class="card" v-for="review in doctor.reviews">
-                        <p class="mb-1">{{ review.name }}:</p>
-                        <p>{{ review.text }}</p>
-                    </div>
-                </div>
+
+            <h5>Ultime recensioni ricevute</h5>
+            <div class="accordion mb-2" v-for="review in doctor.reviews" :key="review.id">
+            <div class="accordion-item">
+            <div class="accordion-header d-flex justify-content-between align-items-center">
+            <h5 class="ms-2">Nome:{{ review.name }}</h5>
+
+            <!-- Buttons Accordion -->
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            :data-bs-target="'#collapseTwo' + review.id" aria-expanded="false"
+            :aria-controls="'collapseTwo' + review.id">
+            mostra
+            </button>
+
+            </div>
+            <div :id="'collapseTwo' + review.id" class="accordion-collapse collapse" :aria-labelledby="'headingTwo' + review.id">
+            <div class="accordion-body">
+            <p>Recensione: {{ review.text }}</p>
+            </div>
+            </div>
+            </div>
+            </div>
+
             </div>
             <div class="row mt-5 mb-3">
                 <!-- Col messaggi dottori -->
@@ -153,7 +162,7 @@ export default {
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Cognome<span class="text-danger">*(campo
                                         obbligatorio)*</span></label>
-                                <input v-model="message.email" type="text" class="form-control" id="exampleInputEmail2"
+                                <input v-model="message.last_name" type="text" class="form-control" id="exampleInputEmail2"
                                     aria-describedby="emailHelp">
                             </div>
                             <div class="mb-3">
@@ -266,5 +275,11 @@ button {
 
 .doctor-body {
     padding-top: 0;
+}
+
+.accordion-button {
+    width: 155px;
+    height: 20px;
+
 }
 </style>

@@ -67,13 +67,11 @@ a {
   margin-right: 35px;
   margin-bottom: 10px;
   box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.6);
-  transition: background-color 0.5s, box-shadow 0.5s, padding 0.5s, font-size 0.5s;
+  transition: background-color 0.5s, box-shadow 0.5s;
 }
 
 .left-button:hover {
   background-color: #04D8C5;
   box-shadow: 0 0 35px 7px rgba(255, 255, 255, 0.6);
-  padding: 20px 60px;
-  font-size: 27px;
 }
 </style>
