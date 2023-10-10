@@ -145,18 +145,18 @@
 <script type="module">
     const messages = @json($messages);
 
-    const messagesGen = @json($messagesGen2022);
-    const messagesFeb = @json($messagesFeb2022);
-    const messagesMar = @json($messagesMar2022);
-    const messagesApr = @json($messagesApr2022);
-    const messagesMag = @json($messagesMag2022);
-    const messagesGiu = @json($messagesGiu2022);
-    const messagesLug = @json($messagesLug2022);
-    const messagesAug = @json($messagesAug2022);
-    const messagesSet = @json($messagesSet2022);
-    const messagesOtt = @json($messagesOtt2022);
     const messagesNov = @json($messagesNov2022);
-    const messagesDec = @json($messagesDec2022);
+    const messagesDec = @json($messagesDic2022);
+    const messagesGen = @json($messagesGen2023);
+    const messagesFeb = @json($messagesFeb2023);
+    const messagesMar = @json($messagesMar2023);
+    const messagesApr = @json($messagesApr2023);
+    const messagesMag = @json($messagesMag2023);
+    const messagesGiu = @json($messagesGiu2023);
+    const messagesLug = @json($messagesLug2023);
+    const messagesAug = @json($messagesAug2023);
+    const messagesSet = @json($messagesSet2023);
+    const messagesOtt = @json($messagesOtt2023);
 
 
 

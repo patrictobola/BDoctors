@@ -24,10 +24,10 @@ class MessageSeeder extends Seeder
             $vote->email = $faker->email();
 
             //Date comprese in un anno
-            $startDate = '2022-01-01T00:00:00';
-            $endDate = '2023-12-31T23:59:59';
+            $startDate = '2022-10-01T00:00:00';
+            $endDate = '2023-10-31T23:59:59';
             $vote->date = $faker->dateTimeBetween($startDate, $endDate)->format('Y-m-d H:i:s');
-    
+
             $vote->save();
         }
     }
