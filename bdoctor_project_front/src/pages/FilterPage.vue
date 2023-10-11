@@ -321,6 +321,16 @@ export default {
             }
 
         },
+        calculateAverage(ratings) {
+            if (ratings.length === 0) {
+                return 0;
+            }
+
+            // Use parseFloat to ensure that ratings are treated as numbers
+            const sum = ratings.reduce((total, rating) => total + parseFloat(rating.vote), 0);
+            const average = sum / ratings.length;
+            return average.toFixed(1);
+        }
 
     },
 
@@ -376,8 +386,8 @@ export default {
         <ul class="doctor-list" id="doctor-list">
             <!-- DOCTOR CARD -->
             <div class="row">
+                <li v-for="doctor in   doctors  ">
 
-                <li v-for="doctor in doctors">
                     <RouterLink :to="{ name: 'profile', params: { id: doctor.id } }">
                         <div class="doctor">
                             <!-- DOCTOR-IMG -->
@@ -401,7 +411,15 @@ export default {
                                             :key="specialization.id">{{
                                                 specialization.name }},</p>
                                     </div>
+                                    <div class="ms-2 mt-3">
+                                        <h5>Media voti</h5>
+                                        <!-- Inseriamo il codice per visualizzare le recensioni qui -->
+                                        <p>
+                                            <font-awesome-icon v-for="i in 5" :key="i"
+                                                :icon="i <= calculateAverage(doctor.ratings) ? ['fas', 'star'] : ['far', 'star']" />
+                                        </p>
 
+                                    </div>
                                     <p class="ms-2 m-0">Prestazioni: {{ doctor.performances }}</p>
                                 </div>
                             </div>
@@ -414,8 +432,8 @@ export default {
 
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li v-for="link in links" class="page-item" :class="link.active ? 'active' : ''"><a class="page-link"
-                            :class="link.url ? '' : 'disabled'" href="#" @click="fetchDoctors(link.url)"
+                    <li v-for="  link   in   links  " class="page-item" :class="link.active ? 'active' : ''"><a
+                            class="page-link" :class="link.url ? '' : 'disabled'" href="#" @click="fetchDoctors(link.url)"
                             v-html="link.label"></a></li>
                 </ul>
             </nav>

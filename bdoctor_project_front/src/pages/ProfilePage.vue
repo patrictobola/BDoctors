@@ -197,8 +197,7 @@ export default {
             <!-- Ultime recensioni ricevute -->
             <div class="col">
                 <h5>Ultime recensioni ricevute</h5>
-                <div class="accordion mb-2" v-for="review in doctor.reviews" :key="review.id"
-                    >
+                <div class="accordion mb-2" v-for="review in doctor.reviews" :key="review.id">
                     <div class="accordion-item">
                         <div class="accordion-header d-flex justify-content-between align-items-center">
                             <h5 class="ms-2">Nome:{{ review.name }}</h5>
