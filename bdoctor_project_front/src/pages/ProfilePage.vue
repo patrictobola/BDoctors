@@ -177,8 +177,7 @@ export default {
                                 <h5 class="card-title" v-if="doctor && doctor.user">Dr. {{ doctor.user.name }} {{
                                     doctor.user.last_name }}</h5>
                                 <p class="card-text specializations">Specializzazioni: <small class="d-block"
-                                        v-for="specialization in doctor.specializations" :key="specialization.id"
-                                        v-if="doctor && doctor.specialization">
+                                        v-for="specialization in doctor.specializations" :key="specialization.id">
                                         {{ specialization.name }},
                                     </small>
                                 </p>
@@ -186,8 +185,7 @@ export default {
                                     <h5>Media voti</h5>
                                     <!-- Inseriamo il codice per visualizzare le recensioni qui -->
                                     <p>
-                                        <!-- v-if="doctor && doctor.rating" -->
-                                        <font-awesome-icon v-for="i in 5" :key="i" v-if="doctor && doctor.rating"
+                                        <font-awesome-icon v-for="i in 5" :key="i"
                                             :icon="i <= voteAverage ? ['fas', 'star'] : ['far', 'star']" />
                                     </p>
                                 </div>
@@ -198,10 +196,8 @@ export default {
             </div>
             <!-- Ultime recensioni ricevute -->
             <div class="col">
-
                 <h5>Ultime recensioni ricevute</h5>
-                <div class="accordion mb-2" v-for="review in doctor.reviews" :key="review.id"
-                    v-if="doctor && doctor.review">
+                <div class="accordion mb-2">
                     <div class="accordion-item">
                         <div class="accordion-header d-flex justify-content-between align-items-center">
                             <h5 class="ms-2">Nome:{{ review.name }}</h5>
