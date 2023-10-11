@@ -185,10 +185,16 @@ export default {
         <RouterLink :to="{ name: 'profile', params: { id: doctor.id } }">
           <div class="doctor">
             <!-- DOCTOR-IMG -->
-            <div class="doc-image mb-3">
-              <img v-if="doctor.profile_photo" :src="doctor.profile_photo">
-              <img v-else src="../assets/img/placeholder.jpg">
+            <div class="d-flex justify-content-between">
+              <div class="doc-image mb-3">
+                <img v-if="doctor.profile_photo" :src="doctor.profile_photo">
+                <img v-else src="../assets/img/placeholder.jpg">
+              </div>
+              <div class="sponsor-badge">
+                <img v-if="doctor.sponsors.length" src="../assets/img/s (1).png" alt="sponsorbadge">
+              </div>
             </div>
+
             <!-- DOCTOR INFO -->
             <div>
               <div>
@@ -324,6 +330,19 @@ select {
 option {
   background-color: white;
   color: black;
+}
+
+.sponsor-badge {
+  position: relative;
+  top: 0;
+  left: 20px;
+  height: 104px;
+  border-radius: 0px 10px 0px 10px;
+  overflow: hidden;
+
+  img {
+    height: 100%;
+  }
 }
 
 @media screen and (min-width: 580px) {
