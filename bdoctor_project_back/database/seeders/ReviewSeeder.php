@@ -58,18 +58,24 @@ class ReviewSeeder extends Seeder
             "Ho consultato il Dottor Smith e sono rimasto colpito dalla sua professionalità. Ha affrontato i miei problemi di salute con successo. Consiglio vivamente.",
             "Sono stata paziente del Dottor Johnson per anni. È un medico eccezionale che si prende cura dei suoi pazienti con attenzione. Grazie per tutto ciò che fai!"
         ];
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             // Estrae le reviews text e le randomizza per 100 recensioni
             $randomReview = $reviews[array_rand($reviews)];
             // Estrae il nome del dottore dalla recensione
             preg_match('/(?:Dottor|Dottore)\s+(\w+)/i', $randomReview, $matches);
             $doctorName = isset($matches[1]) ? $matches[1] : 'Nome Dottore Sconosciuto';
-            $doctor = new Review();
-            $doctor->doctor_id = $faker->numberBetween(1, 10);
-            $doctor->name = $doctorName;
-            $doctor->text = $randomReview;
-            $doctor->email = $faker->email();
-            $doctor->save();
+            $review = new Review();
+            $review->doctor_id = $faker->numberBetween(1, 50);
+            $review->name = $doctorName;
+            $review->text = $randomReview;
+            $review->email = $faker->email();
+
+            //Date comprese in un anno
+            $startDate = '2022-11-01T00:00:00';
+            $endDate = '2023-10-31T23:59:59';
+            $review->date = $faker->dateTimeBetween($startDate, $endDate)->format('Y-m-d H:i:s');
+
+            $review->save();
         }
     }
 }
