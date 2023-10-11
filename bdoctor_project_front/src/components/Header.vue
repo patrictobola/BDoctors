@@ -11,7 +11,7 @@ export default {
       <div class="d-flex justify-content-between nav-box w-100">
         <!-- Logo Img -->
         <figure class="px-4 d-flex justify-content-center image-container">
-          <img src="../assets/img/logo_Bdoctor (1).png" alt="Logo Bdoctor">
+          <img src="../assets/img/logo_Bdoctor.png" alt="logo Bdoctor">
         </figure>
         <!-- Links Navbar -->
         <div class="d-flex px-4">
