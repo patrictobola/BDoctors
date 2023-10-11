@@ -50,7 +50,7 @@ header {
   position: absolute;
   width: 100%;
   height: 3px;
-  background-color: #20c997;
+  background-color: #04D8C5;
   bottom: -5px;
   left: 0;
 }
