@@ -15,9 +15,9 @@ class MessageSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             $vote = new Message();
-            $vote->doctor_id = 1;
+            $vote->doctor_id = rand(1, 50);
             $vote->name = $faker->name();
             $vote->last_name = $faker->lastName();
             $vote->text = $faker->text();
