@@ -32,7 +32,7 @@ class ReviewSeeder extends Seeder
             "Sono rimasta molto impressionata dal Dottor Lee. È un medico molto attento e ha un approccio gentile. Le sue spiegazioni sono state chiare e rassicuranti. Grazie per il supporto.",
             "Il Dottor Garcia è un medico eccezionale. Ha affrontato il mio problema di salute con grande professionalità e attenzione. Sono davvero grato per la sua cura. Lo sceglierei di nuovo.",
             "Ho avuto la fortuna di essere assistita dal Dottor Kim. È un medico eccezionale che si prende cura dei suoi pazienti con grande attenzione. Grazie per il tuo impegno costante.",
-            "Il $ è sempre stato puntuale e professionale. Ha risposto a tutte le mie domande e ha fornito un'ottima assistenza. Grazie per tutto.",
+            "Il Dottor Smith è sempre stato puntuale e professionale. Ha risposto a tutte le mie domande e ha fornito un'ottima assistenza. Grazie per tutto.",
             "Sono molto soddisfatta del Dottor Martinez. È stato gentile e ha ascoltato attentamente le mie preoccupazioni. Ha fornito una diagnosi accurata e un trattamento efficace.",
             "Il Dottor Wilson è un medico compassionevole e competente. Durante il mio periodo di malattia, ha fornito un grande sostegno e cura. Lo consiglio vivamente.",
             "Ho avuto una grande esperienza con il Dottor Adams. È sempre stato disponibile e affidabile. Mi ha aiutato a comprendere la mia salute. Grazie mille!",

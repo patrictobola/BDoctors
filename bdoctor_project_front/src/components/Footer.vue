@@ -14,22 +14,22 @@ export default {
           <!-- CONTACTS -->
           <ul>
             <h2>Contatti</h2>
-            <li><a href="https://www.linkedin.com/in/matteo-pizzichemi-5b1398256/" target="_blank">Matteo</a></li>
-            <li><a href="https://www.linkedin.com/in/gioele-iacovella-8a1ab2291/" target="_blank">Gioele</a></li>
-            <li><a href="https://www.linkedin.com/in/patric-tobola/" target="_blank">Patric</a></li>
-            <li><a href="https://www.linkedin.com/in/giacomo-portaluppi-19a94628b/" target="_blank">Giacomo</a></li>
-            <li><a href="https://www.linkedin.com/in/stefan-simerea-929794291/" target="_blank">Stefan</a></li>
+            <li><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=matteo.pizzichemi01@gmail.com" target="_blank">Matteo</a></li>
+            <li><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=gio.cvll16@gmail.com" target="_blank">Gioele</a></li>
+            <li><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=tobola92@gmail.com" target="_blank">Patric</a></li>
+            <li><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=giacomo.p03@gmail.com" target="_blank">Giacomo</a></li>
+            <li><a  href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=stefanosimerea15@gmail.com" target="_blank">Stefan</a></li>
           </ul>
         </div>
         <div class="socials me-5">
           <h2>Socials</h2>
           <!-- SOCIALS -->
           <ul>
-            <li><a href="https://github.com/matteo2302/Matteo-Pizzichemi" target="_blank">Matteo</a></li>
-            <li><a href="https://github.com/GLCVLL" target="_blank">Gioele</a></li>
-            <li><a href="https://github.com/patrictobola" target="_blank">Patric</a></li>
-            <li><a href="https://github.com/Gino804/Giacomo_Portaluppi" target="_blank">Giacomo</a></li>
-            <li><a href="https://github.com/stefansimereaa" target="_blank">Stefan</a></li>
+            <li><a href="https://www.linkedin.com/in/matteo-pizzichemi-5b1398256/" target="_blank">Matteo</a></li>
+            <li><a href="https://www.linkedin.com/in/gioele-iacovella-8a1ab2291/" target="_blank">Gioele</a></li>
+            <li><a href="https://www.linkedin.com/in/patric-tobola/" target="_blank">Patric</a></li>
+            <li><a href="https://www.linkedin.com/in/giacomo-portaluppi-19a94628b/" target="_blank">Giacomo</a></li>
+            <li><a href="https://www.linkedin.com/in/stefan-simerea-929794291/" target="_blank">Stefan</a></li>
           </ul>
         </div>
       </div>
