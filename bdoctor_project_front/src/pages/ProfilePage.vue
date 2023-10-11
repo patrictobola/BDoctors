@@ -176,11 +176,11 @@ export default {
                             <div class="card-body doctor-body">
                                 <h5 class="card-title" v-if="doctor && doctor.user">Dr. {{ doctor.user.name }} {{
                                     doctor.user.last_name }}</h5>
-                                <p class="card-text specializations">Specializzazioni: <small class="d-block"
+                                <h5 class="card-text specializations">Specializzazioni: <small class="d-block"
                                         v-for="specialization in doctor.specializations" :key="specialization.id">
                                         {{ specialization.name }},
                                     </small>
-                                </p>
+                                </h5>
                                 <div class="mt-3">
                                     <h5>Media voti</h5>
                                     <!-- Inseriamo il codice per visualizzare le recensioni qui -->
@@ -197,7 +197,8 @@ export default {
             <!-- Ultime recensioni ricevute -->
             <div class="col">
                 <h5>Ultime recensioni ricevute</h5>
-                <div class="accordion mb-2">
+                <div class="accordion mb-2" v-for="review in doctor.reviews" :key="review.id"
+                    >
                     <div class="accordion-item">
                         <div class="accordion-header d-flex justify-content-between align-items-center">
                             <h5 class="ms-2">Nome:{{ review.name }}</h5>
