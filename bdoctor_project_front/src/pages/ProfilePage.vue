@@ -112,7 +112,7 @@ export default {
                                     <!-- Inseriamo il codice per visualizzare le recensioni qui -->
                                     <p>
                                         <!-- v-if="doctor && doctor.rating" -->
-                                        <font-awesome-icon v-for="i in 5" :key="i"
+                                        <font-awesome-icon v-for="i in 5" :key="i" v-if="doctor && doctor.rating"
                                             :icon="i <= voteAverage ? ['fas', 'star'] : ['far', 'star']" />
                                     </p>
                                 </div>
@@ -125,7 +125,7 @@ export default {
             <div class="col">
 
             <h5>Ultime recensioni ricevute</h5>
-            <div class="accordion mb-2" v-for="review in doctor.reviews" :key="review.id">
+            <div class="accordion mb-2" v-for="review in doctor.reviews" :key="review.id" v-if="doctor && doctor.review">
             <div class="accordion-item">
             <div class="accordion-header d-flex justify-content-between align-items-center">
             <h5 class="ms-2">Nome:{{ review.name }}</h5>

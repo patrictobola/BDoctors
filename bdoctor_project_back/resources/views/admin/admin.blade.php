@@ -43,23 +43,23 @@
                         <div class="row">
                             <!-- Col per i Messaggi -->
                             <div class="col" id="messaggi">
-                                <h5>Ultimi messagi ricevuti</h5>
+                                <h5>Ultimi messaggi ricevuti</h5>
                                 <!-- Messages Accordions -->
-                                <div id="accordion">
+                                <div id="message-accordion">
                                     @foreach ($messages as $message)
                                         @if ($message->doctor_id === $doctor->id)
                                             <div class="card mb-4">
-                                                <div class="card-header" id="heading{{ $message->id }}">
+                                                <div class="card-header" id="message-heading{{ $message->id }}">
                                                     <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                         <span>Nome: {{ $message->name }} {{ $message->last_name }}</span>
                                                         <button class="btn btn-primary rounded-3" data-toggle="collapse"
-                                                            data-target="#collapse{{ $message->id }}">
+                                                            data-target="#message-collapse{{ $message->id }}">
                                                             Mostra di più
                                                         </button>
                                                     </h5>
                                                 </div>
-                                                <div id="collapse{{ $message->id }}" class="collapse"
-                                                    aria-labelledby="heading{{ $message->id }}" data-parent="#accordion">
+                                                <div id="message-collapse{{ $message->id }}" class="collapse"
+                                                    aria-labelledby="message-heading{{ $message->id }}" data-parent="#message-accordion">
                                                     <div class="card-body">
                                                         <p><strong>Email: </strong>{{ $message->email }}</p>
                                                         <p><strong>Contenuto: </strong>{{ $message->text }}</p>
@@ -81,22 +81,22 @@
                                 <h5>Ultime recensioni ricevuti</h5>
                                 <!-- Recensioni Accordions -->
                                 <div class="mb-4">
-                                    <div id="accordion">
+                                    <div id="review-accordion"> <!-- Assegna un ID univoco -->
                                         @foreach ($reviews as $review)
                                             @if ($review->doctor_id === $doctor->id)
                                                 <div class="card mb-4">
-                                                    <div class="card-header" id="heading{{ $review->id }}">
+                                                    <div class="card-header" id="review-heading{{ $review->id }}"> <!-- Assegna un ID univoco -->
                                                         <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                             <span>Nome: {{ $review->name }}</span>
                                                             <button class="btn btn-primary rounded-3" data-toggle="collapse"
-                                                                data-target="#collapse{{ $review->id }}">
+                                                                data-target="#review-collapse{{ $review->id }}"> <!-- Assegna un ID univoco -->
                                                                 Mostra di più
                                                             </button>
                                                         </h5>
                                                     </div>
-                                                    <div id="collapse{{ $review->id }}" class="collapse"
-                                                        aria-labelledby="heading{{ $review->id }}"
-                                                        data-parent="#accordion">
+                                                    <div id="review-collapse{{ $review->id }}" class="collapse"
+                                                        aria-labelledby="review-heading{{ $review->id }}"
+                                                        data-parent="#review-accordion"> <!-- Assegna un attributo data-parent univoco -->
                                                         <div class="card-body">
                                                             <p><strong>Email: </strong>{{ $review->email }}</p>
                                                             <p><strong>Contenuto: </strong>{{ $review->text }}</p>
@@ -111,6 +111,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
             <div class="col-md-6">
                 <!-- Col per la sponsor -->
