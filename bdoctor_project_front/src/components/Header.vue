@@ -1,20 +1,7 @@
 <script>
-// import axios from 'axios';
-// const endpoint = '';
 export default {
   name: 'Header',
   data: () => ({ doctors: [] }),
-  // methods: {
-  //   fetchDocors() {
-  //     axios.get(endpoint).then((res) => {
-  //       this.doctors = res.data
-  //       console.log('DOCTORS AXIOS', res.data)
-  //     })
-  //   }
-  // },
-  // created() {
-  //   this.fetchdoctors()
-  // }
 }
 </script>
 
@@ -30,7 +17,7 @@ export default {
         <div class="d-flex px-4">
           <div class="navbar navbar-links" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active d-min me-3" aria-current="page" href="http://localhost:5173/">Home</a>
+              <a class="nav-link active d-min me-3" aria-current="page" href="http://localhost:5174/">Home</a>
               <a class="nav-link active d-min me-3" aria-current="page" href="#doctor-list">Dottori</a>
               <a class="nav-link active d-min me-3" aria-current="page" href="#reviews-box">Recensioni</a>
               <a class="nav-link active d-min me-3" aria-current="page" href="#contatti">Contatti</a>
@@ -105,12 +92,13 @@ img {
 .btn-nav {
   border-radius: 10px;
   margin-left: 20px;
-  background-color: #20c997;
+  background-color: #04D8C5;
   padding: 10px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  box-shadow: 0px 5px 8px #888888;
   transition: background-color 1s, box-shadow 1s, scale 1s;
 }
 

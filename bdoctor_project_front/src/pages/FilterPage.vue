@@ -490,7 +490,7 @@ option {
     flex: 0 0 auto;
     width: calc(50% - 20px);
     margin: 15px 10px 0px 10px;
-    border-radius: 42px 10px 10px 42px;
+    border-radius: 44px 10px 10px 44px;
 }
 
 .pagination>.active>a {
@@ -543,7 +543,7 @@ option {
     }
 
     .doctor-list li {
-        border-radius: 42px 10px 10px 10px;
+        border-radius: 44px 10px 10px 10px;
     }
 
     .doctors-box {
