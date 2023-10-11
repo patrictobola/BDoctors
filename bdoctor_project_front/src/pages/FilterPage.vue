@@ -377,19 +377,24 @@ export default {
             <!-- DOCTOR CARD -->
             <div class="row">
 
-                <li v-for="doctor in doctors" :class="doctor.sponsors.length ? 'border-danger' : ''">
+                <li v-for="doctor in doctors">
                     <RouterLink :to="{ name: 'profile', params: { id: doctor.id } }">
                         <div class="doctor">
                             <!-- DOCTOR-IMG -->
-                            <div class="doc-image mb-3">
-                                <img v-if="doctor.profile_photo" :src="doctor.profile_photo">
-                                <img v-else src="../assets/img/placeholder.jpg">
+                            <div class="d-flex justify-content-between">
+                                <div class="doc-image mb-3">
+                                    <img v-if="doctor.profile_photo" :src="doctor.profile_photo">
+                                    <img v-else src="../assets/img/placeholder.jpg">
+                                </div>
+                                <div class="sponsor-badge">
+                                    <img v-if="doctor.sponsors.length" src="../assets/img/s (1).png" alt="sponsorbadge">
+                                </div>
                             </div>
+
                             <!-- DOCTOR INFO -->
                             <div>
                                 <div>
                                     <h5 class="ms-2 ">{{ doctor.user.name }} {{ doctor.user.last_name }}</h5>
-                                    <p v-if="doctor.sponsors.length">Yo sono sponsorizzato</p>
                                     <p class="ms-2 m-0">Specializzazioni: </p>
                                     <div class="spec-list d-flex">
                                         <p class="ms-2 m-0" v-for="specialization in doctor.specializations"
@@ -509,6 +514,19 @@ option {
         border: 1px solid #04D8C5;
         border-radius: 10px;
         margin-right: 10px;
+    }
+}
+
+.sponsor-badge {
+    position: relative;
+    top: 0;
+    left: 20px;
+    height: 104px;
+    border-radius: 0px 10px 0px 10px;
+    overflow: hidden;
+
+    img {
+        height: 100%;
     }
 }
 
