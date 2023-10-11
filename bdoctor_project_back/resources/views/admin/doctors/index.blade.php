@@ -7,7 +7,7 @@
                 {{-- Foto profilo --}}
                 <div class="col-md-3">
                     <div class="card border-0">
-                        <div class="card-body d-flex align-items-center"> {{-- Utilizza queste classi per allineare il contenuto verticalmente --}}
+                        <div class="card-body d-flex align-items-center">
                             <img src="{{ $doctor->profile_photo ?? url('/user_placeholder.jpg') }}" class="card-img-top"
                                 alt="Doctor's Photo">
                         </div>
@@ -67,7 +67,7 @@
                     <div class="d-flex justify-content-end mt-3">
 
                         {{-- Pulsante di modifica --}}
-                        <a class="btn mx-2" href="{{ route('admin.doctor.edit', $doctor) }}">Modifica</a>
+                        <a class="btn mx-2 mb-3" href="{{ route('admin.doctor.edit', $doctor) }}">Modifica</a>
                     </div>
                 </div>
             </div>
