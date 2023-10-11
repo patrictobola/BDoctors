@@ -22,6 +22,7 @@ class DashboardController extends Controller
         $doctor = Doctor::findOrFail($user_id);
         $messages = Message::where('doctor_id', '=', $user_id)->get();
         $ratings = $doctor->ratings()->get();
+        // dd($ratings);
         $reviews = Review::where('doctor_id', '=', $user_id)->get();
         foreach ($reviews as $review) {
             $date = Carbon::parse($review->created_at);

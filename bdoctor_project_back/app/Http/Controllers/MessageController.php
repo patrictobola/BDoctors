@@ -14,11 +14,10 @@ class MessageController extends Controller
         $message = new Message;
         $message->fill($data);
         // Genera una data casuale tra gennaio 2022 e dicembre 2022
-        $startDate = strtotime('2022-11-01');
-        $endDate = strtotime('2023-10-31');
-        $randomTimestamp = mt_rand($startDate, $endDate);
-        $randomDate = date('Y-m-d', $randomTimestamp);
-        $message['date']= $randomDate;
+        // $startDate = strtotime('2022-11-01');
+        // $endDate = strtotime('2023-10-31');
+        $timestamp = now();
+        $message['date'] = $timestamp;
         $message->save();
     }
 }
