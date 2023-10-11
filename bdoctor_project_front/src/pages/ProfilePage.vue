@@ -197,12 +197,6 @@ export default {
             <!-- Ultime recensioni ricevute -->
             <div class="col">
                 <h5>Ultime recensioni ricevute</h5>
-<<<<<<< HEAD
-                <div class="accordion mb-2" v-for="review in doctor.reviews" :key="review.id">
-                    <div class="accordion-item">
-                        <div class="accordion-header d-flex justify-content-between align-items-center">
-                            <h5 class="ms-2">Nome:{{ review.name }}</h5>
-=======
                 <div class="accordion" id="accordionExample">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed first-col-btn" type="button" data-bs-toggle="collapse"
@@ -216,7 +210,6 @@ export default {
                                 <div class="accordion-item">
                                     <div class="accordion-header d-flex justify-content-between align-items-center">
                                         <h5 class="ms-2">Nome:{{ review.name }}</h5>
->>>>>>> 703528d700d903f4dd90ab793aba402c155312d9
 
                                         <!-- Buttons Accordion -->
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
