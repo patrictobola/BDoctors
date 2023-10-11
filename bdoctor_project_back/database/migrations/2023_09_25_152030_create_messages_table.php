@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->text('text');
             $table->string('email');
-            $table->date('date');
+            $table->timestamp('date');
             $table->timestamps();
         });
     }
