@@ -176,11 +176,11 @@ export default {
                             <div class="card-body doctor-body">
                                 <h5 class="card-title" v-if="doctor && doctor.user">Dr. {{ doctor.user.name }} {{
                                     doctor.user.last_name }}</h5>
-                                <p class="card-text specializations">Specializzazioni: <small class="d-block"
+                                <h5 class="card-text specializations">Specializzazioni: <small class="d-block"
                                         v-for="specialization in doctor.specializations" :key="specialization.id">
                                         {{ specialization.name }},
                                     </small>
-                                </p>
+                                </h5>
                                 <div class="mt-3">
                                     <h5>Media voti</h5>
                                     <!-- Inseriamo il codice per visualizzare le recensioni qui -->
