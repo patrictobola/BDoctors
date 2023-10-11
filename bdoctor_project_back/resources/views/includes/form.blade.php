@@ -118,8 +118,8 @@
 
         {{-- Bottoni --}}
 
-        <div class="col-1">
-            <button type="submit" class="btn btn-success submit">Salva</button>
+        <div class="col-1 my-5">
+            <button type="submit" class="btn save-btn submit">Salva</button>
         </div>
 
     </div>
