@@ -103,7 +103,7 @@ export default {
                                 <h5 class="card-title" v-if="doctor && doctor.user">Dr. {{ doctor.user.name }} {{
                                     doctor.user.last_name }}</h5>
                                 <p class="card-text specializations">Specializzazioni: <small class="d-block"
-                                        v-for="specialization in doctor.specializations" :key="specialization.id">
+                                        v-for="specialization in doctor.specializations" :key="specialization.id" v-if="doctor && doctor.specialization">
                                         {{ specialization.name }},
                                     </small>
                                 </p>
