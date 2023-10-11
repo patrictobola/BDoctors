@@ -197,26 +197,46 @@ export default {
             <!-- Ultime recensioni ricevute -->
             <div class="col">
                 <h5>Ultime recensioni ricevute</h5>
+<<<<<<< HEAD
                 <div class="accordion mb-2" v-for="review in doctor.reviews" :key="review.id">
                     <div class="accordion-item">
                         <div class="accordion-header d-flex justify-content-between align-items-center">
                             <h5 class="ms-2">Nome:{{ review.name }}</h5>
+=======
+                <div class="accordion" id="accordionExample">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed first-col-btn" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            mostra
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="accordion mb-2" v-for="review in doctor.reviews" :key="review.id">
+                                <div class="accordion-item">
+                                    <div class="accordion-header d-flex justify-content-between align-items-center">
+                                        <h5 class="ms-2">Nome:{{ review.name }}</h5>
+>>>>>>> 703528d700d903f4dd90ab793aba402c155312d9
 
-                            <!-- Buttons Accordion -->
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                :data-bs-target="'#collapseTwo' + review.id" aria-expanded="false"
-                                :aria-controls="'collapseTwo' + review.id">
-                                mostra
-                            </button>
+                                        <!-- Buttons Accordion -->
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            :data-bs-target="'#collapseTwo' + review.id" aria-expanded="false"
+                                            :aria-controls="'collapseTwo' + review.id">
+                                            mostra
+                                        </button>
 
-                        </div>
-                        <div :id="'collapseTwo' + review.id" class="accordion-collapse collapse"
-                            :aria-labelledby="'headingTwo' + review.id">
-                            <div class="accordion-body">
-                                <p>Recensione: {{ review.text }}</p>
+                                    </div>
+                                    <div :id="'collapseTwo' + review.id" class="accordion-collapse collapse"
+                                        :aria-labelledby="'headingTwo' + review.id">
+                                        <div class="accordion-body">
+                                            <p>Recensione: {{ review.text }}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
@@ -354,5 +374,15 @@ button {
     width: 155px;
     height: 20px;
 
+}
+
+.first-col-btn {
+    border-radius: 10px;
+}
+
+.accordion-button:not(.collapsed) {
+    color: white;
+    background-color: #04D8C5;
+    box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
 }
 </style>
