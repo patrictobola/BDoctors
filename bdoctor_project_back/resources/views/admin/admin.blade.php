@@ -17,7 +17,12 @@
                         <div class="col-md-4">
                             <div class="card-body">
                                 <h5 class="card-title">Dr. {{ $doctor->user->name }} {{ $doctor->user->last_name }}</h5>
-                                <p class="card-text">Specializzazione: {{ $doctor->specializations[0]->name }}</p>
+                                <p class="card-text"> Specializzazioni:</p>
+                                <ul class="list-unstyled">
+                                    @foreach ($doctor->specializations as $specialization)
+                                        <li>{{ $specialization->name }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
 
@@ -59,7 +64,8 @@
                                                     </h5>
                                                 </div>
                                                 <div id="message-collapse{{ $message->id }}" class="collapse"
-                                                    aria-labelledby="message-heading{{ $message->id }}" data-parent="#message-accordion">
+                                                    aria-labelledby="message-heading{{ $message->id }}"
+                                                    data-parent="#message-accordion">
                                                     <div class="card-body">
                                                         <p><strong>Email: </strong>{{ $message->email }}</p>
                                                         <p><strong>Contenuto: </strong>{{ $message->text }}</p>
@@ -85,11 +91,11 @@
                                         @foreach ($reviews as $review)
                                             @if ($review->doctor_id === $doctor->id)
                                                 <div class="card mb-4">
-                                                    <div class="card-header" id="review-heading{{ $review->id }}"> 
+                                                    <div class="card-header" id="review-heading{{ $review->id }}">
                                                         <h5 class="mb-0 d-flex justify-content-between align-items-center">
                                                             <span>Nome: {{ $review->name }}</span>
                                                             <button class="btn btn-primary rounded-3" data-toggle="collapse"
-                                                                data-target="#review-collapse{{ $review->id }}"> 
+                                                                data-target="#review-collapse{{ $review->id }}">
                                                                 Mostra di più
                                                             </button>
                                                         </h5>
@@ -111,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <div class="col-md-6">
                 <!-- Col per la sponsor -->
