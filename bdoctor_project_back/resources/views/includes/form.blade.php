@@ -119,7 +119,7 @@
         {{-- Bottoni --}}
 
         <div class="col-1 my-5">
-            <button type="submit" class="btn save-btn submit">Salva</button>
+            <button type="submit" class="btn submit">Salva</button>
         </div>
 
     </div>
