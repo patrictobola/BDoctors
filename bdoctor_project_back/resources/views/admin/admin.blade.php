@@ -159,22 +159,46 @@
     const messagesSet = @json($messagesSet2023);
     const messagesOtt = @json($messagesOtt2023);
 
+    const reviewsNov = @json($reviewsNov2022);
+    const reviewsDec = @json($reviewsDic2022);
+    const reviewsGen = @json($reviewsGen2023);
+    const reviewsFeb = @json($reviewsFeb2023);
+    const reviewsMar = @json($reviewsMar2023);
+    const reviewsApr = @json($reviewsApr2023);
+    const reviewsMag = @json($reviewsMag2023);
+    const reviewsGiu = @json($reviewsGiu2023);
+    const reviewsLug = @json($reviewsLug2023);
+    const reviewsAug = @json($reviewsAug2023);
+    const reviewsSet = @json($reviewsSet2023);
+    const reviewsOtt = @json($reviewsOtt2023);
 
 
-    console.log(messages)
+
+
     const ctx = document.getElementById('myChart');
     const chart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Nov', 'Dec', 'Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Aug', 'Set', 'Ott'],
             datasets: [{
-                label: '# of Messages',
-                data: [messagesGen.length, messagesFeb.length, messagesMar.length, messagesApr.length,
-                    messagesMag.length, messagesGiu.length, messagesLug.length, messagesAug.length,
-                    messagesSet.length, messagesOtt.length, messagesNov.length, messagesDec.length
-                ],
-                borderWidth: 1
-            }]
+                    label: '# of Messages',
+                    data: [messagesNov.length, messagesDec.length, messagesGen.length, messagesFeb.length,
+                        messagesMar.length, messagesApr.length,
+                        messagesMag.length, messagesGiu.length, messagesLug.length, messagesAug.length,
+                        messagesSet.length, messagesOtt.length
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: '# of Reviews',
+                    data: [reviewsNov.length, reviewsDec.length, reviewsGen.length, reviewsFeb.length,
+                        reviewsMar.length, reviewsApr.length,
+                        reviewsMag.length, reviewsGiu.length, reviewsLug.length, reviewsAug.length,
+                        reviewsSet.length, reviewsOtt.length
+                    ],
+                    borderWidth: 1
+                },
+            ]
         },
         options: {
             scales: {
@@ -195,7 +219,7 @@
     const ratingsMag = @json($ratingsMag2023);
     const ratingsGiu = @json($ratingsGiu2023);
     const ratingsLug = @json($ratingsLug2023);
-    const ratingsAgo = @json($ratingsAgo2023);
+    const ratingsAug = @json($ratingsAug2023);
     const ratingsSet = @json($ratingsSet2023);
     const ratingsOtt = @json($ratingsOtt2023);
     const ratingsNov = @json($ratingsNov2022);
@@ -208,12 +232,13 @@
     const chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Nov', 'Dic', 'Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott'],
+            labels: ['Nov', 'Dic', 'Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Aug', 'Set', 'Ott'],
             datasets: [{
                 label: '# of Ratings',
-                data: [ratingsGen.length, ratingsFeb.length, ratingsMar.length, ratingsApr.length,
-                    ratingsMag.length, ratingsGiu.length, ratingsLug.length, ratingsAgo.length,
-                    ratingsSet.length, ratingsOtt.length, ratingsNov.length, ratingsDic.length
+                data: [ratingsNov.length, ratingsDic.length, ratingsGen.length, ratingsFeb.length,
+                    ratingsMar.length, ratingsApr.length,
+                    ratingsMag.length, ratingsGiu.length, ratingsLug.length, ratingsAug.length,
+                    ratingsSet.length, ratingsOtt.length
                 ],
                 borderWidth: 1
             }]
