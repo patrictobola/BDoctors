@@ -54,6 +54,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('http://localhost:5174') }}">{{ __('Website') }}</a>
+                            </li>
                         </ul>
 
                         <!-- Right Side Of Navbar -->
