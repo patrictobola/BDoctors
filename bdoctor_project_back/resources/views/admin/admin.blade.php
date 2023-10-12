@@ -2,110 +2,75 @@
 
 @section('content')
     <div class="container">
-        <h2 class="fs-4 text-secondary my-4">
-            {{ __('Dashboard') }}
-        </h2>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="row g-0 m-4">
-                        <div class="col-md-4">
-                            {{-- Profile photo dashboard --}}
-                            <img src="{{ $doctor->profile_photo ?? url('/user_placeholder.jpg') }}"class="card-img-top w-100"
-                                alt="Doctor's Photo">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card-body">
-                                <h5 class="card-title">Dr. {{ $doctor->user->name }} {{ $doctor->user->last_name }}</h5>
-                                <p class="card-text"> Specializzazioni:</p>
-                                <ul class="list-unstyled">
-                                    @foreach ($doctor->specializations as $specialization)
-                                        <li>{{ $specialization->name }}</li>
-                                    @endforeach
-                                </ul>
+        <div class="dash-stryl">
+            <h2 class="fs-4 text-secondary my-4">
+                {{ __('Dashboard') }}
+            </h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="row g-0 m-4">
+                            <div class="col-md-4">
+                                {{-- Profile photo dashboard --}}
+                                <img src="{{ $doctor->profile_photo ?? url('/user_placeholder.jpg') }}"class="card-img-top w-100"
+                                    alt="Doctor's Photo">
                             </div>
-                        </div>
+                            <div class="col-md-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Dr. {{ $doctor->user->name }} {{ $doctor->user->last_name }}</h5>
+                                    <p class="card-text"> Specializzazioni:</p>
+                                    <ul class="list-unstyled">
+                                        @foreach ($doctor->specializations as $specialization)
+                                            <li>{{ $specialization->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
 
-                        <div class="col-md-12">
-                            <div class="mt-4">
-                                <hr>
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        <ul class="list-inline text-center">
-                                            <li class="list-inline-item"><a href="#messaggi"
-                                                    class="btn btn-primary rounded-2">Messaggi</a></li>
-                                            <li class="list-inline-item"><a href="#recensioni"
-                                                    class="btn btn-primary rounded-2">Recensioni</a></li>
-                                        </ul>
+                            <div class="col-md-12">
+                                <div class="mt-4">
+                                    <hr>
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <ul class="list-inline text-center">
+                                                <li class="list-inline-item"><a href="#messaggi"
+                                                        class="btn btn-primary rounded-2">Messaggi</a></li>
+                                                <li class="list-inline-item"><a href="#recensioni"
+                                                        class="btn btn-primary rounded-2">Recensioni</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card my-3">
-                    <div class="row g-0 m-4">
-                        <div class="row">
-                            <!-- Col per i Messaggi -->
-                            <div class="col" id="messaggi">
-                                <h5>Ultimi messaggi ricevuti</h5>
-                                <!-- Messages Accordions -->
-                                <div id="message-accordion">
-                                    @foreach ($messages as $message)
-                                        @if ($message->doctor_id === $doctor->id)
-                                            <div class="card mb-4">
-                                                <div class="card-header" id="message-heading{{ $message->id }}">
-                                                    <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                        <span>Nome: {{ $message->name }} {{ $message->last_name }}</span>
-                                                        <button class="btn btn-primary rounded-3" data-toggle="collapse"
-                                                            data-target="#message-collapse{{ $message->id }}">
-                                                            Mostra di più
-                                                        </button>
-                                                    </h5>
-                                                </div>
-                                                <div id="message-collapse{{ $message->id }}" class="collapse"
-                                                    aria-labelledby="message-heading{{ $message->id }}"
-                                                    data-parent="#message-accordion">
-                                                    <div class="card-body">
-                                                        <p><strong>Email: </strong>{{ $message->email }}</p>
-                                                        <p><strong>Contenuto: </strong>{{ $message->text }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card my-3">
-                    <div class="row g-0 m-4">
-                        <div class="row">
-                            <!-- Col per le Recensioni -->
-                            <div class="col" id="recensioni">
-                                <h5>Ultime recensioni ricevuti</h5>
-                                <!-- Recensioni Accordions -->
-                                <div class="mb-4">
-                                    <div id="review-accordion">
-                                        @foreach ($reviews as $review)
-                                            @if ($review->doctor_id === $doctor->id)
+                    <div class="card my-3">
+                        <div class="row g-0 m-4">
+                            <div class="row">
+                                <!-- Col per i Messaggi -->
+                                <div class="col" id="messaggi">
+                                    <h5>Ultimi messaggi ricevuti</h5>
+                                    <!-- Messages Accordions -->
+                                    <div id="message-accordion">
+                                        @foreach ($messages as $message)
+                                            @if ($message->doctor_id === $doctor->id)
                                                 <div class="card mb-4">
-                                                    <div class="card-header" id="review-heading{{ $review->id }}">
+                                                    <div class="card-header" id="message-heading{{ $message->id }}">
                                                         <h5 class="mb-0 d-flex justify-content-between align-items-center">
-                                                            <span>Nome: {{ $review->name }}</span>
+                                                            <span>Nome: {{ $message->name }}
+                                                                {{ $message->last_name }}</span>
                                                             <button class="btn btn-primary rounded-3" data-toggle="collapse"
-                                                                data-target="#review-collapse{{ $review->id }}">
+                                                                data-target="#message-collapse{{ $message->id }}">
                                                                 Mostra di più
                                                             </button>
                                                         </h5>
                                                     </div>
-                                                    <div id="review-collapse{{ $review->id }}" class="collapse"
-                                                        aria-labelledby="review-heading{{ $review->id }}"
-                                                        data-parent="#review-accordion">
+                                                    <div id="message-collapse{{ $message->id }}" class="collapse"
+                                                        aria-labelledby="message-heading{{ $message->id }}"
+                                                        data-parent="#message-accordion">
                                                         <div class="card-body">
-                                                            <p><strong>Email: </strong>{{ $review->email }}</p>
-                                                            <p><strong>Contenuto: </strong>{{ $review->text }}</p>
+                                                            <p><strong>Email: </strong>{{ $message->email }}</p>
+                                                            <p><strong>Contenuto: </strong>{{ $message->text }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -116,30 +81,70 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-            </div>
-            <div class="col-md-6">
-                <!-- Col per la sponsor -->
-                <a href="{{ route('payments.index') }}">
-                    {{-- Sponsor image --}}
-                    <img src="{{ asset('sponsor.png') }}" alt="sponsor image" class="card-img-top w-100 rounded mb-3">
-                </a>
-                <!-- GRAFICO MESSAGGI -->
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Statistiche messaggi ricevuti</h5>
-                        <div>
-                            <canvas id="myChart"></canvas>
+                    <div class="card my-3">
+                        <div class="row g-0 m-4">
+                            <div class="row">
+                                <!-- Col per le Recensioni -->
+                                <div class="col" id="recensioni">
+                                    <h5>Ultime recensioni ricevuti</h5>
+                                    <!-- Recensioni Accordions -->
+                                    <div class="mb-4">
+                                        <div id="review-accordion">
+                                            @foreach ($reviews as $review)
+                                                @if ($review->doctor_id === $doctor->id)
+                                                    <div class="card mb-4">
+                                                        <div class="card-header" id="review-heading{{ $review->id }}">
+                                                            <h5
+                                                                class="mb-0 d-flex justify-content-between align-items-center">
+                                                                <span>Nome: {{ $review->name }}</span>
+                                                                <button class="btn btn-primary rounded-3"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#review-collapse{{ $review->id }}">
+                                                                    Mostra di più
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+                                                        <div id="review-collapse{{ $review->id }}" class="collapse"
+                                                            aria-labelledby="review-heading{{ $review->id }}"
+                                                            data-parent="#review-accordion">
+                                                            <div class="card-body">
+                                                                <p><strong>Email: </strong>{{ $review->email }}</p>
+                                                                <p><strong>Contenuto: </strong>{{ $review->text }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-                {{-- GRAFICO VOTI --}}
-                <div class="card my-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Statistiche voti ricevuti</h5>
-                        <div>
-                            <canvas id="ratingsChart"></canvas>
+                <div class="col-md-6">
+                    <!-- Col per la sponsor -->
+                    <a href="{{ route('payments.index') }}">
+                        {{-- Sponsor image --}}
+                        <img src="{{ asset('sponsor.png') }}" alt="sponsor image" class="card-img-top w-100 rounded mb-3">
+                    </a>
+                    <!-- GRAFICO MESSAGGI -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Statistiche messaggi ricevuti</h5>
+                            <div>
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- GRAFICO VOTI --}}
+                    <div class="card my-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Statistiche voti ricevuti</h5>
+                            <div>
+                                <canvas id="ratingsChart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
