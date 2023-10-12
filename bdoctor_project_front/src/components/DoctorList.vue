@@ -183,6 +183,7 @@ export default {
       <!-- DOCTOR CARD -->
       <li v-for="doctor in doctors" :key="doctor.id">
         <RouterLink :to="{ name: 'profile', params: { id: doctor.id } }">
+          {{ console.log(doctor) }}
           <div class="doctor">
             <!-- DOCTOR-IMG -->
             <div class="d-flex justify-content-between">
